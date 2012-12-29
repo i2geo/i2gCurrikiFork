@@ -1,0 +1,31 @@
+#if("$!request.asset"!="" && $xwiki.exists($request.asset))##
+#set($asset=$xwiki.curriki.fetchAsset($request.asset))##
+#set($supportedLanguages=["en","fr","de","es","nl","cs"])##
+#set($browserLanguages="$request.getHeader('Accept-Language')")##
+#if($asset.getValue("rights")!="private")##
+#includeForm("${doc.space}.LOMMacro")##
+$response.setContentType("application/xml")##
+<?xml version="1.0" encoding="UTF-8"?>
+#* @vtlvariable name="doc" type="com.xpn.xwiki.api.Document" *###
+#* @vtlvariable name="bcCurrentDoc" type="com.xpn.xwiki.api.Document" *# ##
+## @vtlvariable name="asset" type="org.curriki.xwiki.plugin.asset.Asset" ##
+## @vtlvariable name="document" type="com.xpn.xwiki.api.Document" ##
+#* @vtlvariable name="xwiki" type="com.xpn.xwiki.api.XWiki" *# ##
+#* @vtlvariable name="util" type="com.xpn.xwiki.api.Util" *# ##
+#* @vtlvariable name="csm" type="org.curriki.plugin.spacemanager.impl.CurrikiSpaceManager" *# ##
+#* @vtlvariable name="sm" type="org.curriki.plugin.spacemanager.impl.CurrikiSpaceManager" *# ##
+#* @vtlvariable name="request" type="javax.servlet.http.HttpServletRequest" *# ##
+#* @vtlvariable name="context" type="com.xpn.xwiki.api.Context" *# ##
+#* @vtlvariable name="msg" type="com.xpn.xwiki.web.XWikiMessageTool" *# ##
+#* @vtlvariable name="escapetool" type="org.apache.velocity.tools.generic.EscapeTool" *# ##
+#* @vtlvariable name="datetool" type="org.apache.velocity.tools.generic.DateTool" *# ##
+#* @vtlvariable name="searchi2g" type="net.i2geo.xwiki.impl.DefaultSearchI2GXWiki *# ##
+###set($md=$xwiki.oaiprovider.getMetadataExportTool($asset,$context))##
+#lom($asset)
+## ======================================================================================
+#else
+    The resource is not visible.
+#end
+#else
+Please indicate asset's fullname in a parameter.
+#end

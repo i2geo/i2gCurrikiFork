@@ -1,0 +1,289 @@
+## @vtlvariable name="asset" type="org.curriki.xwiki.plugin.asset.Asset" ##
+#* @vtlvariable name="doc" type="com.xpn.xwiki.api.Document" *# ##
+#* @vtlvariable name="bcCurrentDoc" type="com.xpn.xwiki.api.Document" *# ##
+## @vtlvariable name="asset" type="org.curriki.xwiki.plugin.asset.Asset" ##
+## @vtlvariable name="document" type="com.xpn.xwiki.api.Document" ##
+#* @vtlvariable name="xwiki" type="com.xpn.xwiki.api.XWiki" *# ##
+#* @vtlvariable name="util" type="com.xpn.xwiki.api.Util" *# ##
+#* @vtlvariable name="csm" type="org.curriki.plugin.spacemanager.impl.CurrikiSpaceManager" *# ##
+#* @vtlvariable name="sm" type="org.curriki.plugin.spacemanager.impl.CurrikiSpaceManager" *# ##
+#* @vtlvariable name="request" type="javax.servlet.http.HttpServletRequest" *# ##
+#* @vtlvariable name="response" type="javax.servlet.http.HttpServletResponse" *# ##
+#* @vtlvariable name="context" type="com.xpn.xwiki.api.Context" *# ##
+#* @vtlvariable name="msg" type="com.xpn.xwiki.web.XWikiMessageTool" *# ##
+#* @vtlvariable name="escapetool" type="org.apache.velocity.tools.generic.EscapeTool" *# ##
+#* @vtlvariable name="datetool" type="org.apache.velocity.tools.generic.DateTool" *# ##
+#* @vtlvariable name="numbertool" type="org.apache.velocity.tools.generic.NumberTool" *# ##
+#* @vtlvariable name="searchi2g" type="net.i2geo.xwiki.impl.DefaultSearchI2GXWiki *# ##
+## init
+#set($searchi2g=$xwiki.searchi2g)##
+#set($geoskillsNS="http://www.inter2geo.eu/2008/ontology/GeoSkills")##
+##
+## utilities
+#macro(annotation $eltName $value)##
+    #if("$!value"!="")
+    <$eltName><source>i2g</source> <value>$value</value></$eltName>
+    #end
+#end
+#macro(ictEduType $ictName $interactivityType $learningResourceType $interactivityLevel $intendedUserRole)
+<!-- educational annotations from Curriki's ICT $ictName -->
+    #annotation("interactivityType" $interactivityType)
+    #annotation("learningResourceType" $learningResourceType)
+    #annotation("interactivityLevel" $interactivityLevel)
+    #annotation("intendedEndUserRole" $intendedEndUserRole)
+#end
+##
+## actual macro
+#macro(lom $asset)
+    ## #set($lang=$msg.get("languages3_2.$asset.getDocument().getObject('CurrikiCode.AssetClass').get('language').getValue()"))##
+<!--
+    #set($lang=$asset.getDocument().getObject('CurrikiCode.AssetClass').getField("language").getValue().toString())
+    #if($lang=="English")#set($lang="en")
+        #elseif($lang=="Español")#set($lang="es")
+        #elseif($lang=="Bahasa Indonesia")#set($lang=$msg.get("languages3_2.ind"))
+        #elseif($lang=="Chinese")#set($lang="zh")
+        #elseif($lang=="Dutch" || $lang=="Nederlands")#set($lang="nl")
+        #elseif($lang=="Français")#set($lang="fr")
+        #elseif($lang=="German" || $lang=="Nederlands")#set($lang="nl")
+        #elseif($lang=="Italian" || $lang=="Italiano")#set($lang="it")
+        #elseif($lang=="Portugese") #set($lang="pt")
+        #elseif($lang=="Russian")#set($lang="ru")
+        #elseif($lang=="Chinese")#set($lang="zh")
+        #elseif($lang.length()==3) #set($lang=$msg.get("languages3_2.${lang}"))
+    #end
+     language? $lang --> ##
+     ## $xwiki.getDocument($asset.fullName).getDocument().getObject('CurrikiCode.AssetClass').getField("language").getValue().toString()
+     ##   #set($lang =$asset.get('language'))
+    ## #set($lang=$msg.get("languages3_2.${lang}"))##
+{pre}
+<lom xmlns="http://ltsc.ieee.org/xsd/LOM"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://i2geo.net/ontologies/lomschema/lom-i2g.xsd">
+    <general><!-- 1: General -->
+        <identifier>
+            <catalog>i2g</catalog><entry>$asset.fullName</entry>
+        </identifier><identifier>
+            <catalog>url</catalog><entry>http://$xwiki.getXWiki().Param('curriki.system.hostname', 'i2geo.net')/$asset.space/$asset.name</entry>
+        </identifier>
+        <title>
+            <string language="$lang">$escapetool.xml($asset.title)</string>
+        </title>
+        <language>$lang</language>
+        <description>
+            <string language="$lang">$escapetool.xml($asset.get("description"))</string>
+        </description>
+        <keyword>
+            <string language="$lang">$escapetool.xml($asset.get("keywords"))</string>
+            <!-- ttac = $asset.get("trainedTopicsAndCompetencies") -->
+            #foreach($top in $asset.get("trainedTopicsAndCompetencies").split(","))##
+                #set($names=$searchi2g.listNames($top))##
+                #foreach($lang in $names.supportedLanguages)
+                    #foreach($name in $names.getAllNamesFor($lang))
+            <string language="$lang">$name</string>
+                    #end
+                #end
+            #end
+
+        </keyword>
+    </general>
+    <lifeCycle>
+        #set($creator=$xwiki.getDocument($asset.creator).getObject("XWiki.XWikiUsers"))##
+        ## <!-- creator is $creator of class $creator.getClass() -->
+        #set($lastAuthor=$xwiki.getDocument($asset.author).getObject("XWiki.XWikiUsers"))##
+        #set($v=$asset.version)##
+        #set($p=$v.indexOf('.'))#set($v1=$v.substring(0,$p))#set($v2=$v.substring($mathtool.add($p,1)))#set($v2=$numbertool.format("00",$numbertool.toNumber($v2)))##
+        <version>${v1}${v2}</version>
+        <status><source>i2g</source><value>published</value></status>
+        <contribute>
+            <role><source>i2g</source><value>initiator</value></role>
+            <entity>BEGIN:VCARD
+                VERSION:2.1
+                N:$escapetool.xml("$creator.get('first_name') $creator.get('last_name')")
+                END:VCARD
+            </entity>
+            <date>
+                <dateTime>$datetool.format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",$asset.creationDate)</dateTime>
+            </date>
+        </contribute>
+        <contribute>
+            <role><source>i2g</source><value>editor</value></role>
+            <entity>BEGIN:VCARD
+                VERSION:2.1
+                N:$escapetool.xml("$lastAuthor.get('first_name') $lastAuthor.get('last_name')")
+                END:VCARD
+            </entity>
+            <date>
+                <dateTime>$datetool.format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",$asset.date)</dateTime>
+            </date>
+        </contribute>
+    </lifeCycle>
+
+    <technical>
+        #if($asset.hasA("CurrikiCode.AttachmentAssetClass"))$asset.use("CurrikiCode.AttachmentAssetClass")##
+            <format>$asset.get("file_type")</format>
+            <size>$asset.get("file_size")</size>
+            ## <location>http://$xwiki.getXWiki().Param('curriki.system.hostname', 'i2geo.net')/xwiki/bin/download/$asset.space/$asset.name/$asset.getAttachmentList().get(0).filename</location>
+            <!-- THINKME: OS requirements? could derive form DGS format, see examples   <requirement>-->
+        #end
+        <location>http://$xwiki.getXWiki().Param('curriki.system.hostname', 'i2geo.net')/$asset.space/$asset.name</location>
+    </technical>
+
+    <educational>
+        $asset.use("CurrikiCode.AssetClass")##
+        #set($icts = $!asset.getValue("instructional_component"))
+        #foreach($ict in $icts)
+            #set($ict=$ict.toString())
+            #if($ict.startsWith("activity_"))
+                 #if($ict.endsWith("_assignment"))         #ictEduType($ict "active" "" "" "learner")
+                #elseif($ict.endsWith("_exercise"))        #ictEduType($ict "active" "" "" "learner")
+                #elseif($ict.endsWith("_lab"))             #ictEduType($ict "active" "other" "" "learner")
+                 #elseif($ict.endsWith("_game"))           #ictEduType($ict "active" "drill_and_practice" "high" "learner")
+                 #elseif($ict.endsWith("_worksheet"))      #ictEduType($ict "active" "" "" "learner")
+                 #elseif($ict.endsWith("_problemset"))     #ictEduType($ict "active" "" "" "learner")
+                 #elseif($ict.endsWith("_webquest"))       #ictEduType($ict "acctive" "investigation" "medium" "learner")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
+                 #end
+            #elseif($ict.startsWith("book_"))
+                #if($ict.endsWith("_fiction"))          #ictEduType($ict "expositive" "other" "" "")
+                #elseif($ict.endsWith("_nonfiction"))   #ictEduType($ict "expositive" "exposition" "" "")
+                #elseif($ict.endsWith("_readings"))     #ictEduType($ict "expositive" "other" "" "")
+                #elseif($ict.endsWith("_textbook"))     #ictEduType($ict "expositive" "other" "" "learner")
+                #end
+            #elseif($ict.startsWith("curriculum_"))
+                #if($ict.endsWith("_assessment"))       #ictEduType($ict "active" "assessment" "" "learner")
+                #elseif($ict.endsWith("_course"))       #ictEduType($ict "mixed" "" "" "")
+                #elseif($ict.endsWith("_lp"))           #ictEduType($ict "" "" "" "teacher")
+                #elseif($ict.endsWith("_scope"))        #ictEduType($ict "" "other" "" "")
+                #elseif($ict.endsWith("_standards"))    #ictEduType($ict "expositive" "other" "very low" "manager")
+                #elseif($ict.endsWith("_studyguide"))   #ictEduType($ict "expositive" "other" "very low" "learner")
+                #elseif($ict.endsWith("_syllabus"))     #ictEduType($ict "expositive" "" "" "")
+                #elseif($ict.endsWith("_tutorial"))     #ictEduType($ict "expositive" "exposition" "" "learner")
+                #elseif($ict.endsWith("_unit"))         #ictEduType($ict "" "" "" "teacher")
+                #elseif($ict.endsWith("_workbook"))     #ictEduType($ict "active" "drill_and_practice" "medium" "learner")
+                #end
+            #elseif($ict.startsWith("resource_"))
+                #if($ict.endsWith("_animation"))        #ictEduType($ict "" "exposition" "medium" "")
+                #elseif($ict.endsWith("_article"))      #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_speech"))       #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_diagram"))      #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_glossary"))     #ictEduType($ict "expositive" "" "medium" "")
+                #elseif($ict.endsWith("_index"))        #ictEduType($ict "expositive" "" "medium" "")
+                #elseif($ict.endsWith("_photograph"))   #ictEduType($ict "expositive" "other" "" "")
+                #elseif($ict.endsWith("_collection"))   #ictEduType($ict "expositive" "other" "" "")
+                #elseif($ict.endsWith("_script"))       #ictEduType($ict "" "" "" "learner")
+                #elseif($ict.endsWith("_study"))        #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_table"))        #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_template"))     #ictEduType($ict "" "" "medium" "")
+                #elseif($ict.endsWith("_presentation")) #ictEduType($ict "expositive" "exposition" "very low" "")
+                #elseif($ict.endsWith("_webcast"))      #ictEduType($ict "expositive" "exposition" "" "learner")
+                ## #elseif($ict.endsWith("_"))             #ictEduType($ict "" "" "" "")
+                #end
+            #elseif($ict == "other")
+                #ictEduType($ict "" "" "" "")
+            #end
+        #end
+
+
+        <context>
+            <source>LOMv1.0</source>
+            <value>school</value>
+        </context>
+            #foreach($level in $asset.get("eduLevelFine").split(","))##
+            <context><source>i2g</source>##
+                <value>$geoskillsNS$level</value>
+            </context>
+            #set($names=$searchi2g.listNames($level))##
+            #foreach($lang in $names.supportedLanguages)
+                #foreach($name in $names.getAllNamesFor($lang))
+                <context><source>i2g</source>
+                    <value >$name</value>## language="$lang"
+                </context>
+                #end
+            #end
+            #end
+        #foreach($level in $asset.get("eduLevelFine").split(","))##
+            #set($typicalAgeRange=$xwiki.searchi2g.getLevelAge($level))#set($t2=$typicalAgeRange+1)##
+            #if($typicalAgeRange!=-1)
+            <typicalAgeRange><string>${typicalAgeRange}-${t2}</string></typicalAgeRange>
+            #end
+        #end
+
+        <language>$lang</language>
+
+
+    ## <!-- really? -->
+    ## <difficulty> <source>i2g</source><value>easy</value> </difficulty>
+    </educational>
+
+    <rights>
+        <cost><source>i2g</source> <value>no</value> </cost>
+        <copyrightAndOtherRestrictions> <source>i2g</source> <value>yes</value> </copyrightAndOtherRestrictions>
+        #set($licenseType=$asset.getDocument().getObject('CurrikiCode.AssetLicenseClass').get('licenseType').getValue())##
+        #if($licenseType=="Licences.CurrikiLicense")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.CurrikiLicense")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by/3.0/</licenseURI>
+        #elseif($licenseType=="Licences.PublicDomain")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.PublicDomain")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/publicdomain/</licenseURI>
+        ###
+        #elseif($licenseType=="Licences.CreativeCommonsAttributionNoDerivatives")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNoDerivatives")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by-nd/2.0/</licenseURI>
+        ###
+        #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-Commercial")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-Commercial")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by-nc/2.0/</licenseURI>
+        #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-CommercialNoDerivatives")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-CommercialNoDerivatives")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by-nc-nd/2.0/</licenseURI>
+        ###
+        #elseif($licenseType=="Licences.CreativeCommonsAttributionSharealike")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.CreativeCommonsAttributionSharealike")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by-sa/2.0/</licenseURI>
+        ###
+        #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-CommercialShareAlike")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-CommercialShareAlike")</string></description>
+            <licenseURI>http://creativecommons.org/licenses/by-nc-sa/2.0/</licenseURI>
+        ###
+        #elseif($licenseType=="GFDL")##
+            <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.GFDL")</string></description>
+            <licenseURI>http://www.gnu.org/copyleft/fdl.html</licenseURI>
+        #else <!-- unrecognized license type: "$licenseType" -->
+        #end
+    </rights>
+
+    #* <annotation><!-- TODO: iterate over reviews -->
+        <!-- <entity>http://draft.i2geo.net/xwiki/bin/view/QR/Coll_Fred__ProprieteDeLaireDuTriangle2_2</entity>
+        <date><dateTime>2008-06-20T14:23:00</dateTime></date>
+        <quality>90</quality>
+        <numEvaluations>1</numEvaluations> -->
+    </annotation> ## *#
+
+    <classification>
+        <purpose>
+            <source>i2g</source>
+            <value>educational objective</value>
+        </purpose>
+        <taxonPath><source><string>$geoskillsNS</string></source>
+            #foreach($top in $asset.get("trainedTopicsAndCompetencies").split(","))##
+                <taxon>
+                    <id>$geoskillsNS$top</id>
+                    <entry>
+                    #set($names=$searchi2g.listNames($top))##
+                    #foreach($lang in $names.supportedLanguages)
+                      #foreach($name in $names.getAllNamesFor($lang))
+                      <string language="$lang">$name</string>
+                      #end
+                    #end
+                    </entry>
+                </taxon>
+            #end
+        </taxonPath>
+    </classification>
+</lom>
+{/pre}
+#end

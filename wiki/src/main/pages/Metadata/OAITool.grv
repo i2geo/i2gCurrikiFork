@@ -1,0 +1,283 @@
+import com.xpn.xwiki.api.XWiki
+import com.xpn.xwiki.api.Context
+import javax.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServletRequest
+import java.text.DateFormat
+import org.apache.log4j.helpers.ISO8601DateFormat
+import com.xpn.xwiki.api.Document
+import org.curriki.xwiki.plugin.asset.Asset
+import org.apache.commons.collections.iterators.TransformIterator
+import org.apache.commons.collections.Transformer
+import org.apache.commons.collections.ListUtils
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
+
+public class OAITool {
+
+    static final Log log = LogFactory.getLog("groovyPages.Metadata.OAITool");
+    boolean DEBUG = log.isDebugEnabled();
+
+    boolean hasError = false;
+    String errorCode, errorText;
+    int statusCode = 200; String statusMessage = "OK";
+
+    public static int MAX_RECORDS = 100;
+
+    String verb;
+
+    String fromParam, untilParam;
+    String from, until;
+
+    DateFormat dateFormat = new ISO8601DateFormat(TimeZone.getTimeZone("GMT"));
+    String date = dateFormat.format(new Date())
+
+    String identifier;
+    String itemDate;
+
+    boolean hasIdentifier;
+
+    String metadataPrefix;
+
+    XWiki xwiki;
+    Document asset;
+
+    private static Map resumptionTokens = new HashMap();
+
+    QueryToResume queryToResume, nextQuery;
+
+
+    void init(Context context, XWiki xwiki, HttpServletRequest request, HttpServletResponse response) {
+        verb = request.verb;
+        identifier = request.identifier;
+        hasIdentifier = identifier!=null;
+        this.xwiki = xwiki;
+        metadataPrefix = request.metadataPrefix;
+
+        if(verb=="Identify") {
+            // nothing special to do
+        } else if(verb=="ListMetadataFormats") {
+            // nothing special to do
+
+        } else if(verb=="ListSets") {
+            errorCode = "noSetHierarchy"; errorText = "No sets here.";
+            statusCode = 500; statusMessage=errorCode; hasError = true;
+
+        } else if(verb=="GetRecord") {
+            if(identifier==null || metadataPrefix==null) {
+                errorCode = "badArgument"; errorText = "Wrong arguments.";
+                statusCode = 500; statusMessage=errorCode; hasError = true;
+            } else if((metadataPrefix=checkMetadataPrefix(request.metadataPrefix))==null){
+                errorCode = "cannotDisseminateFormat"; errorText = "Bad metadataPrefix.";
+                statusCode = 500; statusMessage=errorCode; hasError = true;
+            } else if((asset=fetchAsset(decomposeIdentifier(identifier)))==null) {
+                errorCode = "idDoesNotExist"; errorText = "The value of the identifier argument is unknown or illegal in this repository.";
+                statusCode = 500; statusMessage=errorCode; hasError = true;
+            }  else {
+                // everything ok
+                itemDate = dateFormat.format(asset.date);
+            }
+
+        } else if(verb=="ListIdentifiers") {
+            if((fromParam!=null && (from=checkDate(fromParam))==null) || (untilParam!=null && (until=checkDate(untilParam))==null)) {
+                errorCode = "badArgument"; errorText = "Wrong dates.";
+            } else {
+                // will list identifiers
+            }
+
+        } else if(verb=="ListRecords") {
+            if( ((fromParam!=null && (from=checkDate(fromParam))==null) || (untilParam!=null && (until=checkDate(untilParam))==null))) {
+                errorCode = "badArgument"; errorText = "Wrong dates.";
+            } else if(request.resumptionToken==null && (metadataPrefix=checkMetadataPrefix(request.metadataPrefix))==null){
+                errorCode = "cannotDisseminateFormat"; errorText = "Bad metadataPrefix.";
+            } else if(request.resumptionToken) {
+                queryToResume = resumptionTokens.get(request.resumptionToken);
+                metadataPrefix = queryToResume.metadataPrefix;
+                if(queryToResume==null) {
+                    errorCode = "badResumptionToken"; errorText = "Bad resumptionToken.";
+                }
+            } else {
+                //
+            }
+        }
+
+        if(errorCode!=null) {
+            statusCode = 500; statusMessage=errorCode; hasError = true;
+        }
+    }
+
+    private String checkMetadataPrefix(String m) {
+        if(m == "i2glom") return "i2glom";
+        return null;
+    }
+
+    private Asset fetchAsset(String fullName) {
+        return xwiki.curriki.fetchAsset(fullName);
+    }
+    private String decomposeIdentifier(String identifier) {
+        if(identifier.length()<5) return null;
+        int p = identifier.indexOf(":",4);
+        if(!identifier.startsWith("oai:") || p==-1) return null;
+        return identifier.substring(4,p) + '.' + identifier.substring(p+1);
+    }
+
+
+    private String checkDate(String input) {
+        try {
+            Date d = dateFormat.parse(input);
+            return dateFormat.format(d);
+        } catch (Exception ex) { ex.printStackTrace(); return null; }
+    }
+
+
+    private String createIdentifier(Document doc) {
+        return "oai:" + doc.space + ":" + doc.name;
+    }
+
+    private List queryDocs() {
+        int absoluteMax = 10000;
+        int start = 0;
+        List docs;
+        String hql = """, BaseObject as obj, StringProperty as prop where obj.name = doc.fullName and obj.className = 'CurrikiCode.AssetClass'
+                and obj.id=prop.id.id and prop.name='rights' and (prop.value='protected' or prop.value='public')
+                and doc.space!='AssetTemp' and doc.space!='CreateContent' and doc.name!='Favorites' and doc.name!='WebHome' """;
+        if(fromParam!=null && untilParam!=null) {
+            Date fromD = dateFormat.parse(from);
+            Date untilD = dateFormat.parse(until);
+            hql = hql + " and doc.date > ? and doc.date < ?";
+            docs = xwiki.searchDocuments(hql, absoluteMax, start, [fromD, untilD]);
+        } else if(fromParam!=null) {
+            Date fromD = dateFormat.parse(from);
+            hql = hql + " and doc.date > ?";
+            docs = xwiki.searchDocuments(hql, absoluteMax, start, [fromD]);
+        } else if(untilParam!=null) {
+            Date untilD = dateFormat.parse(until);
+            hql = hql + " and doc.date < ?";
+            docs = xwiki.searchDocuments(hql, absoluteMax, start, [untilD]);
+        } else { // both null
+            docs = xwiki.searchDocuments(hql, absoluteMax, start);
+        }
+        return docs;
+    }
+
+
+    // operation listItems
+    Iterator items() {
+        List docs = queryDocs();
+        return new TransformIterator(docs.iterator(), new RecordsTransformer(xwiki, dateFormat));
+    }
+
+    // operation listRecords
+    Iterator records() {
+
+        List docs;
+        int cursor;
+        if(queryToResume!=null) {
+            docs = queryToResume.idList;
+            cursor = queryToResume.cursor;
+        } else {
+            docs = queryDocs();
+            cursor = 0;
+        }
+
+
+        // cleanup old resumptions
+        List garbage = new LinkedList();
+        for(entry in resumptionTokens.entrySet()) {
+            QueryToResume q = (QueryToResume) entry.getValue();
+            if(q.created - System.currentTimeMillis() > QueryToResume.MAX_RESUMPTION_AGE) {
+                garbage.add(entry.getKey());
+            }
+        }
+        log.info("Garbaging: " + garbage);
+        for(x in garbage) resumptionTokens.remove(x);
+
+
+        List toProcess = null;
+
+        // create an extra now?
+        if(docs.size()-cursor>MAX_RECORDS) {
+            // park for another resumption
+            QueryToResume q = new QueryToResume(docs, cursor+MAX_RECORDS, dateFormat, metadataPrefix);
+            q.key = Long.toHexString(System.currentTimeMillis());
+            resumptionTokens.put(q.key, q);
+            nextQuery = q;
+        }
+
+
+        Iterator it = docs.listIterator(cursor);
+        toProcess = new ArrayList(Math.min(MAX_RECORDS, docs.size()-cursor));
+        int count=0;
+        while(it.hasNext() && count++<MAX_RECORDS) {
+            toProcess.add(it.next());
+        }
+
+        return new TransformIterator(toProcess.iterator(), new RecordsTransformer(xwiki, dateFormat));
+    }
+
+    public void throttle() {
+        //System.out.println(" -- tick");
+        //Thread.currentThread().sleep(1000);
+    }
+
+    public void logInfo(String s) {
+        log.info(s);
+    }
+
+
+}
+
+class RecordsTransformer implements Transformer {
+
+    public RecordsTransformer(XWiki xwiki, DateFormat dateFormat) {
+        super();
+        this.xwiki=xwiki;
+        this.dateFormat = dateFormat;
+    }
+
+    private XWiki xwiki;
+    private DateFormat dateFormat = dateFormat;
+
+    Object transform(Object input) {
+        Document doc = xwiki.getDocument((String) input);
+        return [    doc :xwiki.getDocument((String) input),
+                    asset : xwiki.curriki.fetchAsset((String) input),
+                    identifier : "oai:" + doc.space + ":" + doc.name,
+                    date : dateFormat.format(doc.getDate())];
+    }
+}
+
+
+class QueryToResume {
+
+    public QueryToResume(List idList, int cursor, DateFormat formatter, String metadataPrefix) {
+        this.idList = idList;
+        this.cursor = cursor;
+        this.formatter = formatter;
+        this.metadataPrefix = metadataPrefix;
+    }
+
+    public String key;
+    public int cursor;
+    public List idList;
+    public DateFormat formatter;
+    public String metadataPrefix;
+    public long created = System.currentTimeMillis();
+
+    public static long MAX_RESUMPTION_AGE = 600000L; // 10 minutes
+
+    public int getCursor() { return cursor;}
+
+    public List getIdList() { return idList; }
+
+    public String getKey() { return key; }
+
+    public void setKey(String k) { this.key = k;}
+
+
+    public String getExpirationDate() {
+        return formatter.format(new Date(created + MAX_RESUMPTION_AGE));
+    }
+
+
+
+}
