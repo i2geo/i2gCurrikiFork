@@ -36,11 +36,17 @@
   <packaging>pom</packaging>
   <name>i2geo - CurrikiFork - Parent POM</name>
   <description>i2geo - CurrikiFork - Parent POM</description>
-  <!-- <scm>
-    <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</connection>
-    <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/curriki/trunk</developerConnection>
-    <url>http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</url>
-  </scm> -->
+    <scm>
+        <connection>scm:git:git://github.com/i2geo/i2gCurrikiFork.git</connection>
+        <url>scm:git:git://github.com/i2geo/i2gCurrikiFork.git</url>
+    </scm>
+
+
+    <!-- <scm>
+     <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</connection>
+     <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/curriki/trunk</developerConnection>
+     <url>http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</url>
+   </scm> -->
   <properties>
     <!-- Versions of XWiki dependencies used in Curriki modules -->
     <platform.tools.version>1.9-SNAPSHOT</platform.tools.version>
