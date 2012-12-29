@@ -25,13 +25,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.xpn.xwiki.plugin.lucene.textextraction.MSExcelTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.MSPowerPointTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.MSWordTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.MimetypeTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.PDFTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.PlainTextExtractor;
-import com.xpn.xwiki.plugin.lucene.textextraction.XmlTextExtractor;
+import com.xpn.xwiki.plugin.lucene.textextraction.*;
 
 /**
  * Extraction of text from various binary formats. Extraction itself is done by the textExtractor
@@ -49,7 +43,9 @@ public class TextExtractor
     static {
         // TODO: make text extractors more pluggable by moving this into a config file.
         final XmlTextExtractor xmlTextExtractor = new XmlTextExtractor();
+        final HtmlTextExtractor htmlTextExtractor = new HtmlTextExtractor();
         textExtractors.put("application/xhtml+xml", xmlTextExtractor);
+        textExtractors.put("text/html", htmlTextExtractor);
         textExtractors.put("text/xml", xmlTextExtractor);
         textExtractors.put("text/plain", new PlainTextExtractor());
         textExtractors.put("application/pdf", new PDFTextExtractor());
@@ -68,14 +64,21 @@ public class TextExtractor
      * @param content
      * @param mimetype
      * @return
+     * @throws Exception
      */
-    public static String getText(byte[] content, String mimetype)
+    public static String getText(byte[] content, String mimetype) throws Exception
     {
+        MimetypeTextExtractor extractor = getExtractor(mimetype);
+        if(extractor == null) return null;
+        return extractor.getText(content);
+    }
+
+    private static MimetypeTextExtractor getExtractor(String mimetype) {
         final MimetypeTextExtractor extractor =
             (MimetypeTextExtractor) textExtractors.get(mimetype);
         if (extractor != null) {
             try {
-                return extractor.getText(content);
+                return extractor;
             } catch (Exception e) {
                 LOG.error("error getting text for mimetype " + mimetype, e);
                 e.printStackTrace();

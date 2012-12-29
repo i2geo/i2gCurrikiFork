@@ -78,7 +78,7 @@ data.init = function(){
 		,parentList: {}
 		,list: []
 		,data: [
-			['', _('CurrikiCode.AssetClass_instructional_component_UNSPECIFIED', '   ')]
+			['', _('CurrikiCode.AssetClass_instructional_component_UNSPECIFIED')]
 		]
 	};
 	f.data.ict.fullList.each(function(value){
@@ -86,15 +86,9 @@ data.init = function(){
 		f.data.ict.parentList[name] = name;
 	});
 	Object.keys(f.data.ict.parentList).each(function(value){
-        var sort = _('CurrikiCode.AssetClass_instructional_component_'+value);
-        if (value === 'other') {
-                sort = 'zzz';
-        }
-
 		f.data.ict.data.push([
 			value
 			,_('CurrikiCode.AssetClass_instructional_component_'+value)
-			,sort
 		]);
 	});
 
@@ -112,21 +106,13 @@ data.init = function(){
 					parentICT+'*'
 					,_('CurrikiCode.AssetClass_instructional_component_'+parentICT+'_UNSPECIFIED')
 					,parentICT
-					,'   '
 				]);
 				f.data.subict.parents[parentICT] = parentICT;
 			}
-
-			var sort = _('CurrikiCode.AssetClass_instructional_component_'+value);
-			if (value === 'other') {
-					sort = 'zzz';
-			}
-
 			f.data.subict.data.push([
 				value
 				,_('CurrikiCode.AssetClass_instructional_component_'+value)
 				,parentICT
-				,sort
 			]);
 		}
 	});
@@ -215,15 +201,13 @@ data.init = function(){
 		})
 
 		,ict: new Ext.data.SimpleStore({
-			fields: ['id', 'ict', 'sortValue']
-			,sortInfo: {field:'sortValue', direction:'ASC'}
+			fields: ['id', 'ict']
 			,data: f.data.ict.data
 			,id: 0
 		})
 
 		,subict: new Ext.data.SimpleStore({
-			fields: ['id', 'ict', 'parentICT', 'sortValue']
-			,sortInfo: {field:'sortValue', direction:'ASC'}
+			fields: ['id', 'ict', 'parentICT']
 			,data: f.data.subict.data
 			,id: 0
 		})
@@ -276,7 +260,6 @@ data.init = function(){
 		,{ name: 'fwItems' }
 		,{ name: 'levels' }
 		,{ name: 'parents' }
-		,{ name: 'lastUpdated' }
 		,{ name: 'updated' }
 	]);
 
@@ -313,24 +296,11 @@ data.init = function(){
 
 			var fw = Curriki.data.fw_item.getRolloverDisplay(record.data.fwItems||[]);
 			var lvl = Curriki.data.el.getRolloverDisplay(record.data.levels||[]);
-			var lastUpdated = record.data.lastUpdated||'';
 
-			var qTipFormat = '{1}<br />{0}<br /><br />';
-
-			// Add lastUpdated if available
-			if (lastUpdated !== '') {
-				qTipFormat = qTipFormat+'{7}<br />{6}<br /><br />';
-			}
-
-			// Base qTip (framework, ed levels)
-			qTipFormat = qTipFormat+'{3}<br />{2}<br />{5}<br />{4}';
-
-
-			desc = String.format(qTipFormat
+			desc = String.format("{1}<br />{0}<br /><br />{3}<br />{2}<br />{5}<br />{4}"
 				,desc,_('global.title.popup.description')
 				,fw,_('global.title.popup.subject')
 				,lvl,_('global.title.popup.educationlevel')
-				,lastUpdated,_('global.title.popup.last_updated')
 			);
 
 			// Asset Type icon

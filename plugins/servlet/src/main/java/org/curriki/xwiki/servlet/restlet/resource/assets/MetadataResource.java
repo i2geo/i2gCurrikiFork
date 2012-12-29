@@ -99,6 +99,18 @@ public class MetadataResource extends BaseResource {
             List el2 = json.getJSONArray("educational_level2");
             assetObj.set(Constants.ASSET_CLASS_EDUCATIONAL_LEVEL,  el2);
         }
+
+
+        if(json.has("trainedTopicsAndCompetencies")) {
+            assetObj.set("trainedTopicsAndCompetencies"
+                    ,json.getString("trainedTopicsAndCompetencies"));
+        }
+        if(json.has("eduLevelFine")) {
+            assetObj.set("eduLevelFine"
+                    ,json.getString("eduLevelFine"));
+        }
+
+
         // ict (string with ,)
         if (json.has("ict")) {
             List ict = json.getJSONArray("ict");

@@ -31,5 +31,10 @@
   #end ## foreach
 #else
 #asset_collectionemptyornorights()
+</div>
+    <div class="asset-display-download-inner">
+<!-- vignette -->
+    #assetVignetteIfPresent($asset)
+    #addVignetteUploaderButtonIfAllowed($asset)
 #end
 #end

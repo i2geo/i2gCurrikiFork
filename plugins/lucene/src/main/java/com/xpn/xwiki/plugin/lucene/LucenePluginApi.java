@@ -21,16 +21,15 @@ package com.xpn.xwiki.plugin.lucene;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.Hits;
+import org.curriki.xwiki.plugin.lucene.ResourcesSearchCursor;
 
 import com.xpn.xwiki.XWikiContext;
-import com.xpn.xwiki.doc.XWikiDocument;
-import com.xpn.xwiki.doc.XWikiAttachment;
 import com.xpn.xwiki.api.Context;
-import com.xpn.xwiki.api.Document;
-import com.xpn.xwiki.api.Attachment;
 import com.xpn.xwiki.plugin.PluginApi;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
  * This plugin allows index based search in the contents of Wiki Pages and their attachments, as far
@@ -79,7 +78,7 @@ public class LucenePluginApi extends PluginApi<LucenePlugin>
 
     /**
      * Starts a rebuild of the whole index.
-     *
+     * 
      * @param wiki
      * @param context
      * @return Number of documents scheduled for indexing. -1 in case of errors
@@ -93,74 +92,15 @@ public class LucenePluginApi extends PluginApi<LucenePlugin>
         return REBUILD_NOT_ALLOWED;
     }
 
-    /**
-     * Starts a rebuild of the whole index.
-     *
-     * @return Number of documents scheduled for indexing. -1 in case of errors
-     */
-    public int rebuildIndex(boolean clearIndex)
-    {
-        if (hasAdminRights()) {
-            return getProtectedPlugin().rebuildIndex(clearIndex, false, context);
-        }
-        return REBUILD_NOT_ALLOWED;
-    }
-
-    /**
-     * Starts a rebuild of the whole index.
-     *
-     * @return Number of documents scheduled for indexing. -1 in case of errors
-     */
-    public int rebuildIndex(boolean clearIndex, boolean refresh)
-    {
-        if (hasAdminRights()) {
-            return getProtectedPlugin().rebuildIndex(clearIndex, refresh, context);
-        }
-        return REBUILD_NOT_ALLOWED;
+    public int count(Query query, XWikiContext context) throws Exception {
+        return getProtectedPlugin().countSearchResultsFromIndexes(query,context);
     }
 
 
-    /**
-     * Starts a rebuild of the whole index.
-     *
-     * @return Number of documents scheduled for indexing. -1 in case of errors
-     */
-    public int reindexFromQuery(String sql, boolean clearIndex, boolean refresh)
-    {
-        if (hasAdminRights()) {
-            return getProtectedPlugin().reindexFromQuery(sql, clearIndex, refresh, context);
-        }
-        return REBUILD_NOT_ALLOWED;
+    public int count(String query, XWikiContext context) throws Exception {
+        return getProtectedPlugin().countSearchResultsFromIndexes(query,context);
     }
 
-
-    public int queueDocument(Document doc, XWikiContext context)
-    {
-        if (hasAdminRights()) {
-            getProtectedPlugin().queueDocument(doc.getDocument(), context);
-            getProtectedPlugin().queueAttachment(doc.getDocument(), context);
-            return 1;
-        }
-        return REBUILD_NOT_ALLOWED;
-    }
-
-    public int queueAttachment(Document doc, Attachment attach, XWikiContext context)
-    {
-        if (hasAdminRights()) {
-            getProtectedPlugin().queueAttachment(doc.getDocument(), attach.getAttachment(), context);
-            return 1;
-        }
-        return REBUILD_NOT_ALLOWED;
-    }
-
-    public int queueAttachment(Document doc, XWikiContext context)
-    {
-        if (hasAdminRights()) {
-            getProtectedPlugin().queueAttachment(doc.getDocument(), context);
-            return 1;
-        }
-        return REBUILD_NOT_ALLOWED;
-    }
 
     /**
      * Searches the named indexes using the given query for documents in the given languages
@@ -267,30 +207,11 @@ public class LucenePluginApi extends PluginApi<LucenePlugin>
     }
 
     /**
-     * Returns the number of documents in the lucene writer
-     * @return number of documents
+     * @return the number of documents Lucene index writer.
      */
     public long getLuceneDocCount()
     {
         return getProtectedPlugin().getLuceneDocCount();
-    }
-
-    /**
-     * Returns the number of document in the pre-indexing queue
-     * @return  number of documents
-     */
-    public long getPreIndexQueueSize()
-    {
-        return getProtectedPlugin().getPreIndexQueueSize();       
-    }
-
-    /**
-     * Returns the list of documents that had to be refreshed in the last refresh
-     * @return list of document names
-     */
-    public List getRefreshedDocuments()
-    {
-        return getProtectedPlugin().getRefreshedDocuments();       
     }
 
     /**
@@ -472,6 +393,24 @@ public class LucenePluginApi extends PluginApi<LucenePlugin>
         return getSearchResultsFromIndexes(query, sortField, null, languages);
     }
 
+    public SearchResults getSearchResults(Query query, String[] sortField, String languages) {
+        return getSearchResultsFromIndexes(query, sortField, null, languages);
+    }
+
+    public Hits getLuceneHits(Query query, String[] sortField) throws IOException {
+        return getProtectedPlugin().getLuceneHits(query, sortField);
+    }
+
+    public SearchResults getSearchResultsFromIndexes(Query query, String[] sortField, String indexDirs, String languages) {
+        try {
+            return getProtectedPlugin().getSearchResults(query, sortField, indexDirs, languages,
+                context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // end of try-catch
+
+        return null;
+    }
     /**
      * Searches the configured Indexes using the specified lucene query for documents in the given
      * languages belonging to one of the given virtual wikis.
@@ -508,6 +447,11 @@ public class LucenePluginApi extends PluginApi<LucenePlugin>
         }
 
         return null;
+    }
+
+
+    public ResourcesSearchCursor createResourcesSearchCursor() {
+        return new ResourcesSearchCursor();
     }
 
 }

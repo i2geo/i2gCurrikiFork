@@ -26,18 +26,17 @@
         <p>
             $caption
         </p>
-        <div style="height:320px; width:470px; margin: 0 auto;" id="$vidDiv">
-            $msg.get('viditalk.loading_player')
+        <div style="height:280px; width:320px; margin: 0 auto;" id="$vidDiv">
+            Viditalk Playback Window - Loading components from VIDITalk
         </div>
-	<script type="text/javascript" src="http://${MEDIAHOST}/video/js/video.js"></script>
         <script language="javascript" type="text/javascript">
             // embedVidiPlayback(div_id, sc, mediaId, autoplay, width, height, stretchPlayer, skinLoc, shareUrl, allowFullScreen)
             embedVidiPlayback("$vidDiv", "$msg.get('viditalk.sitecode')", "$video_id", null, null, null, null, null, null, true);
         </script>
     </div>
 </div>
-#set($viditalkURL = $xwiki.getURLContent("http://${MEDIAHOST}/video/url/mpg/$video_id"))
-#set($origVideo = $xwiki.getURLContent("http://${MEDIAHOST}/video/url/orig/$video_id"))
+#set($viditalkURL = "http://flashmedia.viditalk.com/10/active/${video_id}.mpg")
+#set($origVideo = $xwiki.getURLContent("http://components.viditalk.com/dl.asp?id=$video_id"))
 #if(!$origVideo||$origVideo=="") ##{
 	#set($has_origVideo = false)
 	#set($msgtext = $msg.get("rve.content.view.download.instruction_title.single_file"))
@@ -56,7 +55,7 @@
 	<p class="text-link">
 		<a onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/${video_id}');" href="$viditalkURL">$msg.get("rve.content.view.download.viditalk.download_button")</a>
 	</p>
-        <a class="button-link button-orange button-link-download" title="$msg.get("rve.content.view.download.download_button")" onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/${video_id}');" href="${viditalkURL}">$msg.get("rve.content.view.download.download_button")</a>
+        <button class="button-link button-link-download" title="$msg.get("rve.content.view.download.download_button")" onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/${video_id}'); window.open('$viditalkURL');return false;" href="${viditalkURL}">$msg.get("rve.content.view.download.download_button")</button>
     </div>
 
     #if($has_origVideo) ##{
@@ -65,7 +64,7 @@
 	<p class="text-link">
 		<a onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/Original');" href="$origVideo">$msg.get("rve.content.view.download.viditalk.download_button_original")</a>
 	</p>
-        <a class="button-link button-orange button-link-download" title="$msg.get("rve.content.view.download.download_button")" onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/Original');" href="${origVideo}">$msg.get("rve.content.view.download.download_button")</a>
+        <button class="button-link button-link-download" title="$msg.get("rve.content.view.download.download_button")" onclick="Curriki.logView('/Download/viditalk/${asset.space}/${asset.name}/Original'); window.open('$origVideo');return false;" href="${origVideo}">$msg.get("rve.content.view.download.download_button")</button>
     </div>
     #end ##}
 

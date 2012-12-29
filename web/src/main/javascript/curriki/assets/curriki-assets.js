@@ -11,7 +11,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {
 				'parent':parentPage||''
@@ -74,7 +74,7 @@ Curriki.assets = {
 			,disableCaching:true
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,scope:this
 			,success:function(response, options){
@@ -101,7 +101,7 @@ Curriki.assets = {
 			,disableCaching:true
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,scope:this
 			,success:function(response, options){
@@ -130,7 +130,7 @@ Curriki.assets = {
 			,method:'PUT'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: metadata
 			,scope:this
@@ -157,7 +157,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {'link':linkUrl}
 			,scope:this
@@ -184,7 +184,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {page:subassetPage, order:order}
 			,scope:this
@@ -212,7 +212,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {collectionType:'folder'}
 			,scope:this
@@ -239,7 +239,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {collectionType:'collection'}
 			,scope:this
@@ -266,7 +266,7 @@ Curriki.assets = {
 			,method:'POST'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {page:assetPage, videoId:videoId}
 			,scope:this
@@ -293,7 +293,7 @@ Curriki.assets = {
 			,method:'PUT'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {space: space}
 			,scope:this
@@ -320,7 +320,7 @@ Curriki.assets = {
 			,method:'PUT'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData:{original:original, wanted:wanted}
 			,scope:this
@@ -402,7 +402,7 @@ Curriki.assets = {
 			,method:'PUT'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {}
 			,scope:this
@@ -429,7 +429,7 @@ Curriki.assets = {
 			,method:'PUT'
 			,headers: {
 				'Accept':'application/json'
-				,'Content-type':'application/json'
+				,'Content-type':'application/json;charset=utf-8'
 			}
 			,jsonData: {comments:comments}
 			,scope:this
@@ -456,7 +456,7 @@ Curriki.assets = {
 			method : 'PUT',
 			headers : {
 				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
+				'Content-type' : 'application/json;charset=utf-8'
 			},
 			jsonData : {},
 			scope : this,
@@ -483,7 +483,7 @@ Curriki.assets = {
 			method : 'PUT',
 			headers : {
 				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
+				'Content-type' : 'application/json;charset=utf-8'
 			},
 			jsonData : {
 				action : 'setAsterixReview',
@@ -512,7 +512,7 @@ Curriki.assets = {
 			method : 'PUT',
 			headers : {
 				'Accept' : 'application/json',
-				'Content-type' : 'application/json'
+				'Content-type' : 'application/json;charset=utf-8'
 			},
 			jsonData : {
 				action : 'removeAsterixReview'

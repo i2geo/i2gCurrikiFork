@@ -30,9 +30,17 @@
 #if(!$linktext||$linktext=="")
 #set($linktext = $url)
 #end
-<a href="$url" onclick="Curriki.logView('/Download/link/$url');" target="_blank" >#breakLinkText($linktext, 90)</a>
+##<a href="$url" onclick="Curriki.logView('/Download/link/$url');" target="_blank" >#breakLinkText($linktext, 90)</a>
+##</p>
+##<button class="button-link button-link-download" onclick="Curriki.logView('/Download/link/$url'); window.open('${url}');" title="$msg.get("rve.content.view.go_button")">$msg.get("rve.content.view.go_button")</button>
+
+<a href="$url" onclick="window.open('http://i2geo.net/xwiki/bin/view/Main/ExternalLink?url=${util.encodeURI($url)}', 'target=_blank');return false;" target="_blank" >#breakLinkText($linktext, 90)</a>
 </p>
-<button class="button-link button-link-download" onclick="Curriki.logView('/Download/link/$url'); window.open('${url}');" title="$msg.get("rve.content.view.go_button")">$msg.get("rve.content.view.go_button")</button>
+<button class="button-link button-link-download" onclick="window.open('http://i2geo.net/xwiki/bin/view/Main/ExternalLink?url=${util.encodeURI($url)}', 'target=_blank');return false; window.open('${url}');" title="$msg.get("rve.content.view.go_button")">$msg.get("rve.content.view.go_button")</button>
 </div>
+    <div class="asset-display-download-inner">
+<!-- vignette -->
+    #assetVignetteIfPresent($asset)
+    #addVignetteUploaderButtonIfAllowed($asset)</div>
 </div>
 #asset_displaycontentfooter()

@@ -36,16 +36,8 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.BooleanClause;
-import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.Hits;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.MultiSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.Searcher;
-import org.apache.lucene.search.Sort;
-import org.apache.lucene.search.SortField;
-import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.*;
+import org.curriki.xwiki.plugin.lucene.CurrikiAnalyzer;
 
 import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.api.Api;
@@ -81,6 +73,9 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
 
     public static final String PROP_MAX_QUEUE_SIZE = "xwiki.plugins.lucene.maxQueueSize";
 
+    private static final String PROP_PROFILE = "xwiki.plugins.lucene.profile",
+        DEFAULT_PROFILE = "com.xpn.xwiki.plugin.lucene.I2GLuceneProfile";
+
     private static final String DEFAULT_ANALYZER =
         "org.apache.lucene.analysis.standard.StandardAnalyzer";
 
@@ -96,6 +91,9 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
      * Lucene index updater. Listens for changes and indexes wiki documents in a separate thread.
      */
     private IndexUpdater indexUpdater;
+
+    /** The profile indicating properties of each fields. */
+    private LuceneIndexProfile indexProfile = null;
 
     /** The thread running the index updater. */
     private Thread indexUpdaterThread;
@@ -145,17 +143,24 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
 
     public synchronized int rebuildIndex(XWikiContext context)
     {
-        return indexRebuilder.startRebuildIndex(null, true, false, context);
+        return indexRebuilder.startRebuildIndex(context);
     }
 
-    public synchronized int rebuildIndex(boolean clearIndex, boolean refresh, XWikiContext context)
-    {
-        return indexRebuilder.startRebuildIndex(null, clearIndex, refresh, context);
-    }
 
-    public synchronized int reindexFromQuery(String sql, boolean clearIndex, boolean refresh, XWikiContext context)
-    {
-        return indexRebuilder.startRebuildIndex(sql, clearIndex, refresh, context);
+
+    public int countSearchResultsFromIndexes(String query, XWikiContext context) throws IOException, ParseException {
+        Query q = buildQuery(query,null,null,context);
+        return countSearchResultsFromIndexes(q,context);
+    }
+    public int countSearchResultsFromIndexes(Query query, XWikiContext context) throws IOException {
+        MultiSearcher searcher = new MultiSearcher(this.searchers);
+        CounterHitCollector counter = new CounterHitCollector();
+        searcher.search(query,counter);
+        int hitcount = counter.getCount();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("query " + query + " returned " + hitcount + " hits");
+        }
+        return hitcount;
     }
 
     /**
@@ -258,9 +263,13 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
     public SearchResults getSearchResults(String query, String sortField,
         String virtualWikiNames, String languages, XWikiContext context) throws Exception
     {
-        // TODO Why is this here? This is slow, as it closes and opens indexes for each query.
-        // openSearchers();
         return search(query, sortField, virtualWikiNames, languages, this.searchers, context);
+    }
+
+
+    public SearchResults getSearchResults(Query query, String[] sortField, String indexDirs, String languages,
+                XWikiContext context) throws IOException {
+        return search(query, sortField!=null ? new Sort(sortField):null, indexDirs, languages, this.searchers, context);
     }
 
     /**
@@ -333,6 +342,12 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
         String languages, Searcher[] indexes, XWikiContext context) throws IOException,
         ParseException
     {
+        // Perform the actual search
+        return search(query, getSort(sortFields), virtualWikiNames,
+            languages, indexes, context);
+    }
+
+    private Sort getSort(String[] sortFields) {
         // Turn the sorting field names into SortField objects.
         SortField[] sorts = null;
         if (sortFields != null && sortFields.length > 0) {
@@ -347,9 +362,13 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
                 sorts = (SortField[]) ArrayUtils.removeElement(sorts, null);
             }
         }
-        // Perform the actual search
-        return search(query, (sorts != null) ? new Sort(sorts) : null, virtualWikiNames,
-            languages, indexes, context);
+        if(
+                sortFields == null ||
+                        sorts.length==1 && ("relevance".equals(sorts[0].getField()) || "\"relevance\"".equals(sorts[0].getField()))
+                     || sorts.length==2 && ("relevance".equals(sorts[0].getField()) && "null".equals(sorts[1].getField()))
+                )
+            sorts = null;
+        return (sorts != null && sorts.length>0) ? new Sort(sorts) : null;
     }
 
     /**
@@ -372,9 +391,14 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
         String languages, Searcher[] indexes, XWikiContext context) throws IOException,
         ParseException
     {
+        Query q = buildQuery(query, virtualWikiNames, languages, context);
+        return this.search(q, sort, virtualWikiNames, languages, indexes, context);
+    }
+
+    private SearchResults search(Query q, Sort sort, String virtualWikiNames,
+        String languages, Searcher[] indexes, XWikiContext context) throws IOException {
         MultiSearcher searcher = new MultiSearcher(indexes);
         // Enhance the base query with wiki names and languages.
-        Query q = buildQuery(query, virtualWikiNames, languages);
         // Perform the actual search
         Hits hits = (sort == null) ? searcher.search(q) : searcher.search(q, sort);
         final int hitcount = hits.length();
@@ -387,8 +411,22 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
             context);
     }
 
+    public Hits getLuceneHits(Query query, String[] sortFields) throws IOException {
+        MultiSearcher searcher = new MultiSearcher(searchers);
+        Sort sort = getSort(sortFields);
+        Hits hits = (sort == null) ?
+                searcher.search(query) : searcher.search(query, sort);
+        final int hitcount = hits.length();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("query " + query + " returned " + hitcount + " hits");
+        }
+        return hits;
+    }
+
+
+
     /**
-     * Create a {@link SortField} corresponding to the field name. If the field name starts with
+     *Create a {@link SortField} corresponding to the field name. If the field name starts with
      * '-', then the field (excluding the leading -) will be used for reverse sorting.
      * 
      * @param sortField The name of the field to sort by. If <tt>null</tt>, return a
@@ -415,7 +453,7 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
      * @param languages comma separated list of language codes to search in, may be null to search
      *            all languages
      */
-    private Query buildQuery(String query, String virtualWikiNames, String languages)
+    private Query buildQuery(String query, String virtualWikiNames, String languages, XWikiContext context)
         throws ParseException
     {
         // build a query like this: <user query string> AND <wikiNamesQuery> AND
@@ -427,7 +465,7 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
         if (query.startsWith("PROP ")) {
             String property = query.substring(0, query.indexOf(":"));
             query = query.substring(query.indexOf(":") + 1, query.length());
-            QueryParser qp = new QueryParser(property, analyzer);
+            QueryParser qp = new QueryParser(property, CurrikiAnalyzer.getInstance(languages,context,indexProfile));
             parsedQuery = qp.parse(query);
             bQuery.add(parsedQuery, BooleanClause.Occur.MUST);
         } else if (query.startsWith("MULTI ")) {
@@ -441,7 +479,7 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
             parsedQuery = MultiFieldQueryParser.parse(query, fields, flags, analyzer);
             bQuery.add(parsedQuery, BooleanClause.Occur.MUST);
         } else {
-            QueryParser qp = new QueryParser("ft", analyzer);
+            QueryParser qp = new QueryParser("ft", CurrikiAnalyzer.getInstance(languages,context,indexProfile));
             parsedQuery = qp.parse(query);
             bQuery.add(parsedQuery, BooleanClause.Occur.MUST);
         }
@@ -487,9 +525,12 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
         }
         config = context.getWiki().getConfig();
         try {
-            analyzer =
-                (Analyzer) Class.forName(config.getProperty(PROP_ANALYZER, DEFAULT_ANALYZER))
+            LuceneIndexProfile profile = (LuceneIndexProfile)
+                    Class.forName(config.getProperty(PROP_PROFILE, DEFAULT_PROFILE))
                     .newInstance();
+            analyzer = new CurrikiAnalyzer("x-all",indexProfile, context);
+                //(Analyzer) Class.forName(config.getProperty(PROP_ANALYZER, DEFAULT_ANALYZER))
+                //    .newInstance();
         } catch (Exception e) {
             LOG.error("error instantiating analyzer : ", e);
             LOG.warn("using default analyzer class: " + DEFAULT_ANALYZER);
@@ -521,6 +562,14 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
         context.getWiki().getNotificationManager().addGeneralRule(xwikiActionRule);
         LOG.info("lucene plugin initialized.");
     }
+
+
+    public void setIndexProfile(LuceneIndexProfile profile) {
+        if(profile==null) return;
+        this.indexProfile = profile;
+        indexUpdater.setIndexProfile(profile);
+    }
+
 
     public void flushCache(XWikiContext context)
     {
@@ -649,13 +698,4 @@ public class LucenePlugin extends XWikiDefaultPlugin implements XWikiPluginInter
     {
         return indexUpdater.getActiveQueueSize();
     }
-
-    public long getPreIndexQueueSize() {
-        return (indexRebuilder==null) ? 0 : indexRebuilder.getPreIndexQueueSize();
-    }
-
-    public List getRefreshedDocuments() {
-        return (indexRebuilder==null) ? new ArrayList() : indexRebuilder.getRefreshedDocuments();
-    }
-
 }

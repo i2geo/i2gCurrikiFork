@@ -120,11 +120,18 @@ public abstract class IndexFields
     public static final String UNTOKENIZED = ".untokenized";
 
     /**
+     * Marker for untokenized version of fields indexed
+     */
+    public static final String STEMMED = ".stemmed";
+
+    /**
      * Format for date storage in the index, and therefore the format which has to be used for date-queries.
      */
     public static final String DATE_FORMAT = "yyyyMMddHHmm";
 
     private static final FastDateFormat df = FastDateFormat.getInstance(IndexFields.DATE_FORMAT);
+    public static final String I2GEO_REVIEW_OVERALL_RANKING = "i2geo.reviewOverallRanking",
+        I2GEO_REVIEW_INDEX_WEIGHT = "i2geo.indexWeight";
 
     public static final String dateToString(Date date)
     {

@@ -46,7 +46,7 @@ $text
   * @author dward@curriki.org
   *#
 #macro(mycurriki_tabs $curtab $whofor) ## {
-  #set($tabs = ["profile","favorites","contributions","collections","blog","groups"])
+  #set($tabs = ["profile","favorites","contributions","collections","blog","groups","reviews"])
   <ul id="mycurriki-tabs" class="tabs">
   #foreach($tab in $tabs) ## {
     #if("$!whofor" == "" || $whofor == $context.user) ## {
@@ -117,21 +117,20 @@ $text
 #mycurriki_header($userobj $userdoc)
 #mycurriki_tabs($pageref $whofor)
 	<div id="mycurriki-main" class="form-wrp tab-container">
-#if("$!pageref" == "blog") ## {
-	#set($hasBlog=$xwiki.exists("Blog_${shortname}.WebHome"))
-	#if(!$hasBlog) ## {
-		#set($subtitle = $msg.get("mycurriki.tab.${pageref}.noblog.subtitle", ["$userobj.first_name $userobj.last_name"]))
-	#else ## }{
-		#set($subtitle = $msg.get("mycurriki.tab.${pageref}.subtitle", ["$userobj.first_name $userobj.last_name"]))
-	#end ## }
-#else ## } {
-	#set($subtitle = $msg.get("mycurriki.tab.${pageref}.subtitle"))
-#end ## }
-#if($hasbutton == 1 || ($subtitle != "" && $subtitle != "mycurriki.tab.${pageref}.subtitle") ) ## {
 		<div id="mycurriki-main-header">
 #if($hasbutton == 1) ## {
-	## This is a call back to the local macro of the page including this macro
-	#mycurriki_pagebutton($userobj)
+## This is a call back to the local macro of the page including this macro
+#mycurriki_pagebutton($userobj)
+#end ## }
+#if("$!pageref" == "blog") ## {
+#set($hasBlog=$xwiki.exists("Blog_${shortname}.WebHome"))
+#if(!$hasBlog) ## {
+#set($subtitle = $msg.get("mycurriki.tab.${pageref}.noblog.subtitle", ["$userobj.first_name $userobj.last_name"]))
+#else ## }{
+#set($subtitle = $msg.get("mycurriki.tab.${pageref}.subtitle", ["$userobj.first_name $userobj.last_name"]))
+#end ## }
+#else ## } {
+#set($subtitle = $msg.get("mycurriki.tab.${pageref}.subtitle"))
 #end ## }
 #if($subtitle != "" && $subtitle != "mycurriki.tab.${pageref}.subtitle") ## {
 			<div id="mycurriki-main-header-left">
@@ -140,7 +139,6 @@ $text
 #end ## }
 			<div class="clearfloats"></div>
 		</div>
-#end ## }
 		<div id="mycurriki-main-content"
 #if($pageref == "favorites" || $pageref == "contributions" || $pageref == "collections" || $pageref == "blog" || $pageref == "groups") ## {
 			class="frame"
@@ -205,9 +203,12 @@ $text
 #asset_findtitle($asset)
 #set($title = $currikiTitle)
 #if(!$title || $title.length() == 0) ## {
- #set($title = $msg.get("caption.untitled"))
+#set($title = $msg.get("caption.untitled"))
 #end ## }
-<a id="mycurriki-title-${descnb}" class="curriki-link" href="$asset.getURL("view")">{pre}$title{/pre}</a>
+<a class="curriki-link" href="$asset.getURL("view")" onmouseover="$('mycurriki-description-${descnb}').show();" onmouseout="$('mycurriki-description-${descnb}').hide();">{pre}$title{/pre}</a>
+#asset_info_rollover($asset $descnb)
+<div id="mycurriki-description-${descnb}" class="popup" style="display: none; height:15em">#asset_info_rollover($asset $descnb)
+## ?? useful <a id="mycurriki-title-${descnb}" class="curriki-link" href="$asset.getURL("view")">{pre}$title{/pre}</a>
 {pre}
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -216,7 +217,6 @@ $text
 Ext.ns('Curriki.mycurriki.util.title');
 Curriki.mycurriki.util.title.popup = function(title_id, attr){
 	if ('string' === Ext.type(attr.description)
-	    && 'string' === Ext.type(attr.lastUpdated)
 	    && 'array' === Ext.type(attr.fwItems)
 	    && 'array' === Ext.type(attr.levels)
 	    && 'array' === Ext.type(attr.ict)
@@ -225,18 +225,15 @@ Curriki.mycurriki.util.title.popup = function(title_id, attr){
 		desc = Ext.util.Format.ellipsis(desc, 256);
 		desc = Ext.util.Format.htmlEncode(desc);
 
-		var lastUpdated = attr.lastUpdated||'';
-
 		var fw = Curriki.data.fw_item.getRolloverDisplay(attr.fwItems||[]);
 		var lvl = Curriki.data.el.getRolloverDisplay(attr.levels||[]);
 		var ict = Curriki.data.ict.getRolloverDisplay(attr.ict||[]);
 		
-		var qtip = String.format("{1}<br />{0}<br /><br />{9}<br />{8}<br /><br />{3}<br />{2}<br />{5}<br />{4}<br />{7}<br />{6}"
+		var qtip = String.format("{1}<br />{0}<br /><br />{3}<br />{2}<br />{5}<br />{4}<br />{7}<br />{6}"
 			,desc,_('global.title.popup.description')
 			,fw,_('global.title.popup.subject')
 			,lvl,_('global.title.popup.educationlevel')
 			,ict,_('global.title.popup.ict')
-			,lastUpdated,_('global.title.popup.last_updated')
 		);
 
 		Ext.QuickTips.getQuickTip().register({
@@ -246,12 +243,18 @@ Curriki.mycurriki.util.title.popup = function(title_id, attr){
 	}
 };
 #end ##}
+##
+## maybe replace here?
+## #skbListHere("tTC-$!asset.fullName" $!asset.trainedTopicsAndCompetencies)
+## #skbListHere("eLF-$!asset.fullName" $!asset.eduLevelFine)
+## 
+
 Ext.onReady(function(){
 ## Get description
 #set($curDesc = $!asset.getDescription().replaceAll('\\', '\\\\').replace("'", "\'").replaceAll("[\r\n]", ' '))
 ## Get Framework items
 #set($curFW = "")
-#set($subj = $!asset.getValue('fw_items'))
+#set($subj = $!asset.getValue('trainedTopicsAndCompetencies'))
 #set($isFirst = true)
 #foreach($item in $subj) ## {
 #if($item != "FW_masterFramework.WebHome") ## {
@@ -266,7 +269,7 @@ Ext.onReady(function(){
 #set($curFW = "[ $curFW ]")
 ## Get educational levels
 #set($curLvl = "")
-#set($levl = $!asset.getValue('educational_level'))
+#set($levl = $!asset.getValue('eduLevelFine'))
 #set($isFirst = true)
 #foreach($item in $levl) ## {
 #if($isFirst) ##{
@@ -290,7 +293,7 @@ Ext.onReady(function(){
 #set($curICT = "$curICT'$item'")
 #end ## }
 #set($curICT = "[ $curICT ]")
-Curriki.mycurriki.util.title.popup("mycurriki-title-${descnb}", {'description':'$curDesc' , 'lastUpdated':'$!xwiki.formatDate($asset.contentUpdateDate, $msg.get("mycurriki.dateFormat"))', 'fwItems':$curFW , 'levels':$curLvl , 'ict':$curICT});
+Curriki.mycurriki.util.title.popup("mycurriki-title-${descnb}", {'description':'$curDesc' , 'fwItems':$curFW , 'levels':$curLvl , 'ict':$curICT});
 });
 /* ]]> */
 </script>
@@ -309,6 +312,27 @@ $msg.get("mycurriki.macro.access.${access}")
 #end ## macro ## }
 
 
+#macro(mycurriki_ict_str $ict)
+    #if($ict == "" || $ict.size() == 0) ## {
+    ## No ICT set -- nothing to do
+    #else ## } {
+    #if($ict.size() > 1) ## {
+    ##Multiple
+    #set($icon = $xwiki.getSkinFile("icons/ICTIcon-Multiple.gif"))
+    #set($text = $msg.get('CurrikiCode.AssetClass_instructional_component_multiple'))
+    #else ## } {
+    ##Single
+    #set($ict = $ict.get(0))
+    #set($icon = "${ict.substring(0,1).toUpperCase()}${ict.substring(1)}")
+    #set($icon = $icon.replaceFirst("_.*", ""))
+    #set($icon = $xwiki.getSkinFile("icons/ICTIcon-${icon}.gif"))
+    #set($text = "CurrikiCode.AssetClass_instructional_component_${ict}")
+    #set($text = $msg.get($text))
+    #end ## if not multiple ## }
+    <span title="${text}"><img src="${icon}" /></span>
+    #end ## if not empty ## }
+#end
+
 #**
   * Display the ict of an Asset
   *
@@ -318,26 +342,52 @@ $msg.get("mycurriki.macro.access.${access}")
 #macro(mycurriki_ict $asset) ## {
 #set($ict = "")
 #set($ict = $!asset.getObject("CurrikiCode.AssetClass").getProperty("instructional_component").getValue())
-#if($ict == "" || $ict.size() == 0) ## {
-## No ICT set -- nothing to do
-#else ## } {
-#if($ict.size() > 1) ## {
-##Multiple
-#set($icon = $xwiki.getSkinFile("icons/ICTIcon-Multiple.gif"))
-#set($text = $msg.get('CurrikiCode.AssetClass_instructional_component_multiple'))
-#else ## } {
-##Single
-#set($ict = $ict.get(0))
-#set($icon = "${ict.substring(0,1).toUpperCase()}${ict.substring(1)}")
-#set($icon = $icon.replaceFirst("_.*", ""))
-#set($icon = $xwiki.getSkinFile("icons/ICTIcon-${icon}.gif"))
-#set($text = "CurrikiCode.AssetClass_instructional_component_${ict}")
-#set($text = $msg.get($text))
-#end ## if not multiple ## }
-<img src="${icon}" ext:qtip="${text}" />
-#end ## if not empty ## }
+#mycurriki_ict_str($ict)
 #end ## Macro ## }
 
+
+#macro(mycurriki_filetype_str $assetType $attachmentType)
+#if("Text" == $!assetType)
+    #set($text = $msg.get("mycurriki.macro.filetype.currikulum"))
+    {pre}<img src="/xwiki/skins/curriki8/images/www.gif" alt="[${text}]" title="[${text}]"/>{/pre}
+#elseif("External" == $!assetType)
+    #set($text = $msg.get("mycurriki.macro.filetype.URL"))
+    {pre}<img src="/xwiki/skins/curriki8/images/www.gif")" alt="[${text}]" title="[${text}]"/>{/pre}
+#elseif("Archive" == $!assetType)
+    #if($attachmentType=="rar" || $attachmentType=="zip")
+        #set($text=$msg.get("rve.filetype.icon.${attachmentType}"))
+    {pre}<img src="$xwiki.getSkinFile("mimetypes/${attachmentType.toUpperCase()}.gif")" alt="[${text}]" title="[${text}]"/>{/pre}
+    #else
+        #set($text = $msg.get("mycurriki.macro.filetype.unknown"))        
+    {pre}<img src="$xwiki.getSkinFile("mimetypes/Unknown.gif")" alt="[${text}]" title="[${text}]"/>{/pre}
+    #end
+#elseif("CollectionComposite" == $!assetType)
+    #set($text = $msg.get("search.resource.icon.CollectionComposite.rollover"))
+    {pre}<img src="/xwiki/skins/curriki8/images/collectionmedium.gif" alt="[${text}]" title="[${text}]"/>{/pre}
+#elseif("Attachment" == $!assetType || "Document" == $!assetType)
+    #if($attachmentType=="cdy")#set($text=$msg.get("rve.filetype.icon.Cinderella"))
+    #elseif($attachmentType=="g2w")#set($text=$msg.get("rve.filetype.icon.GeoPlan"))
+    #elseif($attachmentType=="cabri2File")#set($text=$msg.get("rve.filetype.icon.Cabri2"))
+    #elseif($attachmentType=="ggb")#set($text=$msg.get("rve.filetype.icon.GeoGebra"))
+    #elseif($attachmentType=="zir")#set($text=$msg.get("rve.filetype.icon.ZUL"))
+    #elseif($attachmentType=="wiris")#set($text=$msg.get("rve.filetype.icon.Wiris"))
+    #elseif($attachmentType=="wirishtml")#set($text=$msg.get("rve.filetype.icon.Wiris"))
+    #elseif($attachmentType=="gxt")#set($text=$msg.get("rve.filetype.icon.GeoNext"))
+    #elseif($attachmentType=="g3w")#set($text=$msg.get("rve.filetype.icon.Geospace"))
+    #elseif($attachmentType=="cg2")#set($text=$msg.get("rve.filetype.icon.Cabri2plus"))
+    #elseif($attachmentType=="cg3")#set($text=$msg.get("rve.filetype.icon.Cabri3D"))
+    #elseif($attachmentType=="tracenpocheFile")#set($text=$msg.get("rve.filetype.icon.TracenPoche"))
+        ## Cabri 3D ?
+    #elseif($!attachmentType.length()>0)#set($text=$msg.get("rve.filetype.icon.${attachmentType}"))
+    #else#set($text="")
+    #end
+    #if($!text=="")#set($text = $msg.get("mycurriki.macro.filetype.unknown"))
+    {pre}<img src="$xwiki.getSkinFile("mimetypes/Unknown.gif")" alt="[${text}]" title="[${text}]"/>{/pre}
+    #else
+    {pre}<img height="31" src="/xwiki/skins/curriki8/mimetypes/${attachmentType.toUpperCase()}.gif" alt="[${text}]" title="[${text}]"/>{/pre}        
+    #end
+#end
+#end
 
 #**
   * Display the file type of an Asset
@@ -346,24 +396,84 @@ $msg.get("mycurriki.macro.access.${access}")
   * @author dward@curriki.org
   *#
 #macro(mycurriki_filetype $asset) ## {
-#if("$!ftnb" == "") ##{
-#set($ftnb = 0)
-#end ##}
-#set($ftnb = $ftnb + 1)
-#set($assetType = $!asset.getAssetType())
-#set($category = $!asset.getCategory())
-#if("$!category" == "") ##{
-	#set($category = "unknown")
-#end ##}
-#set($subcategory = $!asset.getCategorySubtype())
-#if("$!subcategory" == "") ##{
-	#set($subcategory = "unknown")
-#end ##}
-#set($rollover = $msg.get("${category}.${subcategory}"))
-#if($!rollover == "${category}.${subcategory}") ##{
-#set($rollover = $msg.get('search.resource.icon.Unknown.rollover'))
-#end ##}
-{pre}<img id="favorites-filetype-${ftnb}" class="resource-${assetType} category-${category} subcategory-${category}_${subcategory}" src="/xwiki/skins/curriki8/extjs/resources/images/default/s.gif" ext:qtip="${rollover}"/>{/pre}
+#if($asset.attachmentList.size() == 0) ## {
+  #set($mime = "")
+  #set($rowType="currikulum")
+#else ## } {
+  #mimeicon($asset.attachmentList.get(0).getFilename())
+  #set($filetype_description=$m_fileExt)
+  #set($mime = $asset.attachmentList.get(0).mimeType)
+  #set($rowType="mime")
+#end ## }
+#if($asset.getObject("XWiki.TextAssetClass")) ## {
+  #set($rowType="currikulum")
+#else ## } {
+#if($asset.getObject("XWiki.ExternalAssetClass")) ## {
+  #set($rowType="URL")
+#end ## }
+#end ## }
+#if($rowType == "URL") ## {
+#set($text = $msg.get("mycurriki.macro.filetype.URL"))
+{pre}<img src="$xwiki.getSkinFile("mimetypes/HTM.gif")" alt="[${text}]" title="[${text}]"/>{/pre}
+#end ## }
+#if($rowType == "mime") ## {
+#if(!$m_fileExt || $m_fileExt == "Unknown") ## {
+  #set($text = $msg.get("mycurriki.macro.filetype.unknown"))
+  #set($filetype_description=$text)
+#else ## } {
+  #set($text = $m_fileExt)
+  #if($m_fileExt=="CDY")#set($filetype_description=$msg.get("rve.filetype.icon.Cinderella"))#end
+  #if($m_fileExt=="G2W")#set($filetype_description=$msg.get("rve.filetype.icon.GeoPlan"))#end
+  #if($m_fileExt=="FIG")#set($filetype_description=$msg.get("rve.filetype.icon.Cabri2"))#end
+  #if($m_fileExt=="GGB")#set($filetype_description=$msg.get("rve.filetype.icon.GeoGebra"))#end
+  #if($m_fileExt=="ZIR")#set($filetype_description=$msg.get("rve.filetype.icon.ZUL"))#end
+  #if($m_fileExt=="WIRIS")#set($filetype_description=$msg.get("rve.filetype.icon.Wirirs"))#end
+  #if($m_fileExt=="GXT")#set($filetype_description=$msg.get("rve.filetype.icon.GeoNext"))#end	
+  #if($m_fileExt=="G3W")#set($filetype_description=$msg.get("rve.filetype.icon.Geospace"))#end
+  #if($m_fileExt=="CG2")#set($filetype_description=$msg.get("rve.filetype.icon.Cabri2plus"))#end
+  #if($m_fileExt=="CG3")#set($filetype_description=$msg.get("rve.filetype.icon.Cabri3D"))#end
+  #if($m_fileExt=="RAR")#set($filetype_description=$msg.get("rve.filetype.icon.rar"))#end
+  #if($m_fileExt=="ZIP")#set($filetype_description=$msg.get("rve.filetype.icon.zip"))#end
+  #if($m_fileExt=="ODT")#set($filetype_description=$msg.get("rve.filetype.icon.odt"))#end
+  #if($m_fileExt=="DOC")#set($filetype_description=$msg.get("rve.filetype.icon.doc"))#end
+  #if($m_fileExt=="PDF")#set($filetype_description=$msg.get("rve.filetype.icon.pdf"))#end
+  #if($m_fileExt=="PNG")#set($filetype_description=$msg.get("rve.filetype.icon.png"))#end
+  #if($m_fileExt=="JPG")#set($filetype_description=$msg.get("rve.filetype.icon.jpg"))#end
+  #if($m_fileExt=="MOV")#set($filetype_description=$msg.get("rve.filetype.icon.mov"))#end
+  #if($m_fileExt=="AVI")#set($filetype_description=$msg.get("rve.filetype.icon.avi"))#end
+  #if($m_fileExt=="MP3")#set($filetype_description=$msg.get("rve.filetype.icon.mp3"))#end
+  #if($m_fileExt=="GIF")#set($filetype_description=$msg.get("rve.filetype.icon.gif"))#end
+  #if($m_fileExt=="SWF")#set($filetype_description=$msg.get("rve.filetype.icon.swf"))#end
+  #if($m_fileExt=="ODB")#set($filetype_description=$msg.get("rve.filetype.icon.odb"))#end
+  #if($m_fileExt=="ODF")#set($filetype_description=$msg.get("rve.filetype.icon.odf"))#end
+  #if($m_fileExt=="ODG")#set($filetype_description=$msg.get("rve.filetype.icon.odg"))#end
+  #if($m_fileExt=="ODP")#set($filetype_description=$msg.get("rve.filetype.icon.odp"))#end
+  #if($m_fileExt=="ODS")#set($filetype_description=$msg.get("rve.filetype.icon.ods"))#end
+  #if($m_fileExt=="WAV")#set($filetype_description=$msg.get("rve.filetype.icon.wav"))#end
+  #if($m_fileExt=="XLS")#set($filetype_description=$msg.get("rve.filetype.icon.xls"))#end
+  #if($m_fileExt=="XLSX")#set($filetype_description=$msg.get("rve.filetype.icon.xlsx"))#end
+  
+#end ## if ext ## }
+#set($tracenpoche="TracenPoche-File")
+#if($m_fileExt=="TXT")
+	#set($string=$asset.attachmentList.get(0).getContentAsString("utf8"))
+	#if($string.indexOf("@options") == -1)
+		{pre}<img src="$macro_iconUrl" height=31 alt="[TXT]" title="[TXT]"/>{/pre}
+	#else
+		{pre}<img src="/xwiki/skins/curriki8/mimetypes/tracenpoche.gif" height=31 alt="[${tracenpoche}]" title="[${tracenpoche}]"/>{/pre}
+	#end
+#else
+{pre}<img src="$macro_iconUrl" height=31 alt="[${filetype_description}]" title="[${filetype_description}]"/>{/pre}
+#end
+#end ## if mime ## }
+#if($rowType == "curriki-link") ## {
+#set($text = "[URL]")
+{pre}<img src="/xwiki/skins/curriki8/images/www.gif" alt="[${text}]" title="[${text}]"/>{/pre}
+#end ## }
+#if($rowType == "currikulum") ## {
+#set($text = $msg.get("mycurriki.macro.filetype.currikulum"))
+{pre}<img src="/xwiki/skins/curriki8/images/www.gif" alt="[${text}]" title="[${text}]"/>{/pre}
+#end ## }
 #end ## Macro ## }
 
 #**
@@ -417,9 +527,6 @@ $!desc
 	#registrationprivacysettings()
 	#registrationinterests()
 	#endregistrationform()
-
-	#set($footerJScript = "$!footerJScript" + '<script>var warna = $$("a"); $$("#mycurriki-main a").each(function(a){warna=warna.without(a);}); $$("#navigation-inner a.titles").each(function(a){warna=warna.without(a);}); var hmnav = $$("#navigation-inner .home a.titles"); if (hmnav.length > 0) {warna.push(hmnav[0])}; warna.invoke("observe", "click", function(event){ var el = Event.element(event); if (!confirm("'+$msg.get('mycurriki.editprofile.confirmLeave')+'")){event=event||window.event; if (typeof event.preventDefault != "undefined") { event.preventDefault(); } else if (window.event){ event.returnValue = false; } }; });</script>')
-	<!-- End Profile Box -->
 #end ##}
 
 #**
@@ -431,13 +538,13 @@ $!desc
 	#if($context.action == "view" && ($context.user==$userdoc.fullName || $xwiki.hasAdminRights())) ##{
 		<div class="button-right">
 		#if("$!request.mode"=="") ##{
-			<a class="button-orange" href="$xwiki.getURL("MyCurriki.Profile", "view", "mode=public")" title="$msg.get("view_profile.intro.public_button")">$msg.get("view_profile.intro.public_button")</a></span>
+			<a class="button button-orange" href="$xwiki.getURL("MyCurriki.Profile", "view", "mode=public")" title="$msg.get("view_profile.intro.public_button")">$msg.get("view_profile.intro.public_button")</a></span>
 		#elseif("$!request.mode"=="public") ##}{
-			<a class="button-orange" href="$xwiki.getURL("MyCurriki.Profile", "view")" title="$msg.get("view_profile.intro.return_button")">$msg.get("view_profile.intro.return_button")</a></span>
+			<a class="button button-orange" href="$xwiki.getURL("MyCurriki.Profile", "view")" title="$msg.get("view_profile.intro.return_button")">$msg.get("view_profile.intro.return_button")</a></span>
 		#end ##}
 		#if("$!request.mode"=="") ##{
 			<!-- My Curriki edit profile button -->
-			<a class="button-orange" href="$xwiki.getURL("MyCurriki.EditProfile", "view", "user=${userdoc.fullName}")" title="$msg.get("view_profile.intro.edit_button")">$msg.get("view_profile.intro.edit_button")</a></span>
+			<a class="button button-orange" href="$xwiki.getURL("MyCurriki.EditProfile", "view", "user=${userdoc.fullName}")" title="$msg.get("view_profile.intro.edit_button")">$msg.get("view_profile.intro.edit_button")</a></span>
 		#end ##}
 		</div>
 		#if("$!request.mode"=="") ##{
@@ -466,10 +573,10 @@ $!desc
 #if("$x" != "")#set($c = 1 + $c)#end
 ##
 #set($x = "")
-#set($x = $!userobj.getProperty("topics").getValue())
+#set($x = $!userobj.getProperty("trainedTopicsAndCompetencies").getValue())
 #if("$x" != "" && $x.size() > 1)#set($c = 1 + $c)#end
 #set($x = "")
-#set($x = $!userobj.getProperty("educational_level").getValue())
+#set($x = $!userobj.getProperty("eduLevelFine").getValue())
 #if("$x" != "" && $x.size() > 0)#set($c = 1 + $c)#end
 ##
 #set($x = "")#set($x = $!userobj.getProperty('country').value)
@@ -756,36 +863,14 @@ $response.sendRedirect($xwiki.getURL("XWiki.XWikiLogout", "logout", "xredirect=$
 		<table>
 		<tbody>
 		<tr>
-		#if("$titems" != "" && $titems.size() > 1) ##{
 			<th class="item-interest-areas-th">*$msg.get("view_profile.interests.subject.title")*</th>
-		#end ##}
-		#if("$eitems" != "" && $eitems.size() > 0) ##{
 			<th class="item-interest-areas-th">*$msg.get("view_profile.interests.ed_level.title")*</th>
-		#end ##}
 		</tr>
 		<tr>
-		#if("$titems" != "" && $titems.size() > 1) ##{
-			<td class="item-interest-areas-td">
-				<ul>
-				#set($fwMaster = "${msg.get('XWiki.XWikiUsers_topics_FW_masterFramework.WebHome')} +[^ ]+ +")
-					<li>$userobj.get('topics').replaceAll($fwMaster, '').replace('<br />', '</li><li>')</li>
-##				#foreach($titem in $titems) ##{
-##					#if($titem!="FW_masterFramework.WebHome") ##{
-##						<li>$msg.get("XWiki.XWikiUsers_topics_${titem}")</li>
-##					#end ##}
-##				#end ##}
-				</ul>
-			</td>
-		#end ##}
-		#if("$eitems" != "" && $eitems.size() > 0) ##{
-			<td class="item-interest-areas-td">
-				<ul>
-				#foreach($eitem in $eitems)
-					<li>$msg.get("XWiki.XWikiUsers_educational_level_${eitem}")</li>
-				#end
-				</ul>
-			</td>
-		#end ##}
+		<td class="item-interest-areas-td">
+					#skbListHere("" $!userobj.trainedTopicsAndCompetencies)	</td>
+		<td class="item-interest-areas-td">
+					#skbListHere("" $!userobj.eduLevelFine)</td>
 		</tr>
 		</tbody>
 		</table>
@@ -973,7 +1058,7 @@ $response.sendRedirect($xwiki.getURL("XWiki.XWikiLogout", "logout", "xredirect=$
         #if("$!breadcrumb" == "") ## {
           #set($breadcrumb=$userdoc.fullName)
         #end ## }
-        <a class="button-orange" href="$xwiki.getURL("${favPage}", "view", "bc=${breadcrumb}")" title="$msg.get("mycurriki.favorites.viewButton")">$msg.get("mycurriki.favorites.viewButton")</a></span>
+        <a class="button button-orange" href="$xwiki.getURL("${favPage}", "view", "bc=${breadcrumb}")" title="$msg.get("mycurriki.favorites.viewButton")">$msg.get("mycurriki.favorites.viewButton")</a></span>
       #end ## }
     #end ## }
   #end ## }
@@ -1391,7 +1476,7 @@ $msg.get("deleted")
   <!-- MyCurriki Contributions Buttons -->
   #if($context.action == "view" && ($context.user==$userdoc.fullName || $hasGlobalAdmin))##{
     {pre}
-    <a class="button-orange" onclick="Curriki.module.addpath.startPath('I', {});" title="$msg.get('mycurriki.contributions.addButton_tooltip')">$msg.get('mycurriki.contributions.addButton')</a>
+    <a class="button button-orange" onclick="Curriki.module.addpath.startPath('I', {});" title="$msg.get('mycurriki.contributions.addButton_tooltip')">$msg.get('mycurriki.contributions.addButton')</a>
     {/pre}
   #end ##}
   <!-- End MyCurriki Contributions Buttons -->
@@ -1524,7 +1609,6 @@ $msg.get("deleted")
   <!-- End MyCurriki Contributions Box -->
 #end ##} end macro
 
-
 ##
 ##
 ##
@@ -1570,6 +1654,7 @@ $msg.get("deleted")
 </div>
 <div class="frame-inset-description mycurriki-collections-row-description">
 #mycurriki_collectiondescription($asset)
+</div>
 </div>
 </div>
 #end
@@ -1673,7 +1758,7 @@ function toggle_desc(){
 #macro(mycurriki_collectionbutton $userobj)
 #if($context.action == "view" && ($context.user==$userdoc.fullName || $hasGlobalAdmin))
 {pre}
-<a class="button-orange" onclick="Curriki.module.addpath.startPath('K', {});" alt="$msg.get("mycurriki.collections.addButton")" title="$msg.get("mycurriki.collections.addButton_tooltip")">$msg.get("mycurriki.collections.addButton")</a>
+<a class="button button-orange" onclick="Curriki.module.addpath.startPath('K', {});" alt="$msg.get("mycurriki.collections.addButton")" title="$msg.get("mycurriki.collections.addButton_tooltip")">$msg.get("mycurriki.collections.addButton")</a>
 {/pre}
 #end
 #end ## buttonmacro

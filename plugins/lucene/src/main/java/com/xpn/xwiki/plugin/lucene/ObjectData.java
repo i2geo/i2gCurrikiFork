@@ -28,14 +28,14 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.document.Field;
 
 import com.xpn.xwiki.XWikiContext;
+import com.xpn.xwiki.api.XWiki;
+import com.xpn.xwiki.api.Document;
+import com.xpn.xwiki.util.Util;
 import com.xpn.xwiki.doc.XWikiDocument;
 import com.xpn.xwiki.objects.BaseObject;
 import com.xpn.xwiki.objects.BaseProperty;
 import com.xpn.xwiki.objects.PropertyInterface;
-import com.xpn.xwiki.objects.classes.BaseClass;
-import com.xpn.xwiki.objects.classes.ListItem;
-import com.xpn.xwiki.objects.classes.PasswordClass;
-import com.xpn.xwiki.objects.classes.StaticListClass;
+import com.xpn.xwiki.objects.classes.*;
 
 /**
  * Hold the property values of the XWiki.ArticleClass Objects.
@@ -44,9 +44,9 @@ public class ObjectData extends IndexData
 {
     private static final Log LOG = LogFactory.getLog(ObjectData.class);
 
-    public ObjectData(final XWikiDocument doc, final XWikiContext context)
+    public ObjectData(final XWikiDocument doc, final XWikiContext context, final LuceneIndexProfile profile)
     {
-        super(doc, context);
+        super(doc, context, profile);
         setAuthor(doc.getAuthor());
         setCreator(doc.getCreator());
         setModificationDate(doc.getDate());
@@ -79,7 +79,7 @@ public class ObjectData extends IndexData
         StringBuffer retval = new StringBuffer(super.getFullText(doc, context));
         String contentText = getContentAsText(doc, context);
         if (contentText != null) {
-            retval.append(" ").append(contentText);
+            retval.append(" ").append(contentText).toString();
         }
         return retval.toString();
     }
@@ -87,20 +87,14 @@ public class ObjectData extends IndexData
     /**
      * @return string containing value of title,category,content and extract of XWiki.ArticleClass
      */
-    private String getContentAsText(XWikiDocument doc, XWikiContext context)
+    protected String getContentAsText(XWikiDocument doc, XWikiContext context)
     {
         StringBuffer contentText = new StringBuffer();
-
-        contentText.append(doc.getTitle());
-        contentText.append(" ");
-        contentText.append(doc.getContent());
-        contentText.append(" ");
-
         try {
             LOG.info(doc.getFullName());
             for (String className : doc.getxWikiObjects().keySet()) {
                 for (BaseObject obj : doc.getObjects(className)) {
-                    extractContent(contentText, obj, context);
+                    extractContent(contentText, doc, obj, context);
                 }
             }
         } catch (Exception e) {
@@ -110,7 +104,7 @@ public class ObjectData extends IndexData
         return contentText.toString();
     }
 
-    private void extractContent(StringBuffer contentText, BaseObject baseObject, XWikiContext context)
+    protected void extractContent(StringBuffer contentText, XWikiDocument doc, BaseObject baseObject, XWikiContext context)
     {
         try {
             if (baseObject != null) {
@@ -120,15 +114,26 @@ public class ObjectData extends IndexData
                     if ((baseProperty != null) && (baseProperty.getValue() != null)) {
                         PropertyInterface prop = baseObject.getxWikiClass(context).getField((String) propertyNames[i]);
                         if (!(prop instanceof PasswordClass)) {
-                            contentText.append(baseProperty.getValue().toString());
+                            String text = baseProperty.getValue().toString();
+                            if(prop instanceof TextAreaClass) {
+                                try {
+                                    text = new XWiki(context.getWiki(),context).renderText(text,new Document(doc,context));
+                                    text = TextExtractor.getText(("<html><body><div>" + text + "</div></body></html>").getBytes("utf-8"),"text/html");
+                                } catch (Throwable e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            contentText.append(text);
+                            if(LOG.isDebugEnabled()) LOG.debug("text: " + text);
                         }
                     }
                     contentText.append(" ");
                 }
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             LOG.error("error getting content from  XWiki Object ", e);
             e.printStackTrace();
+            if(e instanceof ThreadDeath) throw (ThreadDeath) e;
         }
     }
 
@@ -136,16 +141,20 @@ public class ObjectData extends IndexData
     public void addDataToLuceneDocument(org.apache.lucene.document.Document luceneDoc, XWikiDocument doc,
         XWikiContext context)
     {
+        // let the basic be inserted
         super.addDataToLuceneDocument(luceneDoc, doc, context);
+
+        // add all object properties
         for (String className : doc.getxWikiObjects().keySet()) {
             for (BaseObject obj : doc.getObjects(className)) {
                 if (obj != null) {
-                    luceneDoc.add(new Field(IndexFields.OBJECT, obj.getClassName(), Field.Store.YES,
+                    luceneDoc.add(new Field(IndexFields.OBJECT, obj.getClassName(),
+                             Field.Store.YES,
                         Field.Index.TOKENIZED));
                     Object[] propertyNames = obj.getPropertyNames();
                     for (int i = 0; i < propertyNames.length; i++) {
                         try {
-                            indexProperty(luceneDoc, obj, (String) propertyNames[i], context);
+                            indexProperty(luceneDoc, obj, doc, (String) propertyNames[i], context);
                         } catch (Exception e) {
                             LOG.error("error extracting fulltext for document " + this, e);
                         }
@@ -153,29 +162,68 @@ public class ObjectData extends IndexData
                 }
             }
         }
+
+        // allow the profile to add extra fields
+        try {
+            super.getLuceneIndexProfile().addExtraFields(doc,context,luceneDoc);
+        } catch (Exception e) { e.printStackTrace(); }
+
     }
 
-    private void indexProperty(org.apache.lucene.document.Document luceneDoc, BaseObject baseObject,
+    private Field.Store guessStore(XWikiDocument doc, String fieldName, XWikiContext context) {
+        if(shouldStore(doc,fieldName,context)) return Field.Store.YES;
+        return Field.Store.NO;
+    }
+
+    private Field.Index guessIndex(XWikiDocument doc, String fieldName, XWikiContext context) {
+        if(shouldIndex(doc,fieldName,context)) {
+            if(shouldTokenize(doc,fieldName,context)) return Field.Index.ANALYZED;
+            else return Field.Index.NOT_ANALYZED;
+        } else return Field.Index.NO;
+    }
+
+    protected boolean shouldStore(XWikiDocument doc, String fieldName, XWikiContext context) {
+        return getLuceneIndexProfile().shouldStore(doc,fieldName,context);
+    }
+    protected int shouldTrim(XWikiDocument doc, String fieldName, XWikiContext context) {
+        return getLuceneIndexProfile().shouldTrim(doc,fieldName,context);
+    }
+    protected boolean shouldTokenize(XWikiDocument doc, String fieldName, XWikiContext context) {
+        return getLuceneIndexProfile().shouldTokenize(doc,fieldName,context);
+    }
+
+    protected boolean shouldIndex(XWikiDocument doc, String fieldName, XWikiContext context) {
+        return getLuceneIndexProfile().shouldIndex(doc,fieldName,context);
+    }
+
+    protected void indexProperty(org.apache.lucene.document.Document luceneDoc, BaseObject baseObject,
+                                   XWikiDocument doc,
         String propertyName, XWikiContext context)
     {
         String fieldFullName = baseObject.getClassName() + "." + propertyName;
         BaseClass bClass = baseObject.getxWikiClass(context);
         PropertyInterface prop = bClass.getField(propertyName);
-
+        if(LOG.isTraceEnabled()) LOG.trace("Property : " + propertyName);
         if (prop instanceof PasswordClass) {
             // Do not index passwords
         } else if (prop instanceof StaticListClass && ((StaticListClass) prop).isMultiSelect()) {
             indexStaticList(luceneDoc, baseObject, (StaticListClass) prop, propertyName, context);
         } else {
-            final String ft = getContentAsText(baseObject, propertyName, context);
-            if (ft != null) {
-                luceneDoc.add(new Field(fieldFullName, ft, Field.Store.YES, Field.Index.TOKENIZED));
-                luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, ft.toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+            final String text = getContentAsText(baseObject, propertyName, context);
+            if (text != null) {
+                int trimAmount = shouldTrim(doc,fieldFullName,context);
+                Field.Store store = guessStore(doc,fieldFullName,context);
+                Field.Index index = guessIndex(doc,fieldFullName,context);
+                if(store==Field.Store.YES || index!=Field.Index.NO)
+                    luceneDoc.add(new Field(fieldFullName, trimAmount >0 ? text.substring(0,Math.min(trimAmount,text.length())): text,
+                        store, index));
+                luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, text, Field.Store.NO, Field.Index.NOT_ANALYZED));
+                luceneDoc.add(new Field(fieldFullName + IndexFields.STEMMED, text, Field.Store.NO, Field.Index.ANALYZED));
             }
         }
     }
 
-    private void indexStaticList(org.apache.lucene.document.Document luceneDoc, BaseObject baseObject,
+    protected void indexStaticList(org.apache.lucene.document.Document luceneDoc, BaseObject baseObject,
         StaticListClass prop, String propertyName, XWikiContext context)
     {
         Map possibleValues = prop.getMap(context);
@@ -189,21 +237,21 @@ public class ObjectData extends IndexData
                 // we index the key of the list
                 String fieldName = fieldFullName + ".key";
                 luceneDoc.add(new Field(fieldName, item.getId(), Field.Store.YES, Field.Index.TOKENIZED));
-                luceneDoc.add(new Field(fieldName + IndexFields.UNTOKENIZED, item.getId().toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+                luceneDoc.add(new Field(fieldName + IndexFields.UNTOKENIZED, item.getId(), Field.Store.NO, Field.Index.UN_TOKENIZED));
 
                 // we index the value
                 fieldName = fieldFullName + ".value";
                 luceneDoc.add(new Field(fieldName, item.getValue(), Field.Store.YES, Field.Index.TOKENIZED));
-                luceneDoc.add(new Field(fieldName + IndexFields.UNTOKENIZED, item.getValue().toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+                luceneDoc.add(new Field(fieldName + IndexFields.UNTOKENIZED, item.getValue(), Field.Store.NO, Field.Index.UN_TOKENIZED));
                 if (!item.getId().equals(item.getValue())) {
                     luceneDoc.add(new Field(fieldFullName, item.getValue(), Field.Store.YES, Field.Index.TOKENIZED));
-                    luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, item.getValue().toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+                    luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, item.getValue(), Field.Store.NO, Field.Index.UN_TOKENIZED));
                 }
             }
 
             // we index both if value is not equal to the id(key)
             luceneDoc.add(new Field(fieldFullName, value, Field.Store.YES, Field.Index.TOKENIZED));
-            luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, value.toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+            luceneDoc.add(new Field(fieldFullName + IndexFields.UNTOKENIZED, value, Field.Store.NO, Field.Index.UN_TOKENIZED));
         }
     }
 

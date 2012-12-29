@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <xwikidoc>
 <web>XWiki</web>
@@ -8,20 +8,19 @@
 <translation>0</translation>
 <parent></parent>
 <creator>XWiki.thimel</creator>
-<author>XWiki.KApatterson</author>
+<author>XWiki.Admin</author>
 <customClass></customClass>
-<contentAuthor>XWiki.KApatterson</contentAuthor>
+<contentAuthor>XWiki.Admin</contentAuthor>
 <creationDate>1171310101000</creationDate>
-<date>1252687926000</date>
-<contentUpdateDate>1252687926000</contentUpdateDate>
-<version>99.1</version>
+<date>1219097322000</date>
+<contentUpdateDate>1219097322000</contentUpdateDate>
+<version>57.1</version>
 <title></title>
 <template></template>
 <defaultTemplate></defaultTemplate>
 <validationScript></validationScript>
-<comment>removing left nav item</comment>
+<comment>i2geo instead of curriki as much as possible</comment>
 <minorEdit>false</minorEdit>
-<syntaxId>xwiki/1.0</syntaxId>
 <object>
 <class>
 <name>XWiki.TagClass</name>
@@ -59,7 +58,7 @@
 
 #side panel
 panel.navigation.home=HOME
-panel.navigation.home.rollover=Curriki - Home
+panel.navigation.home.rollover=i2geo - Interactive Interoperable Geometry
 
 panel.navigation.find=FIND
 panel.navigation.find.rollover=Collect lesson plans and curricula
@@ -74,19 +73,17 @@ panel.navigation.contribute.rollover=Add or create something new
 panel.navigation.contribute.about=About Contributing
 panel.navigation.addresource=Add a Resource
 panel.navigation.addresource.rollover.member=Add your best curricular materials or create something new
-panel.navigation.addresource.rollover.visitor=Curriki members can add and create curricular materials
-panel.navigation.crs=Curriki Review System
+panel.navigation.addresource.rollover.visitor=i2geo members can add and create curricular materials
+panel.navigation.crs=I2geo Review System
 
 panel.navigation.connect=CONNECT
 panel.navigation.connect.rollover=Collaborate with other educators
 panel.navigation.connect.about=About Connecting
-panel.navigation.memberrating=About Member Rating
 panel.navigation.featuredGroups=Featured Groups
 panel.navigation.browseGroups=Browse Groups by Subject
 panel.navigation.createGroup=Create a New Group
-panel.navigation.currikiblog=Curriki's Blog
 
-panel.navigation.mycurriki=MY CURRIKI
+panel.navigation.mycurriki=MY I2GEO
 panel.navigation.mycurriki.rollover=Access your member profile and much more
 panel.navigation.myprofile=My Profile
 panel.navigation.myfavorites=My Favorites
@@ -96,20 +93,20 @@ panel.navigation.myblogs=My Blog
 panel.navigation.mygroups=My Groups
 
 panel.navigation.partners_sponsers=PARTNERS &amp; SPONSORS
-panel.navigation.partners_sponsers.rollover=Learn about Curriki's partners and sponsors
+panel.navigation.partners_sponsers.rollover=Learn about i2geo's partners and sponsors
 panel.navigation.partners=Partners
 panel.navigation.sponsors=Sponsors
 panel.navigation.featured_partners=Featured Partners
 panel.navigation.partner_content=Partner Resources
 
 panel.navigation.help=HELP
-panel.navigation.help.rollover=Find information, instructions, and tutorials about using Curriki
+panel.navigation.help.rollover=Find information, instructions, and tutorials about using the i2geo platform
 panel.navigation.help_collection=Help Collection
 panel.navigation.tutorials=Tutorials
 panel.navigation.contact_us=Contact Us
 
-panel.navigation.about_curriki=ABOUT CURRIKI
-panel.navigation.about_curriki.rollover=Find information about Curriki: news, leadership, volunteering, and more
+panel.navigation.about_curriki=ABOUT I2GEO
+panel.navigation.about_curriki.rollover=Find information about I2GEO: news, leadership, volunteering, and more
 panel.navigation.guided_overview=Overview
 panel.navigation.guided_tour=Guided Tour
 panel.navigation.news=News
@@ -118,59 +115,52 @@ panel.navigation.board=Board
 panel.navigation.leadership_team=Leadership Team
 panel.navigation.volunteer=Volunteer
 panel.navigation.donate=Donate
-panel.navigation.link=Link to Us
-panel.navigation.currikiblog=Curriki's Blog
 
 ##WATCH CURRIKI GROW PANEL
-panel.watchgrow.title=WATCH CURRIKI GROW
+panel.watchgrow.title=WATCH I2GEO GROW
 panel.watchgrow.resources=Resources:
 panel.watchgrow.members=Members:
 panel.watchgrow.groups=Groups:
 panel.watchgrow.join=Join Now!
 
 ## GLOBAL HEADER TEXT (What I have found thus far)
-header.altinfo=Curriki
-header.welcome=Welcome, {0}
-header.login_username=member login
-header.login_password=password
-header.login_rememberme=Remember Me
-header.login_forgot=Forgot Login
-header.login_go=Go &amp;#xBB;
-header.becomemember_part1=Become
-header.becomemember_part2=a Member
+
+headerWelcome=Welcome, {0}
+
+loginUsername=login name 
+loginPassword=password
+loginRememberme=Remember Me
+loginForgot=Forgot Login
+headerLoginGo=Go &amp;#xBB;
+
+BecomeMember_part1=Become
+BecomeMember_part2=a Member
+
 header.browse_subjects=Browse Subjects
 header.advanced_search=Advanced Search
-header.search_go=Go &amp;#xBB;
-header.find_resource=Search or Browse Curriki
-header.admin=Administration
-header.logout=Logout
-header.defaultsearchtext=search
+
+## CAN NOT FIND TRANSLATION STRINGS
+## Administration
+## Log-Out
+## search
+## login name
+
 
 ## Depricated? AdvancedSearch=Advanced Search
 ## Depricated? headerSearchGo=Go &amp;#xBB;
 ## Depricated? header.search_go=Go &amp;#xBB;
 
-panel.donate.title=Support this not-for-profit global education and learning community!
+
+header.find_resource=Search or Browse i2geo
+
+
+
+panel.donate.title=Support the global education and learning community!
+
 panel.featuredmembers.members.count=members
 
 panel.sponsors.title=SPONSORS
 panel.featuredmembers.title=Featured Member
-
-##TRANS FOR FOOTER
-footer.link.creativecommons=All content licensed &lt;a href="http://www.curriki.org/xwiki/bin/view/Coll_curriki/RightsHolderLicensing"&gt;Creative Commons&lt;/a&gt;
-
-##NEW TRANS FOR FOOTER (1.8.7 release)
-footer.link1.text=&lt;a href="http://www.curriki.org/xwiki/bin/view/Coll_curriki/CurrikiHelp"&gt;Help&lt;/a&gt;
-footer.link2.text=&lt;a href="http http://www.curriki.org/xwiki/bin/view/Main/Contact"&gt;Contact Us&lt;/a&gt;
-footer.link3.text=&lt;a href="http://www.curriki.org/xwiki/bin/view/Main/PrivacyPolicy"Privacy Policy&lt;/a&gt;
-footer.link4.text=&lt;a href=" http://www.curriki.org/xwiki/bin/view/Main/TOS &gt;Terms of Use&lt;/a&gt;
-footer.link5.text=&lt;a href="TBD "&gt;Copyright &amp; Creative Commons Licensing&lt;/a&gt;
-footer.link6.text=&lt;a href="TBD"&gt;Powered by XWiki&lt;/a&gt;
-footer.link7.text=&lt;a href="TBD"&gt;Hosted by AT&amp;T&lt;/a&gt;
-footer.rss.image={o}
-footer.rss.url= /xwiki/bin/view/Main/WebRss?xpage=rdf
-footer.rss.rollover=RSS Feed
-
 
 #general captions
 
@@ -180,13 +170,13 @@ readmore=Read More
 
 caption.joinnow=Join Now!
 caption.joinUsNow=Join Now!
-caption.joinCurriki=Join Curriki!
-caption.joinCurrikiNow=Join Curriki Now!
+caption.joinCurriki=Join i2geo!
+caption.joinCurrikiNow=Join i2geo Now!
 caption.register=Register
 caption.none=None
 
-caption.worldOfEducationalResourcesAndCurriculum=Curriki is Your World of Educational Resources and Curriculum
-caption.worldOfEducationalResources=Curriki is Your World of Educational Resources
+caption.worldOfEducationalResourcesAndCurriculum=The i2geo Platform Gathers Interactive Geometry Around the World
+caption.worldOfEducationalResources=The i2geo Platform Gathers Interactive Geometry Around the World
 
 caption.member=Member
 caption.title=Title
@@ -212,11 +202,11 @@ caption.viewAll=View All
 caption.edit=Edit
 caption.print=Print
 caption.add=Add
-caption.addToCollection=Add to My Curriki
+caption.addToCollection=Add to My i2geo
 caption.addResourceToThisCollection=Add to This Collection
 caption.delete=Delete
-caption.sendToAFriend=Share
-caption.linkToThePage=Share
+caption.sendToAFriend=Send to a Friend
+caption.linkToThePage=Link to This Page
 caption.NComments={0} Comment(s)
 caption.readmore=Read more...
 caption.download=Download
@@ -249,19 +239,19 @@ asset.commentNotAllowed=You are not allowed to comment on this resource.
 asset.contentNotAllowed=This content is marked Private.
 
 
-caption.aboutCurriki=About Curriki
+caption.aboutCurriki=About i2geo
 
 caption.partners=Partners
 
 caption.comingSoon=Coming Soon
 
-caption.createAProfilToParticipate=Create a profile now to start participating in the Curriki community. It's free!
+caption.createAProfilToParticipate=Create a profile now to start participating in the i2geo community. It's free!
 
 caption.hello=Hello
 
 docs.privacyPolicy=Privacy Policy
 
-caption.profile=My Curriki
+caption.profile=My i2geo
 caption.myprofile=My Profile
 
 caption.YES=YES
@@ -276,9 +266,36 @@ blogRss.title=RSS Feed of the Wiki Blog
 blogRss.description=RSS Feed of the Wiki Blog
 
 
+#Main.BrowseSearch
+
+##Main.BrowseSearch is old and has been replaced by Main.Browse. Do not translate this section.*
+
+browseSearch.rebuilding=Started index rebuild with {0} documents. Will take some time depending on the number of pages/attachments.
+
+browseSearch.bySubject=Browse by Subject
+browseSearch.info=Click a subject to see a list of all the learning resources in that category. The number in parentheses shows how many matching results are on the site right now.
+
+browseSearch.noResult=Your search did not return matching resources.
+
+
+#Main.EventCalendar
+
+eventCalendar.title=Event Calendar
+eventCalendar.previous=Previous Month
+eventCalendar.next=Next Month
+eventCalendar.eventList=Event List
+eventCalendar.eventList.useEditObject=Use [edit object&gt;{0}] to modify or remove existing events.
+eventCalendar.newEvent=New Event
+eventCalendar.newEvent.location=Location:
+eventCalendar.newEvent.startDate=Start date inclusive (dd/mm/yyyy):
+eventCalendar.newEvent.endDate=End date inclusive (dd/mm/yyyy):
+eventCalendar.newEvent.decription=Description:
+eventCalendar.newEvent.button=Add this event
+
+
 #Main.Search
 
-search.overload=Search is not available at this point due to the success of the Curriki Web site overloading our servers.
+search.overload=Search is not available at this point due to the success of the i2geo Web site overloading our servers.
 
 
 #Main.SearchResources
@@ -303,20 +320,20 @@ sitemap.title=Provisional Site Map
 #Panels.WelcomeToCurriki
 
 docs.browseSearch=Browse by Subject
-docs.news=Curriki News
+docs.news=I2geo News
 docs.blogs=Staff Blogs
 docs.members=Members Home
 docs.donate=Donate
 
-panels.welcomeToCurriki.info=Welcome to Curriki, your world of open source educational resources and curricula.
+panels.welcomeToCurriki.info=Welcome to i2geo, gather interactive geometry resources around the world.
 
-panels.welcomeToCurriki.partners=See who is supporting Curriki.
+panels.welcomeToCurriki.partners=See who is supporting i2geo.
 
 panels.welcomeToCurriki.login=If you already have an account you can log in using the following form:
 
 #Panels.MyCurriki
 
-panels.myCurriki.title=My Curriki
+panels.myCurriki.title=My i2geo
 panels.myCurriki.myProfile=My Profile
 panels.myCurriki.myCollections=My Collections
 panels.myCurriki.myGroups=My Groups
@@ -382,7 +399,7 @@ myBlog.paramEntries={0} Entries
 
 myBlog.publishDetails=Posted by {0} on {1} in {2}
 myBlog.postedBy=Posted by {0} on {1} at {2} Pacific
-myBlog.permalink=Share
+myBlog.permalink=Link to this Post
 
 myBlog.editPost=Edit This Post
 myBlog.deletePost=Delete This Post
@@ -407,7 +424,7 @@ blogArticle.commentsDate={0} at {1} Pacific
 
 #Blog.WebHome
 
-blog.staffInfo=Here are some recent blog entries and musings from Curriki staffers.
+blog.staffInfo=Here are some recent blog entries and musings from i2geo staffers.
 
 
 
@@ -432,7 +449,7 @@ colls.numberOfCollsDisplayed={0} of {1} Collections Displayed
 
 #commentsinline.vm
 
-comments.accessDenied=Only other Curriki members can see and add comments. Please &lt;a class="curriki-link" href="{0}"&gt;join&lt;/a&gt; the Curriki community, or &lt;a class="curriki-link" href="{1}"&gt;log in&lt;/a&gt;.
+comments.accessDenied=Only other i2geo members can see and add comments. Please &lt;a class="curriki-link" href="{0}"&gt;join&lt;/a&gt; the i2geo community, or &lt;a class="curriki-link" href="{1}"&gt;log in&lt;/a&gt;.
 caption.saveComment=Save Comment
 
 #MimeType.etc+compression+files+zip
@@ -457,14 +474,14 @@ metadata.instructional_component_title2=Instructional Component Type
 emailoptout.pleasepass=Sorry, you must pass an email address to opt out of emails.
 emailoptout.norecord=Sorry, there is no record of that email address.
 emailoptout.errormultiple=An error occurred.  This email address is associated with multiple accounts.
-emailoptout.removed=The email address {0} has been opted out of emails from Curriki.  In the future, if you want to revert, please send a mail request to info@curriki.org.
+emailoptout.removed=The email address {0} has been opted out of emails from i2geo.  In the future, if you want to revert, please send a mail request to office@inter2geo.eu.
 
 # Errors if attempting to do a recursive add
 addsubasset.recursive_add=You cannot add an asset to itself.
 addsubasset.recursive_add_message=You cannot add an asset to itself, or any sub-assets of itself.
 
 # Curriki Currikulum Builder Loading page
-ccb.title=Curriki Currikulum Builder
+ccb.title=I2geo Currikulum Builder
 
 #VIDITalk integration
 viditalk.sitecode=8204167813
@@ -472,69 +489,36 @@ viditalk.sitecode=8204167813
 # TOC table of contents panel
 curriki.toc.title=Table of Contents
 
-#Main.BrowseSearch
-
-##Main.BrowseSearch is old and has been replaced by Main.Browse. Do not translate this section.
-##START
-
-browseSearch.rebuilding=Started index rebuild with {0} documents. Will take some time depending on the number of pages/attachments.
-
-browseSearch.bySubject=Browse by Subject
-browseSearch.info=Click a subject to see a list of all the learning resources in that category. The number in parentheses shows how many matching results are on the site right now.
-
-browseSearch.noResult=Your search did not return matching resources.
-##END
-
 # Browse page
 browse.titlebar=Browse Resources by Subject
-browse.info=Click a subject to see a list of learning resources in that category. The number in parentheses shows all the resources indexed in our search engine. Start browsing them today! 
-
-
-
-
+browse.info=Click a subject to see a list of all the learning resources in that category.  The number in parentheses shows how many matching results are on the site right now.
 browse.subject.title.Uncategorized=Uncategorized
-browse.subject.image.Uncategorized=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Uncategorized.png
+browse.subject.image.Uncategorized=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/Uncategorized.png
 browse.subject.description.Uncategorized=-
 browse.subject.title.All_Resources=All Resources
 #
-# ART FOR BROWSE RESOURCES BY SUBJECT AN BROWSE GROUPS BY SUBJECT
+# Subject area translations
 #
-browse.subject.image.FW_masterFramework.Arts=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Arts.png
+browse.subject.image.FW_masterFramework.Arts=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/Arts.png
 browse.subject.description.FW_masterFramework.Arts=-
-
-browse.subject.image.FW_masterFramework.VocationalEducation=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/VocationalEducation.png
+browse.subject.image.FW_masterFramework.VocationalEducation=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/VocationalEducation.png
 browse.subject.description.FW_masterFramework.VocationalEducation=-
-
-browse.subject.image.FW_masterFramework.Education&amp;Teaching=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Education.png
-browse.subject.description.FW_masterFramework.Education&amp;Teaching=-
-
-
-browse.subject.image.FW_masterFramework.EducationalTechnology=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/EducationalTechnology.png
+browse.subject.image.FW_masterFramework.EducationalTechnology=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/EducationalTechnology.png
 browse.subject.description.FW_masterFramework.EducationalTechnology=-
-
-browse.subject.image.FW_masterFramework.ForeignLanguages=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/ForeignLanguages.png
+browse.subject.image.FW_masterFramework.ForeignLanguages=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/ForeignLanguages.png
 browse.subject.description.FW_masterFramework.ForeignLanguages=-
-
-browse.subject.image.FW_masterFramework.Health=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Health.png
+browse.subject.image.FW_masterFramework.Health=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/Health.png
 browse.subject.description.FW_masterFramework.Health=-
-
-browse.subject.image.FW_masterFramework.Information&amp;MediaLiteracy=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/InformationMedia.png
+browse.subject.image.FW_masterFramework.Information&amp;MediaLiteracy=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/InformationMedia.png
 browse.subject.description.FW_masterFramework.Information&amp;MediaLiteracy=-
-
-browse.subject.image.FW_masterFramework.LanguageArts=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/LanguageArts.png
+browse.subject.image.FW_masterFramework.LanguageArts=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/LanguageArts.png
 browse.subject.description.FW_masterFramework.LanguageArts=-
-
-browse.subject.image.FW_masterFramework.Mathematics=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Mathematics.png
+browse.subject.image.FW_masterFramework.Mathematics=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/Mathematics.png
 browse.subject.description.FW_masterFramework.Mathematics=-
-
-browse.subject.image.FW_masterFramework.Science=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/Science.png
+browse.subject.image.FW_masterFramework.Science=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/Science.png
 browse.subject.description.FW_masterFramework.Science=-
-
-browse.subject.image.FW_masterFramework.SocialStudies=/xwiki/bin/download/Main/Browse/SubjectAreaImages092608.zip/SocialStudies.png
+browse.subject.image.FW_masterFramework.SocialStudies=/xwiki/bin/download/Main/Browse/SubjectAreaImages.zip/SocialStudies.png
 browse.subject.description.FW_masterFramework.SocialStudies=-
-
-
-
 #
 # Promo Card examples
 
@@ -542,24 +526,387 @@ browse.subject.title.promo_1=Romeo and Juliet Example
 browse.subject.image.promo_1=/xwiki/bin/download/XWiki/rmlucas/timespicturelargecropped.jpg
 browse.subject.description.promo_1=Text for Romeo and Juliet example
 
-featuredGroups.intro=Curriki regularly features outstanding groups. Want to learn more about creating a group and group capabilities? Visit &lt;a href="/xwiki/bin/view/Groups/AboutCreatingGroups"&gt;About Creating a Group&lt;/a&gt; and &lt;a href="/xwiki/bin/view/Coll_curriki/Groups?bc=;Coll_curriki.CurrikiHelp"&gt;Curriki Help Collection – Groups&lt;/a&gt;.&lt;br /&gt;
+featuredGroups.intro=I2geo regularly features outstanding groups. Want to learn more about creating a group and group capabilities? Visit &lt;a href="/xwiki/bin/view/Groups/AboutCreatingGroups"&gt;About Creating a Group&lt;/a&gt; and &lt;a href="/xwiki/bin/view/Coll_curriki/Groups?bc=;Coll_curriki.CurrikiHelp"&gt;Help Collection – Groups&lt;/a&gt;.&lt;br /&gt;
 
 # 404 Error Page
 err_404_previous_page=Go to the previous page
 err_404_home_page=Go to the home page
 
 #Class fields
+XWiki.XWikiUsers_member_type_student=Student
+XWiki.XWikiUsers_member_type_teacher=Teacher
+XWiki.XWikiUsers_member_type_professional=Professional
+XWiki.XWikiUsers_member_type_parent=Parent
 
-## MEMEBER TYPE - XWiki.XWikiUsers
+XWiki.XWikiUsers_country_AD=Andorra
+XWiki.XWikiUsers_country_AE=United Arab Emirates
+XWiki.XWikiUsers_country_AF=Afghanistan
+XWiki.XWikiUsers_country_AG=Antigua and Barbuda
+XWiki.XWikiUsers_country_AI=Anguilla
+XWiki.XWikiUsers_country_AL=Albania
+XWiki.XWikiUsers_country_AM=Armenia
+XWiki.XWikiUsers_country_AN=Netherlands Antilles
+XWiki.XWikiUsers_country_AO=Angola
+XWiki.XWikiUsers_country_AQ=Antarctica
+XWiki.XWikiUsers_country_AR=Argentina
+XWiki.XWikiUsers_country_AS=American Samoa
+XWiki.XWikiUsers_country_AT=Austria
+XWiki.XWikiUsers_country_AU=Australia
+XWiki.XWikiUsers_country_AW=Aruba
+XWiki.XWikiUsers_country_AX=Åland Islands
+XWiki.XWikiUsers_country_AZ=Azerbaijan
+XWiki.XWikiUsers_country_BA=Bosnia and Herzegovina
+XWiki.XWikiUsers_country_BB=Barbados
+XWiki.XWikiUsers_country_BD=Bangladesh
+XWiki.XWikiUsers_country_BE=Belgium
+XWiki.XWikiUsers_country_BF=Burkina Faso
+XWiki.XWikiUsers_country_BG=Bulgaria
+XWiki.XWikiUsers_country_BH=Bahrain
+XWiki.XWikiUsers_country_BI=Burundi
+XWiki.XWikiUsers_country_BJ=Benin
+XWiki.XWikiUsers_country_BM=Bermuda
+XWiki.XWikiUsers_country_BN=Brunei Darussalam
+XWiki.XWikiUsers_country_BO=Bolivia
+XWiki.XWikiUsers_country_BR=Brazil
+XWiki.XWikiUsers_country_BS=Bahamas
+XWiki.XWikiUsers_country_BT=Bhutan
+XWiki.XWikiUsers_country_BV=Bouvet Island
+XWiki.XWikiUsers_country_BW=Botswana
+XWiki.XWikiUsers_country_BY=Belarus
+XWiki.XWikiUsers_country_BZ=Belize
+XWiki.XWikiUsers_country_CA=Canada
+XWiki.XWikiUsers_country_CC=Cocos (Keeling) Islands
+XWiki.XWikiUsers_country_CD=Congo, the Democratic Republic of the
+XWiki.XWikiUsers_country_CF=Central African Republic
+XWiki.XWikiUsers_country_CG=Congo
+XWiki.XWikiUsers_country_CH=Switzerland
+XWiki.XWikiUsers_country_CI=Côte d'Ivoire
+XWiki.XWikiUsers_country_CK=Cook Islands
+XWiki.XWikiUsers_country_CL=Chile
+XWiki.XWikiUsers_country_CM=Cameroon
+XWiki.XWikiUsers_country_CN=China
+XWiki.XWikiUsers_country_CO=Colombia
+XWiki.XWikiUsers_country_CR=Costa Rica
+XWiki.XWikiUsers_country_CU=Cuba
+XWiki.XWikiUsers_country_CV=Cape Verde
+XWiki.XWikiUsers_country_CX=Christmas Island
+XWiki.XWikiUsers_country_CY=Cyprus
+XWiki.XWikiUsers_country_CZ=Czech Republic
+XWiki.XWikiUsers_country_DE=Germany
+XWiki.XWikiUsers_country_DJ=Djibouti
+XWiki.XWikiUsers_country_DK=Denmark
+XWiki.XWikiUsers_country_DM=Dominica
+XWiki.XWikiUsers_country_DO=Dominican Republic
+XWiki.XWikiUsers_country_DZ=Algeria
+XWiki.XWikiUsers_country_EC=Ecuador
+XWiki.XWikiUsers_country_EE=Estonia
+XWiki.XWikiUsers_country_EG=Egypt
+XWiki.XWikiUsers_country_EH=Western Sahara
+XWiki.XWikiUsers_country_ER=Eritrea
+XWiki.XWikiUsers_country_ES=Spain
+XWiki.XWikiUsers_country_ET=Ethiopia
+XWiki.XWikiUsers_country_FI=Finland
+XWiki.XWikiUsers_country_FJ=Fiji
+XWiki.XWikiUsers_country_FK=Falkland Islands (Malvinas)
+XWiki.XWikiUsers_country_FM=Micronesia, Federated States of
+XWiki.XWikiUsers_country_FM=Faroe Islands
+XWiki.XWikiUsers_country_FR=France
+XWiki.XWikiUsers_country_GA=Gabon
+XWiki.XWikiUsers_country_GB=United Kingdom
+XWiki.XWikiUsers_country_GD=Grenada
+XWiki.XWikiUsers_country_GE=Georgia
+XWiki.XWikiUsers_country_GF=French Guiana
+XWiki.XWikiUsers_country_GG=Guernsey
+XWiki.XWikiUsers_country_GH=Ghana
+XWiki.XWikiUsers_country_GI=Gibraltar
+XWiki.XWikiUsers_country_GL=Greenland
+XWiki.XWikiUsers_country_GM=Gambia
+XWiki.XWikiUsers_country_GM=Guinea
+XWiki.XWikiUsers_country_GQ=Equatorial Guinea
+XWiki.XWikiUsers_country_GR=Greece
+XWiki.XWikiUsers_country_GS=South Georgia and the South Sandwich Islands
+XWiki.XWikiUsers_country_GT=Guatemala
+XWiki.XWikiUsers_country_GU=Guam
+XWiki.XWikiUsers_country_GW=Guinea-Bissau
+XWiki.XWikiUsers_country_GY=Guyana
+XWiki.XWikiUsers_country_HK=Hong Kong
+XWiki.XWikiUsers_country_HM=Heard Island and McDonald Islands
+XWiki.XWikiUsers_country_HN=Honduras
+XWiki.XWikiUsers_country_HR=Croatia
+XWiki.XWikiUsers_country_HT=Haiti
+XWiki.XWikiUsers_country_HU=Hungary
+XWiki.XWikiUsers_country_ID=Indonesia
+XWiki.XWikiUsers_country_IE=Ireland
+XWiki.XWikiUsers_country_IL=Israel
+XWiki.XWikiUsers_country_IM=Isle of Man
+XWiki.XWikiUsers_country_IN=India
+XWiki.XWikiUsers_country_IO=British Indian Ocean Territory
+XWiki.XWikiUsers_country_IQ=Iraq
+XWiki.XWikiUsers_country_IR=Iran, Islamic Republic of
+XWiki.XWikiUsers_country_IS=Iceland
+XWiki.XWikiUsers_country_IT=Italy
+XWiki.XWikiUsers_country_JE=Jersey
+XWiki.XWikiUsers_country_JM=Jamaica
+XWiki.XWikiUsers_country_JO=Jordan
+XWiki.XWikiUsers_country_JP=Japan
+XWiki.XWikiUsers_country_KE=Kenya
+XWiki.XWikiUsers_country_KG=Kyrgyzstan
+XWiki.XWikiUsers_country_KH=Cambodia
+XWiki.XWikiUsers_country_KI=Kiribati
+XWiki.XWikiUsers_country_KM=Comoros
+XWiki.XWikiUsers_country_KN=Saint Kitts and Nevis
+XWiki.XWikiUsers_country_KP=Korea, Democratic People's Republic of
+XWiki.XWikiUsers_country_KR=Korea, Republic of
+XWiki.XWikiUsers_country_KW=Kuwait
+XWiki.XWikiUsers_country_KY=Cayman Islands
+XWiki.XWikiUsers_country_KZ=Kazakhstan
+XWiki.XWikiUsers_country_LA=Lao People's Democratic Republic
+XWiki.XWikiUsers_country_LB=Lebanon
+XWiki.XWikiUsers_country_LC=Saint Lucia
+XWiki.XWikiUsers_country_LI=Liechtenstein
+XWiki.XWikiUsers_country_LK=Sri Lanka
+XWiki.XWikiUsers_country_LR=Liberia
+XWiki.XWikiUsers_country_LS=Lesotho
+XWiki.XWikiUsers_country_LT=Lithuania
+XWiki.XWikiUsers_country_LU=Luxembourg
+XWiki.XWikiUsers_country_LV=Latvia
+XWiki.XWikiUsers_country_LY=Libyan Arab Jamahiriya
+XWiki.XWikiUsers_country_MA=Morocco
+XWiki.XWikiUsers_country_MC=Monaco
+XWiki.XWikiUsers_country_MD=Moldova, Republic of
+XWiki.XWikiUsers_country_ME=Montenegro
+XWiki.XWikiUsers_country_MG=Madagascar
+XWiki.XWikiUsers_country_MH=Marshall Islands
+XWiki.XWikiUsers_country_MK=Macedonia, the former Yugoslav Republic of
+XWiki.XWikiUsers_country_ML=Mali
+XWiki.XWikiUsers_country_MM=Myanmar
+XWiki.XWikiUsers_country_MN=Mongolia
+XWiki.XWikiUsers_country_MO=Macao
+XWiki.XWikiUsers_country_MP=Northern Mariana Islands
+XWiki.XWikiUsers_country_MQ=Martinique
+XWiki.XWikiUsers_country_MR=Mauritania
+XWiki.XWikiUsers_country_MS=Montserrat
+XWiki.XWikiUsers_country_MT=Malta
+XWiki.XWikiUsers_country_MU=Mauritius
+XWiki.XWikiUsers_country_MV=Maldives
+XWiki.XWikiUsers_country_MW=Malawi
+XWiki.XWikiUsers_country_MX=Mexico
+XWiki.XWikiUsers_country_MY=Malaysia
+XWiki.XWikiUsers_country_MZ=Mozambique
+XWiki.XWikiUsers_country_NA=Namibia
+XWiki.XWikiUsers_country_NC=New Caledonia
+XWiki.XWikiUsers_country_NE=Niger
+XWiki.XWikiUsers_country_NF=Norfolk Island
+XWiki.XWikiUsers_country_NG=Nigeria
+XWiki.XWikiUsers_country_NI=Nicaragua
+XWiki.XWikiUsers_country_NL=Netherlands
+XWiki.XWikiUsers_country_NO=Norway
+XWiki.XWikiUsers_country_NP=Nepal
+XWiki.XWikiUsers_country_NR=Nauru
+XWiki.XWikiUsers_country_NU=Niue
+XWiki.XWikiUsers_country_NZ=New Zealand
+XWiki.XWikiUsers_country_OM=Oman
+XWiki.XWikiUsers_country_PA=Panama
+XWiki.XWikiUsers_country_PE=Peru
+XWiki.XWikiUsers_country_PF=French Polynesia
+XWiki.XWikiUsers_country_PG=Papua New Guinea
+XWiki.XWikiUsers_country_PH=Philippines
+XWiki.XWikiUsers_country_PK=Pakistan
+XWiki.XWikiUsers_country_PL=Poland
+XWiki.XWikiUsers_country_PM=Saint Pierre and Miquelon
+XWiki.XWikiUsers_country_PN=Pitcairn
+XWiki.XWikiUsers_country_PR=Puerto Rico
+XWiki.XWikiUsers_country_PS=Palestinian Territory, Occupied
+XWiki.XWikiUsers_country_PT=Portugal
+XWiki.XWikiUsers_country_PW=Palau
+XWiki.XWikiUsers_country_PY=Paraguay
+XWiki.XWikiUsers_country_QA=Qatar
+XWiki.XWikiUsers_country_RE=Réunion
+XWiki.XWikiUsers_country_RO=Romania
+XWiki.XWikiUsers_country_RS=Serbia
+XWiki.XWikiUsers_country_RU=Russian Federation
+XWiki.XWikiUsers_country_RW=Rwanda
+XWiki.XWikiUsers_country_SA=Saudi Arabia
+XWiki.XWikiUsers_country_SB=Solomon Islands
+XWiki.XWikiUsers_country_SC=Seychelles
+XWiki.XWikiUsers_country_SD=Sudan
+XWiki.XWikiUsers_country_SE=Sweden
+XWiki.XWikiUsers_country_SG=Singapore
+XWiki.XWikiUsers_country_SH=Saint Helena
+XWiki.XWikiUsers_country_SI=Slovenia
+XWiki.XWikiUsers_country_SJ=Svalbard and Jan Mayen
+XWiki.XWikiUsers_country_SK=Slovakia
+XWiki.XWikiUsers_country_SL=Sierra Leone
+XWiki.XWikiUsers_country_SM=San Marino
+XWiki.XWikiUsers_country_SN=Senegal
+XWiki.XWikiUsers_country_SO=Somalia
+XWiki.XWikiUsers_country_SR=Suriname
+XWiki.XWikiUsers_country_ST=Sao Tome and Principe
+XWiki.XWikiUsers_country_SV=El Salvador
+XWiki.XWikiUsers_country_SY=Syrian Arab Republic
+XWiki.XWikiUsers_country_SZ=Swaziland
+XWiki.XWikiUsers_country_TC=Turks and Caicos Islands
+XWiki.XWikiUsers_country_TD=Chad
+XWiki.XWikiUsers_country_TF=French Southern Territories
+XWiki.XWikiUsers_country_TG=Togo
+XWiki.XWikiUsers_country_TH=Thailand
+XWiki.XWikiUsers_country_TJ=Tajikistan
+XWiki.XWikiUsers_country_TK=Tokelau
+XWiki.XWikiUsers_country_TL=Timor-Leste
+XWiki.XWikiUsers_country_TM=Turkmenistan
+XWiki.XWikiUsers_country_TN=Tunisia
+XWiki.XWikiUsers_country_TO=Tonga
+XWiki.XWikiUsers_country_TR=Turkey
+XWiki.XWikiUsers_country_TT=Trinidad and Tobago
+XWiki.XWikiUsers_country_TV=Tuvalu
+XWiki.XWikiUsers_country_TW=Taiwan, Province of China
+XWiki.XWikiUsers_country_TZ=Tanzania, United Republic of
+XWiki.XWikiUsers_country_UA=Ukraine
+XWiki.XWikiUsers_country_UG=Uganda
+XWiki.XWikiUsers_country_UM=United States Minor Outlying Islands
+XWiki.XWikiUsers_country_US=United States
+XWiki.XWikiUsers_country_UY=Uruguay
+XWiki.XWikiUsers_country_UZ=Uzbekistan
+XWiki.XWikiUsers_country_VA=Holy See (Vatican City State)
+XWiki.XWikiUsers_country_VC=Saint Vincent and the Grenadines
+XWiki.XWikiUsers_country_VE=Venezuela
+XWiki.XWikiUsers_country_VG=Virgin Islands, British
+XWiki.XWikiUsers_country_VI=Virgin Islands, U.S.
+XWiki.XWikiUsers_country_VN=Viet Nam
+XWiki.XWikiUsers_country_VU=Vanuatu
+XWiki.XWikiUsers_country_WF=Wallis and Futuna
+XWiki.XWikiUsers_country_WS=Samoa
+XWiki.XWikiUsers_country_YE=Yemen
+XWiki.XWikiUsers_country_YT=Mayotte
+XWiki.XWikiUsers_country_ZA=South Africa
+XWiki.XWikiUsers_country_ZM=Zambia
+XWiki.XWikiUsers_country_ZW=Zimbabwe
 
-## Moved to Global Class Translation XWiki/GlobalClassTranslations by Todd on Aug-06-2008
 
-## COUNTRY- XWiki.XWikiUsers
-## Moved to Global Class Translation XWiki/GlobalClassTranslations by Todd on Aug-06-2008
-
-
-## TOPICS - XWiki.XWikiUsers
-## Moved to Global Class Translation XWiki/GlobalClassTranslations by Todd on Aug-06-2008
+XWiki.XWikiUsers_topics_FW_masterFramework.WebHome=Subject Index 
+XWiki.XWikiUsers_topics_FW_masterFramework.Arts=Arts
+XWiki.XWikiUsers_topics_FW_masterFramework.Architecture=Architecture
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.Dance=Dance
+XWiki.XWikiUsers_topics_FW_masterFramework.DramaDramatics=Drama/Dramatics
+XWiki.XWikiUsers_topics_FW_masterFramework.Film=Film
+XWiki.XWikiUsers_topics_FW_masterFramework.History=History
+XWiki.XWikiUsers_topics_FW_masterFramework.Music=Music
+XWiki.XWikiUsers_topics_FW_masterFramework.Photography=Photography
+XWiki.XWikiUsers_topics_FW_masterFramework.PopularCulture=Popular Culture
+XWiki.XWikiUsers_topics_FW_masterFramework.Technology=Technology
+XWiki.XWikiUsers_topics_FW_masterFramework.VisualArts=Visual Arts
+XWiki.XWikiUsers_topics_FW_masterFramework.VocationalEducation=Career &amp; Technical Education
+XWiki.XWikiUsers_topics_FW_masterFramework.Agriculture_0=Agriculture
+XWiki.XWikiUsers_topics_FW_masterFramework.Business=Business
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_6=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.Education&amp;Teaching=Education &amp; Teaching
+XWiki.XWikiUsers_topics_FW_masterFramework.OccupationalHomeEconomics=Occupational Home Economics
+XWiki.XWikiUsers_topics_FW_masterFramework.School-to-work=School-to-work
+XWiki.XWikiUsers_topics_FW_masterFramework.Technology_2=Technology
+XWiki.XWikiUsers_topics_FW_masterFramework.Trade&amp;Industrial=Trade &amp; Industrial
+XWiki.XWikiUsers_topics_FW_masterFramework.EducationalTechnology=Educational Technology
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_0=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.IntegratingTechnologyintotheClassroom=Integrating Technology into the Classroom
+XWiki.XWikiUsers_topics_FW_masterFramework.UsingMultimedia&amp;theInternet=Using Multimedia &amp; the Internet
+XWiki.XWikiUsers_topics_FW_masterFramework.ForeignLanguages=Foreign Languages
+XWiki.XWikiUsers_topics_FW_masterFramework.Alphabet=Alphabet
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_7=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.CulturalAwareness=Cultural Awareness
+XWiki.XWikiUsers_topics_FW_masterFramework.Grammar=Grammar
+XWiki.XWikiUsers_topics_FW_masterFramework.InformalEducation=Informal Education
+XWiki.XWikiUsers_topics_FW_masterFramework.Linguistics=Linguistics
+XWiki.XWikiUsers_topics_FW_masterFramework.ListeningComprehension=Listening Comprehension
+XWiki.XWikiUsers_topics_FW_masterFramework.Reading=Reading
+XWiki.XWikiUsers_topics_FW_masterFramework.Speaking=Speaking
+XWiki.XWikiUsers_topics_FW_masterFramework.Spelling=Spelling
+XWiki.XWikiUsers_topics_FW_masterFramework.VocabularyWriting=Vocabulary Writing
+XWiki.XWikiUsers_topics_FW_masterFramework.Health=Health 
+XWiki.XWikiUsers_topics_FW_masterFramework.BodySystems&amp;Senses=Body Systems &amp; Senses
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_1=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.EnvironmentalHealth=Environmental Health
+XWiki.XWikiUsers_topics_FW_masterFramework.HumanSexuality=Human Sexuality
+XWiki.XWikiUsers_topics_FW_masterFramework.MentalEmotionalHealth=Mental/Emotional Health
+XWiki.XWikiUsers_topics_FW_masterFramework.Nutrition=Nutrition
+XWiki.XWikiUsers_topics_FW_masterFramework.SafetySmokingSubstanceAbusePrevention=Safety/Smoking/Substance Abuse Prevention
+XWiki.XWikiUsers_topics_FW_masterFramework.Information&amp;MediaLiteracy=Information &amp; Media Literacy
+XWiki.XWikiUsers_topics_FW_masterFramework.EvaluatingSources=Evaluating Sources
+XWiki.XWikiUsers_topics_FW_masterFramework.MediaEthics=Media Ethics
+XWiki.XWikiUsers_topics_FW_masterFramework.OnlineSafety=Online Safety
+XWiki.XWikiUsers_topics_FW_masterFramework.ResearchMethods=Research Methods
+XWiki.XWikiUsers_topics_FW_masterFramework.LanguageArts=Language Arts
+XWiki.XWikiUsers_topics_FW_masterFramework.Alphabet_0=Alphabet
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_2=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.Journalism=Journalism
+XWiki.XWikiUsers_topics_FW_masterFramework.Listening&amp;Speaking=Listening &amp; Speaking
+XWiki.XWikiUsers_topics_FW_masterFramework.Literature=Literature
+XWiki.XWikiUsers_topics_FW_masterFramework.Phonics=Phonics
+XWiki.XWikiUsers_topics_FW_masterFramework.ReadingComprehension=Reading Comprehension
+XWiki.XWikiUsers_topics_FW_masterFramework.Research=Research
+XWiki.XWikiUsers_topics_FW_masterFramework.Spelling_0=Spelling
+XWiki.XWikiUsers_topics_FW_masterFramework.StoryTelling=Story Telling
+XWiki.XWikiUsers_topics_FW_masterFramework.Vocabulary=Vocabulary
+XWiki.XWikiUsers_topics_FW_masterFramework.Writing=Writing
+XWiki.XWikiUsers_topics_FW_masterFramework.Mathematics=Mathematics
+XWiki.XWikiUsers_topics_FW_masterFramework.Algebra=Algebra
+XWiki.XWikiUsers_topics_FW_masterFramework.Appliedmathematics=Applied Mathematics
+XWiki.XWikiUsers_topics_FW_masterFramework.Arithmetic=Arithmetic
+XWiki.XWikiUsers_topics_FW_masterFramework.Calculus=Calculus
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_3=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.DataAnalysis&amp;Probability=Data Analysis &amp; Probability
+XWiki.XWikiUsers_topics_FW_masterFramework.Equations=Equations
+XWiki.XWikiUsers_topics_FW_masterFramework.Estimation=Estimation
+XWiki.XWikiUsers_topics_FW_masterFramework.Geometry=Geometry
+XWiki.XWikiUsers_topics_FW_masterFramework.Graphing=Graphing
+XWiki.XWikiUsers_topics_FW_masterFramework.Measurement=Measurement
+XWiki.XWikiUsers_topics_FW_masterFramework.NumberSense&amp;Operations=Number Sense &amp; Operations
+XWiki.XWikiUsers_topics_FW_masterFramework.Patterns=Patterns
+XWiki.XWikiUsers_topics_FW_masterFramework.ProblemSolving=Problem Solving
+XWiki.XWikiUsers_topics_FW_masterFramework.Statistics=Statistics
+XWiki.XWikiUsers_topics_FW_masterFramework.Trigonometry=Trigonometry
+XWiki.XWikiUsers_topics_FW_masterFramework.Science=Science
+XWiki.XWikiUsers_topics_FW_masterFramework.Agriculture=Agriculture
+XWiki.XWikiUsers_topics_FW_masterFramework.Astronomy=Astronomy
+XWiki.XWikiUsers_topics_FW_masterFramework.Biology=Biology
+XWiki.XWikiUsers_topics_FW_masterFramework.Botany=Botany
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_4=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.Chemistry=Chemistry
+XWiki.XWikiUsers_topics_FW_masterFramework.Earthscience=Earth Science
+XWiki.XWikiUsers_topics_FW_masterFramework.Ecology=Ecology
+XWiki.XWikiUsers_topics_FW_masterFramework.Engineering=Engineering
+XWiki.XWikiUsers_topics_FW_masterFramework.Generalscience=General Science
+XWiki.XWikiUsers_topics_FW_masterFramework.Geology=Geology
+XWiki.XWikiUsers_topics_FW_masterFramework.HistoryofScience=History of Science
+XWiki.XWikiUsers_topics_FW_masterFramework.LifeSciences=Life Sciences
+XWiki.XWikiUsers_topics_FW_masterFramework.Meteorology=Meteorology
+XWiki.XWikiUsers_topics_FW_masterFramework.NaturalHistory=Natural History
+XWiki.XWikiUsers_topics_FW_masterFramework.Oceanography=Oceanography
+XWiki.XWikiUsers_topics_FW_masterFramework.Paleontology=Paleontology
+XWiki.XWikiUsers_topics_FW_masterFramework.PhysicalSciences=Physical Sciences
+XWiki.XWikiUsers_topics_FW_masterFramework.Physics=Physics
+XWiki.XWikiUsers_topics_FW_masterFramework.ProcessSkills=Process Skills
+XWiki.XWikiUsers_topics_FW_masterFramework.Technology_0=Technology
+XWiki.XWikiUsers_topics_FW_masterFramework.SocialStudies=Social Studies
+XWiki.XWikiUsers_topics_FW_masterFramework.Anthropology=Anthropology
+XWiki.XWikiUsers_topics_FW_masterFramework.Careers_5=Careers
+XWiki.XWikiUsers_topics_FW_masterFramework.Civics=Civics
+XWiki.XWikiUsers_topics_FW_masterFramework.CurrentEvents=Current Events
+XWiki.XWikiUsers_topics_FW_masterFramework.Economics=Economics
+XWiki.XWikiUsers_topics_FW_masterFramework.Entrepreneurship=Entrepreneurship
+XWiki.XWikiUsers_topics_FW_masterFramework.Geography=Geography
+XWiki.XWikiUsers_topics_FW_masterFramework.GlobalAwareness=Global Awareness
+XWiki.XWikiUsers_topics_FW_masterFramework.Government=Government
+XWiki.XWikiUsers_topics_FW_masterFramework.History\u0020Local=History (Local)
+XWiki.XWikiUsers_topics_FW_masterFramework.PoliticalSystems=Political Systems
+XWiki.XWikiUsers_topics_FW_masterFramework.Psychology=Psychology
+XWiki.XWikiUsers_topics_FW_masterFramework.Research_0=Research
+XWiki.XWikiUsers_topics_FW_masterFramework.Sociology=Sociology
+XWiki.XWikiUsers_topics_FW_masterFramework.StateHistory=State History
+XWiki.XWikiUsers_topics_FW_masterFramework.Technology_1=Technology
+XWiki.XWikiUsers_topics_FW_masterFramework.Thinking&amp;ProblemSolving=Thinking &amp; Problem Solving
+XWiki.XWikiUsers_topics_FW_masterFramework.UnitedStatesGovernment=United States Government
+XWiki.XWikiUsers_topics_FW_masterFramework.UnitedStatesHistory=United States History
+XWiki.XWikiUsers_topics_FW_masterFramework.WorldHistory=World History
 
 #&lt;/pre&gt;</content>
 </xwikidoc>

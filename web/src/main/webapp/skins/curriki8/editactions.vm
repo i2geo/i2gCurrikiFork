@@ -39,7 +39,7 @@ function checkDocumentContent() {
 </script>
 #if((!$commentFieldAdded)&&($xwiki.hasEditComment())&&((!$editactions)||($editactions=="bottom")))
 #set($commentFieldAdded = 1)
-#if($xwiki.isEditCommentHidden())
+#if($xwiki.isEditCommentHidden() || "QR"==$doc.web)
 <input type="hidden" name="comment" value="" size="80" />
 #else
 $msg.get("core.comment"): <input type="text" name="comment" value="" size="80" />

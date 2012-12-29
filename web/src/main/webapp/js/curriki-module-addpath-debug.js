@@ -203,8 +203,7 @@ Curriki.module.addpath.init = function(){
 							}]
 
 		// VIDITalk Video Upload
-/*
-						},{
+						},/*{
 							 xtype:'radio'
 							,value:'video_upload'
 							,inputValue:'video_upload'
@@ -255,10 +254,9 @@ Curriki.module.addpath.init = function(){
 									,height:'320px'
 								}
 							}]
-*/
 
 		// External Web Link
-						},{
+						},*/{
 							 xtype:'radio'
 							,value:'link'
 							,inputValue:'link'
@@ -327,8 +325,7 @@ Curriki.module.addpath.init = function(){
 							,boxLabel:_('add.contributemenu.option.scratch')
 
 		// Create with VIDITalk
-/*
-						},{
+						},/*{
 							 xtype:'radio'
 							,value:'video_capture'
 							,inputValue:'video_capture'
@@ -385,10 +382,9 @@ Curriki.module.addpath.init = function(){
 								,id:'video_capture-container'
 								,html:''
 							}
-*/
 
 		// Create folder
-						},{
+						},*/{
 							 xtype:'radio'
 							,value:'folder'
 							,inputValue:'folder'
@@ -630,7 +626,7 @@ Curriki.module.addpath.init = function(){
 										var form = this.findByType('form')[0].getForm();
 										if (form.isValid()){
 											Curriki.current.sri1 = form.getValues(false);
-											Curriki.current.sri1.fw_items = this.findByType('treepanel')[0].getChecked('id');
+											//Curriki.current.sri1.fw_items = this.findByType('treepanel')[0].getChecked('id');
 
 											this.close();
 
@@ -656,15 +652,15 @@ Curriki.module.addpath.init = function(){
 														break;
 
 													case 'subject':
-														if (!this.form.findField('fw_items-validation').isValid()){
+														/*if (!this.form.findField('fw_items-validation').isValid()){
 															invalid = item;
-														}
+														}*/
 														break;
 
 													case 'level':
-														if (!this.form.findField('educational_level2-validation').isValid()){
+														/*if (!this.form.findField('educational_level2-validation').isValid()){
 															invalid = item;
-														}
+														}*/
 														break;
 
 													default:
@@ -810,43 +806,50 @@ Curriki.module.addpath.init = function(){
 		// Subject  -- Educational Level
 		// Subject
 						},{
-							 layout:'column'
+							/* layout:'column'
 							,border:false
 							,defaults:{border:false}
 							,items:[{
 								 columnWidth:0.5
-								,items:[{
-									 xtype:'box'
+								,items:[{ */
+									xtype:'box'
 									,autoEl:{
 										 tag:'div'
-										,id:'metadata-fw_items'
+										,id:'metadata-trainedTopicsAndCompetencies'
 										,cls:'information-header information-header-required'
 										,children:[{
 											 tag:'em'
-											,id:'metadata-fw_items-required'
+											,id:'metadata-trainedTopicsAndCompetencies-required'
 											,cls:'required-indicator'
 											,html:_('form.required.fields.indicator')
 										},{
 											 tag:'span'
-											,id:'metadata-fw_items-title'
+											,id:'metadata-trainedTopicsAndCompetencies-title'
 											,cls:'metadata-title'
-											,html:_('sri.fw_items_title')
+											,html:_('sri.trainedTopicsAndCompetencies_title')
 										},{
 											 tag:'img'
-											,id:'metadata-fw_items-info'
+											,id:'metadata-trainedTopicsAndCompetencies-info'
 											,cls:'metadata-tooltip'
 											,src:Curriki.ui.InfoImg
-											,qtip:_('sri.fw_items_tooltip')
+											,qtip:_('sri.trainedTopicsAndCompetencies_tooltip')
 										}]
 									}
 								},{
-									 xtype:'box'
-									,autoEl:{
+                                    autoEl:{
 										 tag:'div'
-										,html:_('sri.fw_items_txt')
+										,html:_('sri.trainedTopicsAndCompetencies_txt')
 										,cls:'directions'
 									}
 								},{
+                                    autoEl:{
+										 tag:'div'
+										,html:"<div style='z-index:32767' id='trainedTopicsAndCompetencies_pane'></div><input name='trainedTopicsAndCompetencies' id='trainedTopicsAndCompetencies_' type='hidden'/>"
+                                        //_('sri.fw_items_txt')
+									}
+                                }/*
+                                {
+
 									// A "TreeCheckBoxGroup" would be nice here
 									 xtype:'numberfield'
 									,id:'fw_items-validation'
@@ -907,46 +910,51 @@ Curriki.module.addpath.init = function(){
 											}
 										}
 									})
-								})()]
+								})()]  */
 
 		// Educational Level
-							},{
-								 columnWidth:0.5
-								,items:[{
+							,{
+								/* columnWidth:0.5
+								,items:[{ */
 									 xtype:'box'
 									,autoEl:{
 										 tag:'div'
-										,id:'metadata-educational_level2'
+										,id:'metadata-eduLevelFine'
 										,cls:'information-header information-header-required'
 										,children:[{
 											 tag:'em'
-											,id:'metadata-educational_level2-required'
+											,id:'metadata-eduLevelFine-required'
 											,cls:'required-indicator'
 											,html:_('form.required.fields.indicator')
 										},{
 											 tag:'span'
-											,id:'metadata-educational_level2-title'
+											,id:'metadata-eduLevelFine-title'
 											,cls:'metadata-title'
-											,html:_('sri.educational_level2_title')
+											,html:_('sri.eduLevelFine_title')
 										},{
 											 tag:'img'
-											,id:'metadata-educational_level2-info'
+											,id:'metadata-eduLevelFine-info'
 											,cls:'metadata-tooltip'
 											,src:Curriki.ui.InfoImg
-											,qtip:_('sri.educational_level2_tooltip')
+											,qtip:_('sri.eduLevelFine_tooltip')
 										}]
 									}
 								},{
 									 xtype:'box'
 									,autoEl:{
 										 tag:'div'
-										,html:_('sri.educational_level2_txt')
+										,html:_('sri.eduLevelFine_txt')
 										,cls:'directions'
 									}
 								},{
+                                    autoEl:{
+										 tag:'div'
+										,html:"<div id='eduLevelFine_pane'></div><input id='eduLevelFine_' name='eduLevelFine' type='hidden'/>"
+									}
+                                  }/*,{
 									// A "CheckBoxGroup" would be nice here
 									 xtype:'numberfield'
-									,id:'educational_level2-validation'
+									,id:'eduLevelFine-validation'
 									,allowBlank:false
 									,preventMark:true
 									,minValue:1
@@ -1056,10 +1064,10 @@ Curriki.module.addpath.init = function(){
 											})
 										}
 									}
-								}]
+								}]  */
 
 		// Instructional Component Type
-						},{
+						,{
 							 xtype:'box'
 							,autoEl:{
 								 tag:'div'
@@ -1124,7 +1132,7 @@ Curriki.module.addpath.init = function(){
 							,forceSelection:true
 		*/
 
-						}]
+                        }]
 					}]
 				});
 
@@ -1388,9 +1396,10 @@ Curriki.module.addpath.init = function(){
 									,emptyText:_('sri.language_empty_msg')
 									,selectOnFocus:true
 									,forceSelection:true
-									,value:Curriki.data.language.initial
+									,value:current_language_id
+									/*Curriki.data.language.initial
 										?Curriki.data.language.initial
-										:undefined
+										:undefined*/
 									,listeners:{
 										render:function(comp){
 											comp.findParentByType('apSRI2').on('show', function() {
@@ -2388,6 +2397,8 @@ Curriki.module.addpath.init = function(){
 															dlg.close();
 														}
 														AddPath.ShowNextDialogue(next);
+														window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+														window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
 													};
 													Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 														Curriki.current.metadata = metadata;
@@ -2661,14 +2672,17 @@ Curriki.module.addpath.init = function(){
 					Curriki.current.fileName = allValues['filename'];
 					next = 'apSRI1';
 					AddPath.PostFile(function(asset){
-						callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);};
-
+						callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);
+                        window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+                        window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+                            console.log('AddPath PostFile');
+                        };
 						Curriki.assets.GetMetadata(asset.assetPage||Curriki.current.asset.assetPage, function(metadata){
 							Curriki.current.metadata = metadata;
 							callback();
 						});
 					});
-					return;
+					return;                              
 					break;
 
 				case 'video_upload':
@@ -2688,7 +2702,10 @@ Curriki.module.addpath.init = function(){
 								Curriki.current.videoId,
 								function(videoInfo){
 									console.log("Created viditalk CB: ", videoInfo);
-									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);};
+									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);
+                                        window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+                                        window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+                                         console.log('AddPath ShowNextDialog videoinfo');};
 									Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 										Curriki.current.metadata = metadata;
 										callback();
@@ -2715,7 +2732,10 @@ Curriki.module.addpath.init = function(){
 								Curriki.current.linkUrl,
 								function(linkInfo){
 									console.log("Created Link CB: ", linkInfo);
-									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);};
+									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);
+                                        window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+                                        window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+                                     console.log('AddPath ShowNextDialog linkinfo');};
 									Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 										Curriki.current.metadata = metadata;
 										callback();
@@ -2761,7 +2781,10 @@ Curriki.module.addpath.init = function(){
 								function(assetInfo){
 									console.log("Created Folder CB: ", assetInfo);
 									Curriki.current.flowFolder = 'Folder';
-									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);};
+									callback = function(){AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);
+                                        window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+                                        window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+                                     console.log('AddPath ShowNextDialog assetinfo');};
 									Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 										Curriki.current.metadata = metadata;
 										callback();
@@ -2786,7 +2809,11 @@ Curriki.module.addpath.init = function(){
 								asset.assetPage,
 								function(assetInfo){
 									console.log("Created Collection CB: ", assetInfo);
-									callback = function(){AddPath.ShowNextDialogue(next);};
+									callback = function(){AddPath.ShowNextDialogue(next);
+									window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+									window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+									console.log('AddPath ShowNextDialog assetinfo');
+									};
 									Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 										Curriki.current.metadata = metadata;
 										callback();
@@ -2825,7 +2852,10 @@ Curriki.module.addpath.init = function(){
 								function(asset){
 										console.log("CopyAsset CB: ", asset);
 										Curriki.current.asset = asset;
-										callback = function(){AddPath.ShowNextDialogue(next);};
+										callback = function(){AddPath.ShowNextDialogue(next);
+										window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+										window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+										};
 										Curriki.assets.GetMetadata(asset.assetPage, function(metadata){
 											Curriki.current.metadata = metadata;
 											callback();
@@ -2846,6 +2876,9 @@ Curriki.module.addpath.init = function(){
 
 			if (!Ext.isEmpty(next)){
 				AddPath.ShowNextDialogue(next, AddPath.AddSourceDialogueId);
+                window.top.skbEdit("trainedTopicsAndCompetencies_pane","trainedTopicsAndCompetencies","topic, competency","false");
+                window.top.skbEdit("eduLevelFine_pane","eduLevelFine","level","false");
+                console.log('Ext is not empty');
 			}
 		};
 

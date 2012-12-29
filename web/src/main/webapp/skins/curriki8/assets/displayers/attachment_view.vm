@@ -15,6 +15,12 @@
        <p>
             $caption
         </p>
+
+    </div>
+        <div class="asset-display-download-inner">
+<!-- vignette -->
+    #assetVignetteIfPresent($asset)
+    #addVignetteUploaderButtonIfAllowed($asset)
     </div>
 </div>
 #asset_attachments($asset)

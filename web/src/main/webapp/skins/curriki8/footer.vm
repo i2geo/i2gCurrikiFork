@@ -2,30 +2,24 @@
   * Footer: this will display the footer of Curriki
   * @author Curriki dev team
   *#
-$xwiki.getDocument("Panels.Footer").getTranslatedDocument().getRenderedContent()
-#if($g_enable_ADDTHIS && ("$!ADDTHIS_acct" != "0") && ("$!ADDTHIS_acct" != "") ) ## {
-<script type="text/javascript">
-//<![CDATA[
-var addthis_config = {
-	username: "${ADDTHIS_acct}",
-	ui_cobrand: 'Curriki',
-	services_exclude: 'print, favorites',
-	services_compact: '$msg.get("addThis.services_compact")',
-	ui_header_color: "#ffffff",
-	ui_header_background: "#4e83c7",
-	ui_delay:200,
-	ui_offset_top: 5,
-	ui_offset_left: 5
-}
-var addthis_share = {
-	templates: {
-		twitter: '$msg.get("addThis.templates.twitter")'
-	}
-}
-var addthis_curriki = document.createElement('script');
-addthis_curriki.setAttribute('type', 'text/javascript');
-document.getElementsByTagName('head')[0].appendChild(addthis_curriki);
-addthis_curriki.setAttribute('src', document.location.protocol + "//s7.addthis.com/js/250/addthis_widget.js");
-//]]>
-</script>
-#end ##}
+<div id="footerglobal">
+<div class="footer-left">
+## old, Curriki help page <a href="$xwiki.getURL("Coll_curriki.CurrikiHelp")">$msg.get("footer.help")</a> |
+<a href="/xwiki/bin/view/Coll_curriki/Tutorials">$msg.get("footer.help")</a> | 
+<a href="$xwiki.getURL("Main.Contact")">$msg.get("footer.contactus")</a> |
+<a href="$xwiki.getURL("Main.TOS")">$msg.get("footer.termsofuse")</a> |
+<a href="$xwiki.getURL("Main.PrivacyPolicy")">$msg.get("footer.privacypolicy")</a> |
+<a href="$xwiki.getURL("Main.Copyright")">$msg.get("footer.copyright")</a>
+</div>
+<div class="footer-right">
+<a href="/xwiki/bin/view/Main/WebRss?xpage=rdf"><img src="/xwiki/skins/curriki8/ico_rss.gif" alt="RSS"/></a>
+<!-- <a href="#"><img src="/xwiki/skins/curriki8/ico_xhtml_valid.gif" alt="XHTML Valid"/></a> -->
+<a href="http://www.curriki.org/"><img src="/xwiki/skins/curriki8/ico_curriki_powered.gif" alt="Curriki Valid"/></a>
+<a href="http://www.xwiki.org"><img src="/xwiki/skins/curriki8/ico_xwiki_powered.gif" alt="XWiki Powered"/></a>
+</div>
+## TODO: check if we need this
+## <span class="clr">&nbsp;aaa</span>
+</div>
+## Additionnal Curriki Staf Footer
+#template('staf.vm')
+

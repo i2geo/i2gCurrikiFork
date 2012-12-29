@@ -115,4 +115,7 @@
  </div>
 </div>
 #asset_attachments($asset)
+<div class="asset-display-download"><div class="asset-display-download-inner"><!-- vignette -->
+    #addVignetteUploaderButtonIfAllowed($asset)
+   #assetVignetteIfPresent($asset)</div></div>
 #asset_displaycontentfooter()

@@ -7,6 +7,10 @@
 #end ##}
 #if($g_RegType == 'edit_profile') ##{
 ## $userdoc should already be set
+#if(!$xwiki.hasAccessLevel("edit",$context.user,$userdoc.fullName))
+$response.sendError(403,"Not authorized.")
+<!-- not authorized! -->
+#end
 $userdoc.use("XWiki.XWikiUsers")
 #else ##}{
 #set($userdoc = $xwiki.getDocument("XWiki.XWikiUserTemplate"))
@@ -339,7 +343,7 @@ $errMsg
 #if($g_RegType != 'edit_profile') ##{
 <div class="form-wrp">
 #end ##}
-<form id="register" name="register" action="" method="POST" enctype="multipart/form-data" onsubmit="return validateRegisterForm();">
+<form id="register" name="register" action="" method="POST" enctype="multipart/form-data;charset=utf-8" onsubmit="return validateRegisterForm();">
 #if($g_RegType == 'edit_profile') ##{
 <div class="button-right">
 	<button class="button-grey" onclick="window.location='$userdoc.getURL('view')'; return false;">$msg.get('edit_profile.cancel_button')</button>
@@ -644,10 +648,10 @@ document.observe('dom:loaded', function(){
 				<table>
 					<thead>
 						<tr>
-							<th class="item-interest-areas-th">
-								<span><label for="XWiki.XWikiUsers_0_topics">$msg.get("${pfx}.subject.title")</label><img class="tooltip" alt="" src="$g_ClearPx" ext:qtip="$msg.get("${pfx}.subject.tooltip")"/></span>
-								<p class="instructions">$msg.get("${pfx}.subject.description")</p>
-							</th>
+							##<th class="item-interest-areas-th">
+							##	<span><label for="XWiki.XWikiUsers_0_topics">$msg.get("${pfx}.subject.title")</label><img class="tooltip" alt="" src="$g_ClearPx" ext:qtip="$msg.get("${pfx}.subject.tooltip")"/></span>
+							##	<p class="instructions">$msg.get("${pfx}.subject.description")</p>
+							##</th>
 							<th class="item-interest-areas-th">
 								<span><label for="XWiki.XWikiUsers_0_educational_level">$msg.get("${pfx}.ed_level.title")</label><img class="tooltip" alt="" src="$g_ClearPx" ext:qtip="$msg.get("${pfx}.ed_level.tooltip")"/></span>
 								<p class="instructions">$msg.get("${pfx}.ed_level.description")</p>
@@ -656,11 +660,13 @@ document.observe('dom:loaded', function(){
 					</thead>
 					<tbody>
 						<tr>
+							##<td class="item-interest-areas-td">
+							##	#skbListHereEditable( "XWiki.XWikiUsers.AssetClass_0_trainedTopicsAndCompetencies" "trainedTopicsAndCompetencies" "topic, competency" "$!userdoc.trainedTopicsAndCompetencies")
+							##	##$userdoc.display('topics', "edit")
+							##</td>
 							<td class="item-interest-areas-td">
-								$userdoc.display('topics', "edit")
-							</td>
-							<td class="item-interest-areas-td">
-								$userdoc.display('educational_level', "edit")
+								#skbListHereEditable( "XWiki.XWikiUsers_0_eduLevelFine" "eduLevelFine" "level" "$!userdoc.eduLevelFine")	
+							##$userdoc.display('educational_level', "edit")
 							</td>
 						</tr>
 					</tbody>

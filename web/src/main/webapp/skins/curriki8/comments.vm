@@ -4,6 +4,7 @@
  *#
 #curriki_breadcrumb()
 #set($asset = $doc)
+#set($resource=$asset.fullName)
 #if(!$asset.getObject("CurrikiCode.AssetClass"))
 #template("commentsinline.vm")
 #else
@@ -21,22 +22,13 @@
             #set($status = $asset.getValue("status"))
             #if(!$status||($status!="200"))
              #if($xwiki.hasAccessLevel("view", "CRS.Reviews"))
-             #set($addedItems = true)
-             <li id="tab-review">
-                <a href="$xwiki.getURL("CRS.Review", "view", "page=${asset.fullName}")" title="$msg.get("rve.comments.review.review_rollover")" target="_blank">$msg.get("rve.comments.review.review_link")</a>
-             </li>
+             	     #set($addedItems = true)
              #end
-            #if(!$isguest)
-             #set($assetHasNominate = $asset.canBeNominatedOrReviewed())
-              #if($assetHasNominate)
-              #set($addedItems = true)
-              <li id="tab-nominate"><a href="javascript:void(0)" onclick="Curriki.module.nominate.nominateResource({assetName:'${asset.getJSFullName()}', assetTitle:'${asset.getJSTitle()}'}); return false;" title="$msg.get("rve.comments.review.nominate_rollover")">$msg.get("rve.comments.review.nominate_link")</a></li>
-              #end
-            #end
             #end
             #if($asset.hasAccessLevel("comment"))
             #set($addedItems = true)
-            <li class="last-item"><a href="javascript:void(0)" onclick="showCommentBlock(); return false;" title="$msg.get("rve.comments.comment.addcomment_rollover")">$msg.get("rve.comments.comment.addcomment_link")</a></li>
+            <li id="tab-review"><a onclick="window.location='/xwiki/bin/view/QF/CreateReview?resource=$resource'; return false;" title="$msg.get("rve.comments.review.review_rollover")" href="/xwiki/bin/view/QF/CreateReview?resource=$resource" target="_blank">$msg.get("QF.review-add")</a></li>
+            <li class="last-item"><a href="javascript:void(0)" onclick="showCommentBlock(); return false;" title="$msg.get("rve.comments.comment.addcomment_rollover")">$msg.get("rve.comments.comment_without_rating.addcomment_link")</a></li>
 <script type="text/javascript">
 /* <![CDATA[ */
 function showCommentBlock(){
@@ -62,13 +54,18 @@ Ext.onReady(function(){
 #end ##}
 /* ]]> */
 </script>
-            #end
+#else
+             <li id="tab-review">
+                $msg.get("rve.comments.add_comment.empty.notloggedin_message")
+             </li>
+#end
             #if($addedItems == false)
             <li class="last-item"></li>
             #end
         </ul>
         <div class="clear-right"></div>
-        #crs_display_reviews($asset)
+       ## #crs_display_reviews($asset)
+      	#displayQFReview($asset)
         #asset_comments($asset)
     </div> ##asset-wrapper-inner
 </div> ##asset-wrapper

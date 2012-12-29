@@ -34,16 +34,19 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.MDC;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.Term;
-import org.apache.lucene.search.*;
+import org.apache.lucene.search.Hits;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.queryParser.QueryParser;
+import org.curriki.xwiki.plugin.lucene.CurrikiAnalyzer;
 
 import com.xpn.xwiki.XWiki;
 import com.xpn.xwiki.XWikiContext;
+import com.xpn.xwiki.objects.BaseObject;
+import com.xpn.xwiki.objects.PropertyInterface;
 import com.xpn.xwiki.doc.XWikiAttachment;
 import com.xpn.xwiki.doc.XWikiDocument;
 import com.xpn.xwiki.notify.XWikiActionNotificationInterface;
@@ -59,16 +62,18 @@ public class IndexUpdater extends AbstractXWikiRunnable
     /** Logging helper. */
     private static final Log LOG = LogFactory.getLog(IndexUpdater.class);
 
+    protected FSDirectory directory = null;
+
     /** Milliseconds of sleep between checks for changed documents. */
-    private int indexingInterval = 30000;
+    protected int indexingInterval = 10000;
 
-    private boolean exit = false;
+    protected boolean exit = false;
 
-    private IndexWriter writer;
+    protected IndexWriter writer;
 
-    private String indexDir;
+    protected String indexDir;
 
-    private XWikiDocumentQueue queue = new XWikiDocumentQueue();
+    protected XWikiDocumentQueue queue = new XWikiDocumentQueue();
 
     /**
      * Soft threshold after which no more documents will be added to the indexing queue. When the
@@ -78,27 +83,32 @@ public class IndexUpdater extends AbstractXWikiRunnable
      */
     public int maxQueueSize = 1000;
 
-    private Analyzer analyzer;
+    protected Analyzer analyzer;
 
-    private LucenePlugin plugin;
+    protected LucenePlugin plugin;
 
-    private IndexSearcher searcher;
+    protected IndexSearcher searcher;
 
-    private IndexReader reader;
+    protected IndexReader reader;
 
-    private XWikiContext context;
+    protected XWikiContext context;
 
-    private XWiki xwiki;
+    protected XWiki xwiki;
 
-    private long activesIndexedDocs = 0;
+    protected long activesIndexedDocs = 0;
+
+    protected LuceneIndexProfile indexProfile = new I2GLuceneProfile();
 
     static List<String> fields = new ArrayList<String>();
 
     public boolean needInitialBuild = false;
 
+    protected Thread mainLoopThread = null;
+
     public void doExit()
     {
         exit = true;
+        if(mainLoopThread != null) mainLoopThread.interrupt();
     }
 
     /**
@@ -127,8 +137,9 @@ public class IndexUpdater extends AbstractXWikiRunnable
     /**
      * Main loop. Polls the queue for documents to be indexed.
      */
-    private void runMainLoop()
+    protected void runMainLoop()
     {
+        this.mainLoopThread = Thread.currentThread();
         while (!this.exit) {
             if (this.queue.isEmpty()) {
                 if (LOG.isDebugEnabled()) {
@@ -147,7 +158,7 @@ public class IndexUpdater extends AbstractXWikiRunnable
                     openSearcher();
                     while (!this.queue.isEmpty()) {
                         IndexData data = this.queue.remove();
-                        List<Integer> oldDocs = (data==null) ? null : getOldIndexDocIds(data);
+                        List<Integer> oldDocs = getOldIndexDocIds(data);
                         if (oldDocs != null) {
                             for (Integer id : oldDocs) {
                                 if (LOG.isDebugEnabled()) {
@@ -201,9 +212,7 @@ public class IndexUpdater extends AbstractXWikiRunnable
 
                 // Let's index
                 try {
-                    if (LOG.isInfoEnabled()) {
-                        LOG.info("indexing " + toIndex.size() + " docs to lucene index");
-                    }
+                    LOG.info("indexing " + toIndex.size() + " docs to lucene index");
 
                     XWikiContext context = (XWikiContext) this.context.clone();
                     context.getWiki().getStore().cleanUp(context);
@@ -213,6 +222,7 @@ public class IndexUpdater extends AbstractXWikiRunnable
                     for (Map.Entry<String, IndexData> entry : toIndex.entrySet()) {
                         String id = entry.getKey();
                         IndexData data = entry.getValue();
+                        if(LOG.isInfoEnabled()) LOG.info("------------- Indexing document    \"" + data.getFullName() + "\".");
 
                         try {
                             XWikiDocument doc =
@@ -227,14 +237,17 @@ public class IndexUpdater extends AbstractXWikiRunnable
                             --activesIndexedDocs;
                         } catch (Exception e) {
                             LOG.error("error indexing document " + id, e);
+                        } finally {
+                            if(LOG.isInfoEnabled()) LOG.info("------------- Finished indexing\"" + data.getFullName() + "\".");
                         }
+                        if(nb %20==0) LOG.info("More to index " + nb + ".");
                     }
 
                     if (LOG.isInfoEnabled()) {
                         LOG.info("indexed " + nb + " docs to lucene index");
                     }
 
-                    writer.flush();
+                    writer.commit();//flush();
                 } catch (Exception e) {
                     LOG.error("error indexing documents", e);
                 } finally {
@@ -245,15 +258,17 @@ public class IndexUpdater extends AbstractXWikiRunnable
                 plugin.openSearchers();
             }
             try {
-                Thread.sleep(indexingInterval);
+                if(!exit && queue.isEmpty()) {
+                    synchronized(this) { this.wait(indexingInterval); }
+                    Thread.sleep(1000);
+                }
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                if(!exit) e.printStackTrace();
             }
         }        
     }
 
-    private synchronized void closeSearcher()
+    protected synchronized void closeSearcher()
     {
         try {
             if (this.searcher != null) {
@@ -274,7 +289,7 @@ public class IndexUpdater extends AbstractXWikiRunnable
      * Opens the index reader and searcher used for finding and deleting old versions of indexed
      * documents.
      */
-    private synchronized void openSearcher()
+    protected synchronized void openSearcher()
     {
         try {
             this.reader = IndexReader.open(this.indexDir);
@@ -325,7 +340,7 @@ public class IndexUpdater extends AbstractXWikiRunnable
         return retval;
     }
 
-    private void openWriter(boolean create)
+    protected void openWriter(boolean create)
     {
         if (writer != null) {
             LOG.error("Writer already open and createWriter called");
@@ -334,8 +349,8 @@ public class IndexUpdater extends AbstractXWikiRunnable
 
         try {
             // fix for windows by Daniel Cortes:
-            FSDirectory f = FSDirectory.getDirectory(indexDir);
-            writer = new IndexWriter(f, analyzer, create);
+            if(directory==null) directory = FSDirectory.getDirectory(indexDir);
+            writer = new IndexWriter(directory, analyzer, create);
             // writer = new IndexWriter (indexDir, analyzer, create);
             writer.setUseCompoundFile(true);
 
@@ -392,7 +407,8 @@ public class IndexUpdater extends AbstractXWikiRunnable
             }
         }
 
-        this.writer.addDocument(luceneDoc);
+        if(LOG.isDebugEnabled()) LOG.debug("Full document: " + luceneDoc);
+        this.writer.addDocument(luceneDoc,new CurrikiAnalyzer(doc,indexProfile,context));
     }
 
     /**
@@ -458,7 +474,6 @@ public class IndexUpdater extends AbstractXWikiRunnable
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -471,26 +486,30 @@ public class IndexUpdater extends AbstractXWikiRunnable
 
     public void add(XWikiDocument document, XWikiContext context)
     {
-        this.queue.add(new DocumentData(document, context));
+        if(indexProfile.isDocumentDesireable(document,context)) {
+            this.queue.add(new DocumentData(document, context, indexProfile));
 
-        if (document.hasElement(XWikiDocument.HAS_OBJECTS)) {
-            addObject(document, context);
+            if (document.hasElement(XWikiDocument.HAS_OBJECTS)) {
+                addObject(document, context);
+            }
         }
+        synchronized(this) { notify(); }
     }
 
     public void addObject(XWikiDocument document, XWikiContext context)
     {
-        this.queue.add(new ObjectData(document, context));
+        this.queue.add(indexProfile.createObjectData(document,context));
     }
 
     public void add(XWikiDocument document, XWikiAttachment attachment, XWikiContext context)
     {
         if (document != null && attachment != null && context != null) {
-            this.queue.add(new AttachmentData(document, attachment, context));
+            this.queue.add(new AttachmentData(document, attachment, context, indexProfile));
         } else {
             LOG.error("invalid parameters given to add: " + document + ", " + attachment + ", "
                 + context);
         }
+        synchronized(this) { notify(); }
     }
 
     public int addAttachmentsOfDocument(XWikiDocument document, XWikiContext context)
@@ -530,6 +549,10 @@ public class IndexUpdater extends AbstractXWikiRunnable
         } catch (Exception e) {
             LOG.error("error in notify", e);
         }
+    }
+
+    public void setIndexProfile(LuceneIndexProfile profile) {
+        this.indexProfile = profile;
     }
 
     /**
@@ -580,16 +603,8 @@ public class IndexUpdater extends AbstractXWikiRunnable
     {
         if (writer != null)
             return writer.docCount();
-        else {
-            try {
-                openWriter(false);
-                return writer.docCount();
-            } catch (Exception e) {
-                return -1;
-            } finally {
-                closeWriter();
-            }
-        }
+
+        return -1;
     }
 
     /**
@@ -600,45 +615,6 @@ public class IndexUpdater extends AbstractXWikiRunnable
         return this.activesIndexedDocs;
     }
 
-    public boolean isIndexed(String wiki, String pagename) {
-        try {
-            openSearcher();
-            QueryParser qp = new QueryParser(IndexFields.DOCUMENT_FULLNAME, analyzer);
-            Query query = qp.parse(pagename);
-            Hits hits = searcher.search(query);
+    Directory getDirectory() { return directory; }
 
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("search for document " + pagename + " in wiki " + wiki + " returned " + hits.length() + " hits");
-            }
-            if (hits==null || hits.length()==0)  {
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug("document " + pagename + " in wiki " + wiki + " is not indexed");
-                }
-                return false;
-            }
-
-            Iterator it = hits.iterator();
-            while (it.hasNext()) {
-                Hit hit = (Hit) it.next();
-                Document doc = hit.getDocument();
-                if (wiki.equals(doc.get(IndexFields.DOCUMENT_WIKI))&&pagename.equals(doc.get(IndexFields.DOCUMENT_FULLNAME))) {
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug("document " + pagename + " in wiki " + wiki + " is already indexed");
-                    }
-                    return true;
-                }
-            }
-            if (LOG.isErrorEnabled()) {
-                LOG.error("document " + pagename + " in wiki " + wiki + " was not found in search result");
-            }
-            return false;
-        } catch (Exception e) {
-            if (LOG.isErrorEnabled()) {
-                LOG.debug("error checking if document " + pagename + " in wiki " + wiki + " is indexed", e);
-            }
-            return false;
-        } finally {
-            closeSearcher();
-        }
-    }
 }

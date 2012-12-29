@@ -58,13 +58,16 @@ public abstract class IndexData
 
     private Date modificationDate;
 
+    private LuceneIndexProfile profile;
+
     /**
      * name of the virtual wiki this doc belongs to
      */
     private String wiki;
 
-    public IndexData(final XWikiDocument doc, final XWikiContext context)
+    public IndexData(final XWikiDocument doc, final XWikiContext context, LuceneIndexProfile profile)
     {
+        setLuceneIndexProfile(profile);
         setDocumentName(doc.getName());
         setDocumentTitle(doc.getDisplayTitle(context));
         setDocumentWeb(doc.getSpace());
@@ -73,6 +76,14 @@ public abstract class IndexData
         setFullName(new StringBuffer(wiki).append(":").append(documentWeb).append(".").append(
             documentName).toString());
         setLanguage(doc.getLanguage());
+    }
+
+    public void setLuceneIndexProfile(LuceneIndexProfile profile) {
+        this.profile=profile;
+    }
+
+    protected LuceneIndexProfile getLuceneIndexProfile() {
+        return profile;
     }
 
     /**
@@ -132,7 +143,7 @@ public abstract class IndexData
                 Field.Store.YES,
                 Field.Index.TOKENIZED));
             luceneDoc.add(new Field(IndexFields.DOCUMENT_TITLE + IndexFields.UNTOKENIZED,
-                documentTitle.toUpperCase(),
+                documentTitle,
                 Field.Store.NO,
                 Field.Index.UN_TOKENIZED));
         }
@@ -154,7 +165,7 @@ public abstract class IndexData
                 Field.Store.YES,
                 Field.Index.TOKENIZED));
             luceneDoc.add(new Field(IndexFields.DOCUMENT_AUTHOR + IndexFields.UNTOKENIZED,
-                author.toUpperCase(),
+                author,
                 Field.Store.NO,
                 Field.Index.UN_TOKENIZED));
         }
@@ -164,7 +175,7 @@ public abstract class IndexData
                 Field.Store.YES,
                 Field.Index.TOKENIZED));
             luceneDoc.add(new Field(IndexFields.DOCUMENT_CREATOR + IndexFields.UNTOKENIZED,
-                creator.toUpperCase(),
+                creator,
                 Field.Store.NO,
                 Field.Index.UN_TOKENIZED));
         }
@@ -175,6 +186,10 @@ public abstract class IndexData
             final String ft = getFullText(doc, context);
             if (ft != null) {
                 luceneDoc.add(new Field(IndexFields.FULLTEXT,
+                    ft,
+                    Field.Store.NO,
+                    Field.Index.TOKENIZED));
+                luceneDoc.add(new Field(IndexFields.FULLTEXT +  IndexFields.STEMMED,
                     ft,
                     Field.Store.NO,
                     Field.Index.TOKENIZED));

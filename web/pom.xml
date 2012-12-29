@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  *
  * See the NOTICE file distributed with this work for additional
@@ -35,6 +36,11 @@
   <description>The standard Curriki WAR</description>
   <dependencies>
     <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>8.2-504.jdbc3</version>
+    </dependency>
+    <dependency>
       <groupId>com.xpn.xwiki.platform</groupId>
       <artifactId>xwiki-core</artifactId>
       <version>${platform.core.version}</version>
@@ -55,6 +61,12 @@
       <groupId>com.xpn.xwiki.platform.plugins</groupId>
       <artifactId>xwiki-plugin-skinx</artifactId>
       <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.curriki</groupId>
+      <artifactId>curriki-gwt</artifactId>
+      <version>${pom.version}</version>
+      <type>war</type>
     </dependency>
     <!-- We shouldn't need this dependency but Surefire plugin v2.3 fails with a "Null" if it's
          not defined. Seems to be fixed in the latest Surefire plugin in Maven's trunk so when
@@ -136,9 +148,16 @@
           </resourceBundles>
           <properties>
             <xwikiCfgEditCommentMandatory>1</xwikiCfgEditCommentMandatory>
+            <xwikiCfgDefaultSkin>albatross</xwikiCfgDefaultSkin>
+            <xwikiCfgDefaultBaseSkin>albatross</xwikiCfgDefaultBaseSkin>
+            <xwikiCfgVirtual>0</xwikiCfgVirtual>
+            <xwikiCfgExo>0</xwikiCfgExo>
+            <xwikiCfgEncoding>utf-8</xwikiCfgEncoding>
             <xwikiCfgPlugins>\
               com.xpn.xwiki.monitor.api.MonitorPlugin,\
               com.xpn.xwiki.plugin.calendar.CalendarPlugin,\
+              com.xpn.xwiki.plugin.skinx.JsSkinExtensionPlugin,\
+              com.xpn.xwiki.plugin.skinx.CssSkinExtensionPlugin,\
               com.xpn.xwiki.plugin.packaging.PackagePlugin,\
               com.xpn.xwiki.plugin.query.QueryPlugin,\
               com.xpn.xwiki.plugin.fileupload.FileUploadPlugin,\
@@ -157,71 +176,47 @@
               org.curriki.plugin.spacemanager.impl.CurrikiSpaceManager,\
               com.xpn.xwiki.plugin.invitationmanager.plugin.InvitationManagerPlugin,\
               com.xpn.xwiki.plugin.mailsender.MailSenderPlugin,\
-              org.curriki.plugin.activitystream.plugin.CurrikiActivityStreamPlugin,\
-              com.xpn.xwiki.plugin.skinx.JsSkinExtensionPlugin,\
-              com.xpn.xwiki.plugin.skinx.CssSkinExtensionPlugin
+              org.curriki.plugin.activitystream.plugin.CurrikiActivityStreamPlugin
             </xwikiCfgPlugins>
             <xwikiCfgAdditionalProperties>
-## Spacemanager settings
-# Configure the spacemanager extension
-xwiki.spacemanager.extension=org.xwiki.plugin.spacemanager.impl.CurrikiSpaceManagerExtension
-# Set the groupname prefix
-xwiki.spacemanager.prefix=Group_
-xwiki.invitationmanager.resourcespace=Groups
-xwiki.spacemanager.resourcespace=Groups
+	      ## Spacemanager settings
+	      # Configure the spacemanager extension
+	      xwiki.spacemanager.extension=org.xwiki.plugin.spacemanager.impl.CurrikiSpaceManagerExtension
+	      # Set the groupname prefix
+              xwiki.spacemanager.prefix=Group_
 
-## Allowed pages when inactive
-xwiki.inactiveuser.allowedpages=\
-        XWiki.style,\
-        Registration.EmailVerification,\
-        Registration.EmailVerificationSent,\
-        Registration.EmailVerified,\
-        Registration.EmailNotReceived
+              ## Lucene settings
+              # Configure the index location
+              xwiki.plugins.lucene.indexdir=work/xwiki-lucene
+              # Configure the analyzer used for indexing and searching.
+              xwiki.plugins.lucene.analyzer=org.apache.lucene.analysis.standard.StandardAnalyzer
+              # Setting index interval
+              xwiki.plugins.lucene.indexinterval=30
 
-## Lucene settings
-# Configure the index location
-xwiki.plugins.lucene.indexdir=/appserv/lucene_index
-# Configure the analyzer used for indexing and searching.
-xwiki.plugins.lucene.analyzer=org.curriki.xwiki.plugin.lucene.NoStopWordsAnalyze
-r
-# Setting index interval
-xwiki.plugins.lucene.indexinterval=30
-xwiki.tags=0
+              # set the skin
+              xwiki.defaultbaseskin=albatross
+              xwiki.defaultskin=curriki8
 
-# set the skin
-xwiki.defaultbaseskin=albatross
-xwiki.defaultskin=curriki8
+              #set superadmin pass
+              ## xwiki.superadminpassword=system
 
-#set superadmin pass
-## xwiki.superadminpassword=system
-
-# override the macro list
-xwiki.render.velocity.macrolist=\
-        /templates/macros.vm,\
-        /skins/albatross/macros.vm,\
-        /skins/curriki8/macros.vm,\
-        /skins/curriki8/blog/blogmacros.vm,\
-        /skins/curriki8/assets/assetsmacros.vm,\
-        /skins/curriki8/pages/pagesmacros.vm,\
-        /skins/curriki8/registration/registration.vm,\
-        /skins/curriki8/mycurriki/mycurrikimacros.vm,\
-        /skins/curriki8/groups/groupsmacros.vm,\
-        /skins/curriki8/groups/groupscontributions.vm,\
-        /skins/curriki8/groups/groupsdocs.vm,\
-        /skins/curriki8/groups/groupsmembers.vm,\
-        /skins/curriki8/groups/groupsmessages.vm,\
-        /skins/curriki8/groups/groupsroles.vm,\
-        /skins/curriki8/groups/groupsmycurriki.vm,\
-        /skins/curriki8/crs/crsmacros.vm,\
-        /skins/curriki8/bfcs/bfcsmacros.vm
-
-xwiki.authentication.group.allgroupimplicit=1
+              # override the macro list
+              xwiki.render.velocity.macrolist=/templates/macros.vm,/skins/albatross/macros.vm,\
+                /skins/curriki8/macros.vm,/skins/curriki8/blog/blogmacros.vm,\
+                /skins/curriki8/assets/assetsmacros.vm,/skins/curriki8/pages/pagesmacros.vm,\
+                /skins/curriki8/mycurriki/mycurrikimacros.vm,\
+                /skins/curriki8/groups/groupsmacros.vm,\
+                /skins/curriki8/groups/groupscontributions.vm,\
+                /skins/curriki8/groups/groupsdocs.vm,\
+                /skins/curriki8/groups/groupsmembers.vm,\
+                /skins/curriki8/groups/groupsmessages.vm,\
+                /skins/curriki8/groups/groupsroles.vm,\
+                /skins/curriki8/crs/crsmacros.vm,\
+                /skins/curriki8/bfcs/bfcsmacros.vm
             </xwikiCfgAdditionalProperties>
-            <xwikiCfgDefaultSkin>curriki8</xwikiCfgDefaultSkin>
-            <xwikiCfgVirtual>0</xwikiCfgVirtual>
-            <xwikiCfgExo>0</xwikiCfgExo>
-            <xwikiCfgDefaultBaseSkin>albatross</xwikiCfgDefaultBaseSkin>
-            <xwikiCfgEncoding>UTF-8</xwikiCfgEncoding>
+<xwikiCfgDefaultSkin>albatross</xwikiCfgDefaultSkin>
+<xwikiCfgDefaultBaseSkin>albatross</xwikiCfgDefaultBaseSkin>
+<xwikiCfgEncoding>utf-8</xwikiCfgEncoding>
           </properties>
         </configuration>
       </plugin>

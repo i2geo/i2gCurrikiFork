@@ -30,9 +30,9 @@ import com.xpn.xwiki.doc.XWikiDocument;
  */
 public class DocumentData extends IndexData
 {
-    public DocumentData(final XWikiDocument doc, final XWikiContext context)
+    public DocumentData(final XWikiDocument doc, final XWikiContext context, final LuceneIndexProfile profile)
     {
-        super(doc, context);
+        super(doc, context, profile);
 
         setAuthor(doc.getAuthor());
         setCreator(doc.getCreator());

@@ -119,14 +119,14 @@ public class CurrikiSpace extends SpaceImpl {
             	errors.put( this.VALIDATION_DESC_LONG, "1" );
             
             //categories is set
-            List categories = this.doc.getListValue(CurrikiSpace.SPACE_EDUCATION_LEVEL);
-            if(categories==null || categories.size()<1)
-            	errors.put( this.VALIDATION_EDUCATION_REQUIRED, "1" );
+           // List categories = this.doc.getListValue(CurrikiSpace.SPACE_EDUCATION_LEVEL);
+            //if(categories==null || categories.size()<1)
+            //	errors.put( this.VALIDATION_EDUCATION_REQUIRED, "1" );
             
             //subject is set
-            List subjects = this.doc.getListValue(CurrikiSpace.SPACE_TOPIC);
-            if(subjects==null || subjects.size()<1)
-            	errors.put( this.VALIDATION_SUBJECT_REQUIRED, "1" );
+            //List subjects = this.doc.getListValue(CurrikiSpace.SPACE_TOPIC);
+            //if(subjects==null || subjects.size()<1)
+            //	errors.put( this.VALIDATION_SUBJECT_REQUIRED, "1" );
             
                         	
             //licence is set

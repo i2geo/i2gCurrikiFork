@@ -3,7 +3,7 @@
 DIR=`dirname $0`
 cd $DIR
 
-COMPRESSOR="./compressor/yuicompressor-2.4.2.jar"
+COMPRESSOR="./compressor/yuicompressor-2.3.5.jar"
 
 COMPRESS_JS="java -jar $COMPRESSOR --type js "
 COMPRESS_CSS="java -jar $COMPRESSOR --type css "
@@ -138,15 +138,3 @@ FLAG="\
 	"
 cat $FLAG | $UNCOMPRESS_JS > ../webapp/js/curriki-module-flag-debug.js
 cat $FLAG | $COMPRESS_JS > ../webapp/js/curriki-module-flag.js
-
-
-
-
-## vidiembed_curriki.js removed from MERGED list (was right after $I18N)
-##	../webapp/skins/curriki8/js/vidiembed_curiki.js
-VIDITALK="\
-	../webapp/skins/curriki8/js/viditalk_stub.js \
-	"
-
-MERGED="$I18N $VIDITALK $CURRIKI $ADDPATH $ORGANIZE $NOMINATE $REVIEW $UNNOMINATE $PARTNER $ASTERIXREVIEW $FLAG"
-cat $MERGED | $COMPRESS_JS > ../webapp/js/curriki-merged.js

@@ -34,7 +34,7 @@
   <artifactId>curriki-parent</artifactId>
   <packaging>pom</packaging>
   <name>XWiki Products - Curriki - Parent POM</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <description>XWiki Products - Curriki - Parent POM</description>
   <scm>
     <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</connection>
@@ -44,7 +44,7 @@
   <properties>
     <!-- Versions of XWiki dependencies used in Curriki modules -->
     <platform.tools.version>1.9-SNAPSHOT</platform.tools.version>
-    <platform.tools.xar-plugin.version>1.12</platform.tools.xar-plugin.version>
+    <platform.tools.xar-plugin.version>1.11</platform.tools.xar-plugin.version>
     <platform.core.version>1.5-curriki4</platform.core.version>
     <platform.web.version>1.5</platform.web.version>
     <platform.plugins.invitationmanager.version>1.0.1</platform.plugins.invitationmanager.version>
@@ -57,6 +57,7 @@
       </activation>
       <modules>
         <module>plugins</module>
+        <module>gwt</module>
         <module>web</module>
         <!--
         <module>wiki</module>
@@ -69,6 +70,7 @@
       <id>curriki-nodb</id>
       <modules>
         <module>plugins</module>
+        <module>gwt</module>
         <module>web</module>
       </modules>
     </profile>

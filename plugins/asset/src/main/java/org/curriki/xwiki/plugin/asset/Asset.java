@@ -19,11 +19,11 @@
  */
 package org.curriki.xwiki.plugin.asset;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
+import net.i2geo.wiris_html_conversion.WIRIS_HTML_conversion;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.collections.ListUtils;
@@ -386,12 +386,12 @@ public class Asset extends CurrikiDocument {
         // Rights Holder should be by default the pretty name of the user added with the current rights holder (only if not already in the list)
         String newRightsHolder = context.getWiki().getLocalUserName(context.getUser(), null, false, context);
         String origRightsHolder = copyDoc.getDoc().getStringValue(Constants.ASSET_LICENCE_CLASS, Constants.ASSET_LICENCE_ITEM_RIGHTS_HOLDER);
-	if (!origRightsHolder.matches("\\b"+newRightsHolder+"\\b")) {
-		newRightsHolder += ", " + origRightsHolder;
-		newLicenceObj.setStringValue(Constants.ASSET_LICENCE_ITEM_RIGHTS_HOLDER, newRightsHolder);
-	} else {
-		newLicenceObj.setStringValue(Constants.ASSET_LICENCE_ITEM_RIGHTS_HOLDER, origRightsHolder);
-	}
+        if (!origRightsHolder.matches("\\b"+newRightsHolder+"\\b")) {
+            newRightsHolder += ", " + origRightsHolder;
+            newLicenceObj.setStringValue(Constants.ASSET_LICENCE_ITEM_RIGHTS_HOLDER, newRightsHolder);
+        } else {
+            newLicenceObj.setStringValue(Constants.ASSET_LICENCE_ITEM_RIGHTS_HOLDER, origRightsHolder);
+        }
 
         BaseObject newObjAsset = assetDoc.getDoc().getObject(Constants.ASSET_CLASS);
         if (newObjAsset==null) {
@@ -400,7 +400,7 @@ public class Asset extends CurrikiDocument {
         // Keep the information allowing to track where that asset came from
         newObjAsset.setStringValue(Constants.ASSET_CLASS_TRACKING, copyOf);
 
-	// Clear the rating
+        // Clear the rating
         newObjAsset.setIntValue(Constants.ASSET_CLASS_RATING, 0);
         newObjAsset.setLongValue(Constants.ASSET_CLASS_RATING_COUNT, 0);
         newObjAsset.setLongValue(Constants.ASSET_CLASS_RATING_SUM, 0);
@@ -444,7 +444,7 @@ public class Asset extends CurrikiDocument {
 
     public void addAttachment(InputStream iStream, String name) throws XWikiException, IOException {
         assertCanEdit();
-        XWikiAttachment att = addAttachment(name, iStream);
+        XWikiAttachment att = addAttachment(name, iStream).getAttachment();
         getDoc().saveAttachmentContent(att, context);
     }
 
@@ -675,13 +675,19 @@ public class Asset extends CurrikiDocument {
 
         com.xpn.xwiki.api.Object assetObj = getObject(Constants.ASSET_CLASS);
         for (java.lang.Object prop : assetObj.getPropertyNames()) {
-            LOG.debug("Adding "+prop+" to metadata list");
+            Property p = assetObj.getProperty((String) prop);
+            if(p!=null) LOG.debug("Adding "+prop+" to metadata list (value: " + p.getValue() + ").");
+            else LOG.debug("Adding "+prop+" to metadata list (value: null).");
             md.add(assetObj.getProperty((String) prop));
         }
 
         com.xpn.xwiki.api.Object licenseObj = getObject(Constants.ASSET_LICENCE_CLASS);
         for (java.lang.Object prop : licenseObj.getPropertyNames()) {
-            LOG.debug("Adding "+prop+" to metadata list");
+            Property p = assetObj.getProperty((String) prop);
+            if(LOG.isDebugEnabled()) {
+                if(p!=null) LOG.debug("Adding "+prop+" to metadata list (value: " + p.getValue() + ").");
+                else LOG.debug("Adding "+prop+" to metadata list (value: null).");
+            }
             md.add(licenseObj.getProperty((String) prop));
         }
 
@@ -879,10 +885,12 @@ public class Asset extends CurrikiDocument {
                     if (parentAsset == null || parentAsset.length() == 0) {
                         // educationLevel
                         List edLevels = rObj.getListValue(Constants.GROUP_DEFAULT_GRADE_PROPERTY);
+                        if(edLevels!=null) edLevels = new ArrayList(edLevels);
                         assetObj.setDBStringListValue(Constants.ASSET_CLASS_EDUCATIONAL_LEVEL, edLevels);
 
                         // topic
                         List topics = rObj.getListValue(Constants.GROUP_DEFAULT_TOPIC_PROPERTY);
+                        if(topics!=null) topics = new ArrayList(topics);
                         assetObj.setDBStringListValue(Constants.ASSET_CLASS_FRAMEWORK_ITEMS, topics);
 
                         // language
@@ -892,11 +900,10 @@ public class Asset extends CurrikiDocument {
                         // licence
                         String licence = rObj.getStringValue(Constants.GROUP_DEFAULT_LICENCE_PROPERTY);
                         newLicenceObj.setStringValue(Constants.ASSET_LICENCE_ITEM_LICENCE_TYPE, licence);
-			licenceSet = true;
+               			licenceSet = true;
                     }
                 }
             }
-
             assetObj.setStringValue(Constants.ASSET_CLASS_RIGHT, rights);
         }
 
@@ -1016,6 +1023,28 @@ public class Asset extends CurrikiDocument {
         String filename = attachment.getFilename();
         String extension = (filename.lastIndexOf(".") != -1 ? filename.substring(filename.lastIndexOf(".") + 1).toLowerCase(): null);
         MimeTypePlugin mimePlugin = getMimeTypePlugin();
+        if(extension.equals("txt")) {
+            try {
+                String content = new String(attachment.getContent(context),"iso-8859-1");
+                if(content.contains("@options")) extension ="tracenpocheFile";
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        if(extension.equals("fig")) {
+            try {
+                String content = new String(attachment.getContent(context),"iso-8859-1");
+                if(content.contains("FIGURE Cabri")) extension ="cabri2plusFile";
+                else
+                    if(content.contains("Figure Cabri")) extension ="cabri2File";
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+		if(extension.contains("htm")){
+            if(WIRIS_HTML_conversion.isThisAWirisHTMLFile(new ByteArrayInputStream(attachment.getContent(context))))extension="wirishtml";
+            
+        }
         String filetype =  mimePlugin.getFileType(extension, context);
         String category = mimePlugin.getCategory(filetype, context);
         XWikiDocument assetDoc = getDoc();

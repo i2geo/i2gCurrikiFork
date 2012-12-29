@@ -53,6 +53,7 @@ public class AttachmentData extends IndexData
         MIMETYPES.put("txt", "text/plain");
         MIMETYPES.put("ppt", "application/ms-powerpoint");
         MIMETYPES.put("xls", "application/ms-excel");
+        MIMETYPES.put("html", "text/html");
     }
 
     private static final Log LOG = LogFactory.getLog(AttachmentData.class);
@@ -65,9 +66,9 @@ public class AttachmentData extends IndexData
      * @param attachment
      * @param context
      */
-    public AttachmentData(final XWikiDocument document, final XWikiAttachment attachment, final XWikiContext context)
+    public AttachmentData(final XWikiDocument document, final XWikiAttachment attachment, final XWikiContext context, LuceneIndexProfile profile)
     {
-        super(attachment.getDoc(), context);
+        super(attachment.getDoc(), context,profile);
 
         setModificationDate(attachment.getDate());
         setAuthor(attachment.getAuthor());
@@ -75,12 +76,12 @@ public class AttachmentData extends IndexData
         setFilename(attachment.getFilename());
     }
 
-    public void addDataToLuceneDocument(Document luceneDoc, XWikiDocument doc, XWikiContext context)
+    public void addDataToLuceneDocument(Document luceneDoc, XWikiDocument doc, XWikiContext context, LuceneIndexProfile profile)
     {
         super.addDataToLuceneDocument(luceneDoc, doc, context);
         if (filename != null) {
             luceneDoc.add(new Field(IndexFields.FILENAME, filename, Field.Store.YES, Field.Index.TOKENIZED));
-            luceneDoc.add(new Field(IndexFields.FILENAME + IndexFields.UNTOKENIZED, filename.toUpperCase(), Field.Store.NO, Field.Index.UN_TOKENIZED));
+            luceneDoc.add(new Field(IndexFields.FILENAME + IndexFields.UNTOKENIZED, filename, Field.Store.NO, Field.Index.UN_TOKENIZED));
         }
     }
 

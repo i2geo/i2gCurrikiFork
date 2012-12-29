@@ -34,6 +34,10 @@ mObj${flashNum}.StopPlay();
 <button class="button-link button-link-launch" onclick="Curriki.logView('/Download/link/$url');  window.open('${flashurl}');">$msg.get("rve.content.view.launch_button")</button>
 #end
 </div>
+    <div class="asset-display-download-inner">
+<!-- vignette -->
+    #assetVignetteIfPresent($asset)
+    #addVignetteUploaderButtonIfAllowed($asset)</div>
 </div>
 #asset_attachments($asset)
 #asset_displaycontentfooter()

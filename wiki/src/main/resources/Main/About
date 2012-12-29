@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <xwikidoc>
 <web>Main</web>
@@ -8,18 +8,19 @@
 <translation>0</translation>
 <parent>Main.WebHome</parent>
 <creator>XWiki.ABader</creator>
-<author>XWiki.noahk</author>
+<author>XWiki.Admin</author>
 <customClass></customClass>
-<contentAuthor>XWiki.noahk</contentAuthor>
+<contentAuthor>XWiki.Admin</contentAuthor>
 <creationDate>1162350870000</creationDate>
-<date>1180042649000</date>
-<contentUpdateDate>1180042649000</contentUpdateDate>
-<version>1.48</version>
+<date>1219098589000</date>
+<contentUpdateDate>1219098589000</contentUpdateDate>
+<version>3.1</version>
 <title>About Curriki</title>
 <template></template>
 <defaultTemplate></defaultTemplate>
 <validationScript></validationScript>
-<comment>edits</comment>
+<comment>fixed links</comment>
+<minorEdit>false</minorEdit>
 <object>
 <class>
 <name>XWiki.TagClass</name>
@@ -53,7 +54,24 @@
 <tags/>
 </property>
 </object>
-<content>1 About Curriki
+<content>1 About the i2geo Platform
+
+The i2geo platform is a part of the intergeo project, grouping many partners of interactive geometry of Europe within an EU funded project dedicated to make interactive geometry interoperable. The role of this platform is to stimulate *cross-curriculum-exchanges*.
+
+The i2geo platform is hosted by [DFKI GmbH &gt; http://ccel.dfki.de/] and is based on the [Curriki platform &gt; http://www.curriki.org/], an enrichment of [XWiki &gt; http://www.xwiki.org/] for exchanging educational resources.
+
+1 Differences of i2geo and Curriki
+
+While Curriki is a project dedicated to any type of learning material, the i2geo platform is dedicated to interactive geometry. This specialization allows this platform to offer extra services for interactive geometry users, in particular:
+
+- annotations and search by fine grained competencies and topics of the mathematics curriculum standards of Europe (in progress, see [comped &gt; http://draft.i2geo.net/comped], [skills-text-box &gt; http://draft.i2geo.net/SearchI2G/], and the many embeddings)
+- insertion of java and flash applets within the Currikulum editor so that interactive geometry resources can be authored on the platform (in progress, see [construction services tasks &gt; http://jira.activemath.org/secure/IssueNavigator.jspa?reset=true&amp;mode=hide&amp;pid=10070&amp;sorter/order=DESC&amp;sorter/field=priority&amp;resolution=-1&amp;component=10261]
+- insertion of mathematical formulæ (see issue [IG-16 &gt; http://jira.activemath.org/browse/IG-16])
+
+----
+(below is the rest of About Curriki, it needs update, see [IG-10 &gt;http://jira.activemath.org/browse/IG-10].
+
+1 About Curriki
 
 #titlebar("Curriki is Your World of Educational Resources and Curriculum" "Join now" "Main.JoinCurriki" "purple")
 Curriki is more than your average Website; we're a community of educators, learners and committed education experts who are working together to create quality materials that will benefit teachers and students around the world.
