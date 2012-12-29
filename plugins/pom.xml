@@ -55,6 +55,5 @@
     <module>curriki</module>
     <module>servlet</module>
     <module>lucene</module>
-    <module>oaiprovider</module>
   </modules>
 </project>
