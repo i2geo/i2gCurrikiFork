@@ -33,12 +33,15 @@ public class RestletServlet extends BaseServlet {
             try {
                 // We need to initialize the new components for Velocity to work
                 initializeContainerComponent(context);
-                converter.setTarget(new BaseRouter(converter.getContext()));
+                BaseRouter target = new BaseRouter(converter.getContext());
+                converter.setTarget(target);
+                if(LOG.isDebugEnabled()) LOG.debug("Sending to " + target);
                 converter.service(req, res);
             } finally {
                 cleanupComponents();
             }
         } catch (XWikiException e) {
+            if(LOG.isInfoEnabled()) LOG.info(e);
             throw new ServletException(e);
         }
     }

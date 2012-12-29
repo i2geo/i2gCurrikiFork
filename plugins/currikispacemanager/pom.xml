@@ -27,14 +27,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>net.i2geo.platform</groupId>
+    <artifactId>i2geo-plugin-parent</artifactId>
+    <version>1.1-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-spacemanager</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Space Manager</name>
+  <artifactId>i2geo-plugin-spacemanager</artifactId>
+  <name>i2geo - CurrikiFork - Plugins - Space Manager</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Plugins - Space Manager</description>
+  <description>i2geo - CurrikiFork - Plugins - Space Manager</description>
   <dependencies>
     <dependency>
       <groupId>com.xpn.xwiki.platform</groupId>

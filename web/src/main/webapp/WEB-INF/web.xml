@@ -16,7 +16,18 @@
     <description>Velocity's configuration</description>
   </context-param>
 
-  <filter>
+    <!-- properties file for OAIcat -->
+    <context-param>
+        <param-name>properties</param-name>
+        <param-value>webapps/oaicat/WEB-INF/oaicat.properties</param-value>
+        <description>
+            The location of the oaicat.properties file containing
+            datapairs used to initialize the OAI repository software.
+        </description>
+    </context-param>
+
+
+    <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>com.xpn.xwiki.web.SetCharacterEncodingFilter</filter-class>
     <init-param>
@@ -45,7 +56,23 @@
     <servlet-class>org.xwiki.plexus.XWikiPlexusServlet</servlet-class>
   </servlet>
 
-  <servlet>
+    <servlet>
+        <servlet-name>OAIHandler</servlet-name>
+        <description>
+            This servlet processes OAI verbs.
+
+            The initialization parameter names for this servlet are the
+            "servlet path" that will be received by this servlet (after the
+            filename extension is removed).  The corresponding value is the
+            name of the action class that will be used to process this request.
+        </description>
+        <servlet-class>ORG.oclc.oai.server.OAIHandler</servlet-class>
+        <!-- Load this servlet at server startup time -->
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+
+
+    <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
     <init-param>
@@ -101,8 +128,27 @@
     <servlet-class>org.curriki.xwiki.servlet.RestletServlet</servlet-class>
   </servlet>
 
-  <!-- Unused mapping for now. In the future the correct mapping will be /* when the action servlet
-       will be decommissioned in favor of the XWiki Action component --> 
+
+    <!-- ======================= OAI ========================== -->
+    <servlet>
+        <servlet-name>OAIHandler</servlet-name>
+        <description>
+            This servlet processes OAI verbs.
+
+            The initialization parameter names for this servlet are the
+            "servlet path" that will be received by this servlet (after the
+            filename extension is removed).  The corresponding value is the
+            name of the action class that will be used to process this request.
+        </description>
+        <servlet-class>ORG.oclc.oai.server.OAIHandler</servlet-class>
+        <!-- Load this servlet at server startup time -->
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+
+
+
+    <!-- Unused mapping for now. In the future the correct mapping will be /* when the action servlet
+will be decommissioned in favor of the XWiki Action component -->
   <servlet-mapping>
     <servlet-name>PlexusServlet</servlet-name>
     <url-pattern>/plexus/*</url-pattern>
@@ -143,9 +189,15 @@
     <url-pattern>/curriki/*</url-pattern>
   </servlet-mapping>
 
-  <!-- We override the mime type definition for javascript and css files, as some containers don't
-       provide it, causing problems for javascript files containg velocity code, like
-       fullscreenEdit.js -->
+    <servlet-mapping>
+        <servlet-name>OAIHandler</servlet-name>
+        <url-pattern>/OAIHandler</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- We override the mime type definition for javascript and css files, as some containers don't
+   provide it, causing problems for javascript files containg velocity code, like
+   fullscreenEdit.js -->
   <mime-mapping>
     <extension>js</extension>
     <mime-type>text/javascript</mime-type>

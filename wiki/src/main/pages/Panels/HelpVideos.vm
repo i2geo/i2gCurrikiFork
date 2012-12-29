@@ -4,7 +4,7 @@
 <div class="headerbar violet">$msg.get("panel.video-panels.title")</div>
 <div class="frame-content"> 
 {pre}
-<script src="/xwiki/js/AC_QuickTime.js" language="javascript" type="text/javascript"> </script>
+<script src="http://www.activemath.org/~paul/tmp/i2geoMovs/AC_QuickTime.js" language="javascript" type="text/javascript"> </script>
     <SCRIPT LANGUAGE="Javascript" type="text/javascript">
       var haveqt = false;
     </SCRIPT>

@@ -46,14 +46,13 @@
     </dl>
   #else ## } ----- $newAsset defined for entire branch below ----- {
   ## create or get newTextAsset -- used to display WYSIWYG editor
-  #if( !$newAsset.getObject("CurrikiCode.TextAssetClass") ) ## {
+  #if( !$newAsset.getObject("XWiki.TextAssetClass") ) ## {
     ## create TextAssetClass for use by WYSIWYG
-    #set( $newTextAsset = $newAsset.newObject("CurrikiCode.TextAssetClass") )
+    #set( $newTextAsset = $newAsset.newObject("XWiki.TextAssetClass") )
   #else ## } {
     ## fetch existing TextAssetClass for use by WYSIWYG
-    #set( $newTextAsset = $newAsset.getObject("CurrikiCode.TextAssetClass") )
+    #set( $newTextAsset = $newAsset.getObject("XWiki.TextAssetClass") )
   #end ## }
-  ##<!-- newTextAsset: '$!newTextAsset' of class $!newTextAsset.getxWikiClass().getName() -->
 ## DEBUG DEBUG DEBUG
 ## <p>( '$!request.page $request.method ): newTextAsset: '$!newTextAsset' , newAsset: '$!newAsset' , pageName: '$!pageName' , cameFrom: '$!cameFrom' , flow: '$!flow' , parentPage: '$!parentPage' , publishSpace: '$!publishSpace'</p>
 ## DEBUG DEBUG DEBUG
@@ -67,25 +66,25 @@
 //
 function checkSimpleResourceForm() {
   var missed_fields_str = '';
-  if (getFieldContentStr('CurrikiCode.AssetClass_0_title') == null) {
+  if (getFieldContentStr('XWiki.AssetClass_0_title') == null) {
     missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.title')');
   }
-  if (getFieldContentStr('CurrikiCode.AssetClass_0_description') == null) {
+  if (getFieldContentStr('XWiki.AssetClass_0_description') == null) {
     missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.description')');
   }
   {
-    /*var form_fw_items = getFieldContentStr('CurrikiCode.AssetClass_0_fw_items');
+    /*var form_fw_items = getFieldContentStr('XWiki.AssetClass_0_fw_items');
     if ((form_fw_items == null) || (form_fw_items == 'FW_masterFramework.WebHome')) {
       missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.subject')');
     }*/
-    var ttc = getFieldContentStr('CurrikiCode.AssetClass_0_trainedTopicsAndCompetencies');
+    var ttc = getFieldContentStr('XWiki.AssetClass_0_trainedTopicsAndCompetencies');
     if(ttc==null || ttc.length<=1)
           missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.trainedTopicsAndCompetencies')');
   }
   { 
   // Eductional-Level -- for validation, must look at "checked" on each button.
   /*  var one_checked = false;
-    for (var idx = 0, form_checkboxes = document.forms.inline['CurrikiCode.AssetClass_0_educational_level2'];
+    for (var idx = 0, form_checkboxes = document.forms.inline['XWiki.AssetClass_0_educational_level2'];
 	 ((idx < form_checkboxes.length) && !one_checked);
 	 idx++) {
       if (form_checkboxes[idx].checked) {
@@ -93,18 +92,18 @@ function checkSimpleResourceForm() {
       }
     }
     if (!one_checked) { */
-    var eduLF = getFieldContentStr('CurrikiCode.AssetClass_0_eduLevelFine');
+    var eduLF = getFieldContentStr('XWiki.AssetClass_0_eduLevelFine');
     if(eduLF == null || eduLF.length <=1) {
       missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.eduLevelFine')');
     } 
   }
-  if ($('CurrikiCode.AssetClass_0_instructional_component').value.length <= 1) {
+  if ($('XWiki.AssetClass_0_instructional_component2').value.length <= 1) {
     missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.ict')');
   }
-  if (getWysiwygFieldContent('mce_editor_0', 'CurrikiCode.TextAssetClass_0_text') == null) {
+  if (getWysiwygFieldContent('mce_editor_0', 'XWiki.TextAssetClass_0_text') == null) {
     missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.content')');
   }
-  if (getFieldContentStr('CurrikiCode.AssetLicenseClass_0_rightsHolder') == null) {
+  if (getFieldContentStr('XWiki.AssetLicenseClass_0_rightsHolder') == null) {
     missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('form.scratch.required.fields.dialog.rights')');
   }
   if (missed_fields_str != '') { // since theres error messages, validation failed... bail out.
@@ -121,10 +120,10 @@ function checkSimpleResourceForm() {
 //
 //
 function checkSimpleResourceDirty() {
-  if (getFieldContentStr('CurrikiCode.AssetClass_0_title') != null) {
+  if (getFieldContentStr('XWiki.AssetClass_0_title') != null) {
     return true;
   }
-  if (getFieldContentStr('CurrikiCode.AssetClass_0_description') != null) {
+  if (getFieldContentStr('XWiki.AssetClass_0_description') != null) {
     return true;
   }
   {
@@ -237,10 +236,10 @@ function setUnloadDialog() {
   ##
   <input type="hidden" name="xredirect" value="$xwiki.getFormEncoded($xwiki.getRequestURL())" />
   ##
-  ## CurrikiCode.AssetClass_0_category is a "fake" property named "category" in CurrikiCode.AssetClass.
+  ## XWiki.AssetClass_0_category is a "fake" property named "category" in XWiki.AssetClass.
   ## This is forced here to value "text". This hidden field is passed to AssetDone 
-  ## via POST and instantiated via .updateObjectFromRequest("CurrikiCode.AssetClass")
-  <input type="hidden"  name="CurrikiCode.AssetClass_0_category" id="CurrikiCode.AssetClass_0_category" value="text" /> 
+  ## via POST and instantiated via .updateObjectFromRequest("XWiki.AssetClass")
+  <input type="hidden"  name="XWiki.AssetClass_0_category" id="XWiki.AssetClass_0_category" value="text" /> 
   ## successMessage is a hidden field that is set to a string in validation javascript
   ## after successful validation. If AssetDone gets a POST with the default value of "" set here
   ## it will ignore the post as it means it's not validated.
@@ -273,28 +272,26 @@ function setUnloadDialog() {
 <table class="subject-educational"><tbody><tr><td> 
   #curriki_formprompt($msg.get("sri.trainedTopicsAndCompetencies_title"), $msg.get("sri.trainedTopicsAndCompetencies_tooltip"), $msg.get("sri.trainedTopicsAndCompetencies_txt"), true, "")
  ## $newAsset.display("fw_items","edit")
-  #skbListHereEditable("CurrikiCode.AssetClass_0_trainedTopicsAndCompetencies" "trainedTopicsAndCompetencies_pane" "competency,topic" "")
+  #skbListHereEditable("XWiki.AssetClass_0_trainedTopicsAndCompetencies" "trainedTopicsAndCompetencies_pane" "competency,topic" "")
 </td></tr><tr><td>
   #curriki_formprompt($msg.get("sri.eduLevelFine_title"), $msg.get("sri.eduLevelFine_tooltip"), $msg.get("sri.eduLevelFine_txt"), true, "")
   ## #curriki_formprompt($msg.get("sri.educational_level_title"), $msg.get("sri.educational_level_tooltip"), $msg.get("sri.educational_level_txt"), true, "medium")
   ##$newAsset.display("educational_level2","edit") 
-  #skbListHereEditable("CurrikiCode.AssetClass_0_eduLevelFine" "eduLevelFine_pane" "level" "")
+  #skbListHereEditable("XWiki.AssetClass_0_eduLevelFine" "eduLevelFine_pane" "level" "")
   </td></tr></tbody></table> ##class="subject-educational"
   #curriki_formprompt($msg.get("sri.instructional_component2_title"), $msg.get("sri.instructional_component2_tooltip"), $msg.get("sri.instructional_component2_txt"), true, "medium")
   $newAsset.display("instructional_component","edit")
   #curriki_formprompt($msg.get("sri.keywords_title"), $msg.get("sri.keywords_tooltip"), $msg.get("sri.keywords_txt"), false, "medium")
   $newAsset.display("keywords","edit")
   #curriki_formprompt($msg.get("sri.language_title"), $msg.get("sri.language_tooltip"), $msg.get("sri.language_txt"), false, "medium")
-   <select name="CurrikiCode.AssetClass_0_language" size="1" style="position:absolute; left:8; top:8; width:88; height:22; display:block;">
-#set($langName = $msg.get("languages2_3.${lang}"))
-  <option value='${msg.get("languages2_3.${lang}")}'>$msg.get("languages3.label_$langName")</option>
-  #set($supportedLanguages2 = $xwiki.getXWikiPreference("languages").replaceAll(","," "))
-  #foreach($lang2 in $supportedLanguages2.split(" "))##
+   <select name="CurrikiCode.AssetClass_0_language" size="1" style="position:absolute; left:8; top:8; width:88; height:22; display:block;" onchange="EintragPruefen('ComboBox', 'Edit')">
+    <option value='${con.getLanguageId($lang,true)}'>$con.getLanguageName($lang,$lang)</option>
+    #set($supportedLanguages2 = $xwiki.getXWikiPreference("languages").replaceAll(","," "))
+    #foreach($lang2 in $supportedLanguages2.split(" "))##
 	  #if($lang!=$lang2)
-#set($langName = $msg.get("languages2_3.${lang2}"))
-  		  <option value='${langName}'>$msg.get("languages3.label_$langName")</option>
+		  <option value='${con.getLanguageId($lang2,true)}'>$con.getLanguageName($lang2,$lang2)</option>
 	  #end
-  #end
+	  #end
 </select>
   ##$newAsset.display("language","edit")
   #curriki_formpart_end() ## }
@@ -302,10 +299,8 @@ function setUnloadDialog() {
   #curriki_formpart_begin($msg.get("form.scratch.step2.header")) ## {
   #curriki_forminstructions($msg.get("form.scratch.step2.instruction"))
   #curriki_formprompt($msg.get("form.scratch.step2.content.title"), "", $msg.get("form.scratch.step2.content.instruction"), true, "medium")
-  <!-- wysiwyg editor comes here -->##<input type="hidden" name="CurrikiCode.TextAssetClass_0_text" id="CurrikiCode.TextAssetClass_0_text"/>
-  <textarea id="CurrikiCode.TextAssetClass_0_text" name="CurrikiCode.TextAssetClass_0_text" type="hidden"></textarea>##  $newTextAsset.display("text", "edit")    WYSIWYG editor
-    <!-- wysiwyg editor comes here -->
-#curriki_formpart_end() ## }
+  $newTextAsset.display("text", "edit") ##WYSIWYG editor
+  #curriki_formpart_end() ## }
 #####################################################################
   #curriki_formpart_begin($msg.get("form.scratch.step3.header")) ## {
   #curriki_forminstructions($msg.get("form.scratch.step3.instruction"))
@@ -344,7 +339,7 @@ function setUnloadDialog() {
   </form>
 #set( $noWYSIWYG  = $request.getParameter("noWYSIWYG") ) ##For testing,etc, add parameter ?noWYSIWYG=1 to force WYSIWYG editors to not display, and use TEXTAREA instead
 #if( "$!noWYSIWYG" == "" ) ## {
-#curriki_wysiwyg_loader_preamble()<!-- mce_editor comes here -->
+#curriki_wysiwyg_loader_preamble()
 #curriki_wysiwyg_loader_editor($context.getEditorWysiwyg(), $newAsset) ## aka "mce_editor_0"
 #end ## } -- if "$!noWYSIWYG"==""
 {pre}<script language="javascript" type="text/javascript">

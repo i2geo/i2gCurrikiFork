@@ -579,6 +579,7 @@ function setAttachmentsIframeSize() {
   <select name="CurrikiCode.AssetClass_0_language" size="1" style="position:absolute; left:8; top:8; width:88; height:22; display:block;" onchange="EintragPruefen('ComboBox', 'Edit')">
   <option value='${con.getLanguageId($lang,true)}'>$con.getLanguageName($lang,$lang)</option>
   #set($supportedLanguages2 = $xwiki.getXWikiPreference("languages").replaceAll(","," "))
+  $supportedLanguages2
   #foreach($lang2 in $supportedLanguages2.split(" "))##
 	  #if($lang!=$lang2)
 		  <option value='${con.getLanguageId($lang2,true)}'>$con.getLanguageName($lang2,$lang2)</option>

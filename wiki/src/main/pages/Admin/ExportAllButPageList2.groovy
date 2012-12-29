@@ -7,20 +7,16 @@ import com.xpn.xwiki.*;
 import com.xpn.xwiki.api.*;
 import com.xpn.xwiki.doc.*;
 import com.xpn.xwiki.plugin.packaging.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 
 def pagelist = "Admin.PageList"
-def exportdir = "/export/home/intergeo/platform/dataExport/nonApplicationFiles";
-  //"/opt/local/activemath/users/ilo/intergeo/platform2/dataExport/nonApplicationFiles";
+def exportdir = //"/export/home/intergeo/platform3/dataExport/nonApplicationFiles";
+  "/opt/local/activemath/users/ilo/intergeo/platform2/dataExport/nonApplicationFiles";
 if (request.pagelist != null){
   pagelist = request.pagelist
 }
-def max = 100000;
 
-Log LOG = LogFactory.getLog("groovypages." + doc.web + "." +doc.name);
-
-LOG.info("Confirm ? " + request.confirm);
+System.out.println("Confirm ? " + request.confirm);
 if(request.doc!=null && xwiki.getUser().isUserInGroup("XWiki.AdminGroup")) {
   org.dom4j.Document xml = xwiki.getDocument(request.getParameter("doc")).getDocument()
           .toXMLDocument(true,false,true,true,context.getContext());
@@ -31,7 +27,7 @@ if(request.doc!=null && xwiki.getUser().isUserInGroup("XWiki.AdminGroup")) {
 else if (request.confirm=="1") {
   println "Starting export"
   int n = 0;
-  LOG.info("Starting export for max " + max + " docs.");
+  System.out.println "Starting export"
   // TODO: println "Delete existing files"
 
   //pack.setDescription("Export of Curriki Wiki-based Application Code");
@@ -46,7 +42,6 @@ else if (request.confirm=="1") {
   def excludes = new java.util.HashSet(java.util.Arrays.asList(list));
   def i = 0;
   for(String s in xwiki.getSpaces()) {
-    //if(!"QR".equals(s)) continue;
     File spaceDir = new File(new File(exportdir),s);
     spaceDir.mkdirs();
     println("1.1.1 " + s)
@@ -54,13 +49,12 @@ else if (request.confirm=="1") {
       def page = s + "." + p;
       if(excludes.contains(page)) continue;
       println("- [" + page + "]");
-      LOG.info("Exporting " + page);
+      System.out.println("Exporting " + page);
       File file = new File(spaceDir,p);
       n++;
-      if(n>max) break;
       if(n % 100 == 0) {
-         LOG.info("--- flushing gc.");
-         //xwiki.flushCache() 
+         System.out.println("--- flushing cache and gc.");
+         xwiki.flushCache() 
          Runtime.getRuntime().gc()
       }
       try {
@@ -79,7 +73,7 @@ else if (request.confirm=="1") {
   }
 
   println "Finished."
-  LOG.info("Finished.");
+  System.out.println "Finished."
 } else {
   println("add confirm parameter please.");
   println "[Confirm export>"+doc.name+"?pagelist="+pagelist+"&confirm=1]"

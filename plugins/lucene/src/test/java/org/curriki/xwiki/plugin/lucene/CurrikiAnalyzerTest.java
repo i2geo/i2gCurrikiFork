@@ -56,7 +56,7 @@ public class CurrikiAnalyzerTest extends TestCase {
         checkQueryParser("ft","eng","author:XWiki.polx blip:blop", "author", "XWiki.polx");
     }
     public void testQueryParserSpanish() throws Exception {
-        checkQueryParser("ft.stemmed","spa","ángulo blip:blop", "ft.stemmed", "ángulo");
+        checkQueryParser("ft.stemmed","spa","ángulo blip:blop", "ft.stemmed", "ngul");
     }
 
     private void checkQueryParser(String defaultField, String language, String query, String expectedField, String expectedText) throws Exception {

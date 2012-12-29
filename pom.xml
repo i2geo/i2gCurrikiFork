@@ -30,17 +30,17 @@
     <artifactId>xwiki</artifactId>
     <version>16</version>
   </parent>
-  <groupId>org.curriki</groupId>
-  <artifactId>curriki-parent</artifactId>
+  <groupId>net.i2geo.platform</groupId>
+  <artifactId>i2geo-platform-parent</artifactId>
+  <version>1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>XWiki Products - Curriki - Parent POM</name>
-  <version>1.0</version>
-  <description>XWiki Products - Curriki - Parent POM</description>
-  <scm>
+  <name>i2geo - CurrikiFork - Parent POM</name>
+  <description>i2geo - CurrikiFork - Parent POM</description>
+  <!-- <scm>
     <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</connection>
     <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/curriki/trunk</developerConnection>
     <url>http://svn.xwiki.org/svnroot/xwiki/curriki/trunk</url>
-  </scm>
+  </scm> -->
   <properties>
     <!-- Versions of XWiki dependencies used in Curriki modules -->
     <platform.tools.version>1.9-SNAPSHOT</platform.tools.version>
@@ -57,26 +57,18 @@
       </activation>
       <modules>
         <module>plugins</module>
-        <module>gwt</module>
         <module>web</module>
         <!--
+        <module>gwt</module>
         <module>wiki</module>
         <module>database</module>
         <module>distribution</module>a
         -->
       </modules>
     </profile>
-    <profile>
-      <id>curriki-nodb</id>
-      <modules>
-        <module>plugins</module>
-        <module>gwt</module>
-        <module>web</module>
-      </modules>
-    </profile>
   </profiles>
   <build>
-    <extensions>
+      <extensions>
       <extension>
         <groupId>com.xpn.xwiki.platform.tools</groupId>
         <artifactId>xwiki-xar-handlers</artifactId>
@@ -89,6 +81,19 @@
         <artifactId>xwiki-xar-plugin</artifactId>
         <version>${platform.tools.xar-plugin.version}</version>
       </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+
+
     </plugins>
   </build>
 </project>

@@ -1,6 +1,6 @@
 /*
- * Ext JS Library 2.2
- * Copyright(c) 2006-2008, Ext JS, LLC.
+ * Ext JS Library 2.3.0
+ * Copyright(c) 2006-2009, Ext JS, LLC.
  * licensing@extjs.com
  * 
  * http://extjs.com/license
@@ -12,7 +12,8 @@ Ext.DomHelper = function(){
     var emptyTags = /^(?:br|frame|hr|img|input|link|meta|range|spacer|wbr|area|param|col)$/i;
     var tableRe = /^table|tbody|tr|td$/i;
 
-        var createHtml = function(o){
+    // build as innerHTML where available
+    var createHtml = function(o){
         if(typeof o == 'string'){
             return o;
         }
@@ -70,16 +71,21 @@ Ext.DomHelper = function(){
         return b;
     };
 
-        
+    // build as dom
+    
     var createDom = function(o, parentNode){
         var el;
-        if (Ext.isArray(o)) {                                   el = document.createDocumentFragment();             for(var i = 0, l = o.length; i < l; i++) {
+        if (Ext.isArray(o)) {                       // Allow Arrays of siblings to be inserted
+            el = document.createDocumentFragment(); // in one shot using a DocumentFragment
+            for(var i = 0, l = o.length; i < l; i++) {
                 createDom(o[i], el);
             }
-        } else if (typeof o == "string") {                     el = document.createTextNode(o);
+        } else if (typeof o == "string") {         // Allow a string as a child spec.
+            el = document.createTextNode(o);
         } else {
             el = document.createElement(o.tag||'div');
-            var useSet = !!el.setAttribute;             for(var attr in o){
+            var useSet = !!el.setAttribute; // In IE some elements don't have setAttribute
+            for(var attr in o){
                 if(attr == "tag" || attr == "children" || attr == "cn" || attr == "html" || attr == "style" || typeof o[attr] == "function") continue;
                 if(attr=="cls"){
                     el.className = o["cls"];
@@ -111,7 +117,8 @@ Ext.DomHelper = function(){
         return el;
     };
 
-        var ts = '<table>',
+    // kill repeat to save bytes
+    var ts = '<table>',
         te = '</table>',
         tbs = ts+'<tbody>',
         tbe = '</tbody>'+te,
@@ -126,7 +133,8 @@ Ext.DomHelper = function(){
         var node;
         var before = null;
         if(tag == 'td'){
-            if(where == 'afterbegin' || where == 'beforeend'){                 return;
+            if(where == 'afterbegin' || where == 'beforeend'){ // INTO a TD
+                return;
             }
             if(where == 'beforebegin'){
                 before = el;
@@ -146,7 +154,8 @@ Ext.DomHelper = function(){
                 before = el.nextSibling;
                 el = el.parentNode;
                 node = ieTable(3, tbs, html, tbe);
-            } else{                 if(where == 'afterbegin'){
+            } else{ // INTO a TR
+                if(where == 'afterbegin'){
                     before = el.firstChild;
                 }
                 node = ieTable(4, trs, html, tre);
@@ -166,7 +175,9 @@ Ext.DomHelper = function(){
                 }
                 node = ieTable(3, tbs, html, tbe);
             }
-        } else{             if(where == 'beforebegin' || where == 'afterend'){                 return;
+        } else{ // TABLE
+            if(where == 'beforebegin' || where == 'afterend'){ // OUTSIDE the table
+                return;
             }
             if(where == 'afterbegin'){
                 before = el.firstChild;
@@ -285,7 +296,8 @@ Ext.DomHelper = function(){
         return this.doInsert(el, o, returnElement, "afterBegin", "firstChild");
     },
 
-        doInsert : function(el, o, returnElement, pos, sibling){
+    // private
+    doInsert : function(el, o, returnElement, pos, sibling){
         el = Ext.getDom(el);
         var newNode;
         if(this.useDom){
@@ -363,7 +375,10 @@ Ext.Template.prototype = {
                     return tpl.call(format.substr(5), values[name], values);
                 }else{
                     if(args){
-                                                                                                var re = /^\s*['"](.*)["']\s*$/;
+                        // quoted values are required for strings in compiled templates,
+                        // but for non compiled we need to strip them
+                        // quoted reversed for jsmin
+                        var re = /^\s*['"](.*)["']\s*$/;
                         args = args.split(',');
                         for(var i = 0, len = args.length; i < len; i++){
                             args[i] = args[i].replace(re, "$1");
@@ -417,7 +432,8 @@ Ext.Template.prototype = {
             return "'"+ sep + format + "values['" + name + "']" + args + ")"+sep+"'";
         };
         var body;
-                if(Ext.isGecko){
+        // branched to use + in gecko and [].join() in others
+        if(Ext.isGecko){
             body = "this.compiled = function(values){ return '" +
                    this.html.replace(/\\/g, '\\\\').replace(/(\r\n|\n)/g, '\\n').replace(/'/g, "\\'").replace(this.re, fn) +
                     "';};";
@@ -431,7 +447,8 @@ Ext.Template.prototype = {
         return this;
     },
 
-        call : function(fnName, value, allValues){
+    // private function used to call members
+    call : function(fnName, value, allValues){
         return this[fnName](value, allValues);
     },
 
@@ -471,6 +488,7 @@ Ext.Template.prototype = {
 
 Ext.Template.prototype.apply = Ext.Template.prototype.applyTemplate;
 
+// backwards compat
 Ext.DomHelper.Template = Ext.Template;
 
 
@@ -488,6 +506,7 @@ Ext.DomQuery = function(){
     var modeRe = /^(\s?[\/>+~]\s?|\s|$)/;
     var tagTokenRe = /^(#)?([\w-\*]+)/;
     var nthRe = /(\d*)n\+?(\d*)/, nthRe2 = /\D/;
+    var opera = Ext.isOpera;
 
     function child(p, index){
         var i = 0;
@@ -576,7 +595,7 @@ Ext.DomQuery = function(){
         }else if(mode == "/" || mode == ">"){
             var utag = tagName.toUpperCase();
             for(var i = 0, ni, cn; ni = ns[i]; i++){
-                cn = ni.children || ni.childNodes;
+                cn = opera ? ni.childNodes : (ni.children || ni.childNodes);
                 for(var j = 0, cj; cj = cn[j]; j++){
                     if(cj.nodeName == utag || cj.nodeName == tagName  || tagName == '*'){
                         result[++ri] = cj;
@@ -592,10 +611,12 @@ Ext.DomQuery = function(){
                 }
             }
         }else if(mode == "~"){
+            var utag = tagName.toUpperCase();
             for(var i = 0, n; n = ns[i]; i++){
-                while((n = n.nextSibling) && (n.nodeType != 1 || (tagName == '*' || n.tagName.toLowerCase()!=tagName)));
-                if(n){
-                    result[++ri] = n;
+                while((n = n.nextSibling)){
+                    if (n.nodeName == utag || n.nodeName == tagName || tagName == '*'){
+                        result[++ri] = n;
+                    }
                 }
             }
         }
@@ -650,6 +671,9 @@ Ext.DomQuery = function(){
         var r = [], ri = -1, st = custom=="{";
         var f = Ext.DomQuery.operators[op];
         for(var i = 0, ci; ci = cs[i]; i++){
+            if(ci.nodeType != 1){
+                continue;
+            }
             var a;
             if(st){
                 a = Ext.DomQuery.getStyle(ci, attr);
@@ -674,13 +698,13 @@ Ext.DomQuery = function(){
         return Ext.DomQuery.pseudos[name](cs, value);
     };
 
-    
-    
-    
+    // This is for IE MSXML which does not support expandos.
+    // IE runs the same speed using setAttribute, however FF slows way down
+    // and Safari completely fails so they need to continue to use expandos.
     var isIE = window.ActiveXObject ? true : false;
 
-    
-    
+    // this eval is stop the compressor from
+    // renaming the variable to something shorter
     eval("var batch = 30803;");
 
     var key = 30803;
@@ -796,13 +820,13 @@ Ext.DomQuery = function(){
             var tklen = tk.length;
             var mm;
 
-            
+            // accept leading mode switch
             var lmode = q.match(modeRe);
             if(lmode && lmode[1]){
                 fn[fn.length] = 'mode="'+lmode[1].replace(trimRe, "")+'";';
                 q = q.replace(lmode[1], "");
             }
-            
+            // strip leading slashes
             while(path.substr(0, 1)=="/"){
                 path = path.substr(1);
             }
@@ -845,7 +869,7 @@ Ext.DomQuery = function(){
                             break;
                         }
                     }
-                    
+                    // prevent infinite loop on bad selector
                     if(!matched){
                         throw 'Error parsing selector, parsing failed at "' + q + '"';
                     }
@@ -1187,7 +1211,8 @@ Ext.util.Observable.prototype = {
         return true;
     },
 
-        filterOptRe : /^(?:scope|delay|buffer|single)$/,
+    // private
+    filterOptRe : /^(?:scope|delay|buffer|single)$/,
 
     
     addListener : function(eventName, fn, scope, o){
@@ -1198,9 +1223,11 @@ Ext.util.Observable.prototype = {
                     continue;
                 }
                 if(typeof o[e] == "function"){
-                                        this.addListener(e, o[e], o.scope,  o);
+                    // shared options
+                    this.addListener(e, o[e], o.scope,  o);
                 }else{
-                                        this.addListener(e, o[e].fn, o[e].scope, o[e]);
+                    // individual options
+                    this.addListener(e, o[e].fn, o[e].scope, o[e]);
                 }
             }
             return;
@@ -1278,7 +1305,10 @@ Ext.util.Observable.prototype = {
         this.eventsSuspended = false;
     },
 
-                getMethodEvent : function(method){
+    // these are considered experimental
+    // allows for easier interceptor and sequences, including cancelling and overwriting the return value of the call
+    // private
+    getMethodEvent : function(method){
         if(!this.methodEvents){
             this.methodEvents = {};
         }
@@ -1341,12 +1371,14 @@ Ext.util.Observable.prototype = {
         return e;
     },
 
-        beforeMethod : function(method, fn, scope){
+    // adds an "interceptor" called before the original method
+    beforeMethod : function(method, fn, scope){
         var e = this.getMethodEvent(method);
         e.before.push({fn: fn, scope: scope});
     },
 
-        afterMethod : function(method, fn, scope){
+    // adds a "sequence" called after the original method
+    afterMethod : function(method, fn, scope){
         var e = this.getMethodEvent(method);
         e.after.push({fn: fn, scope: scope});
     },
@@ -1420,7 +1452,8 @@ Ext.util.Observable.releaseCapture = function(o){
                 var l = this.createListener(fn, scope, options);
                 if(!this.firing){
                     this.listeners.push(l);
-                }else{                     this.listeners = this.listeners.slice(0);
+                }else{ // if we are currently firing this event, don't disturb the listener loop
+                    this.listeners = this.listeners.slice(0);
                     this.listeners.push(l);
                 }
             }
@@ -1502,7 +1535,8 @@ Ext.EventManager = function(){
     var resizeEvent, resizeTask, textEvent, textSize;
     var E = Ext.lib.Event;
     var D = Ext.lib.Dom;
-        var xname = 'Ex' + 't';
+    // fix parser confusion
+    var xname = 'Ex' + 't';
 
     var elHash = {};
 
@@ -1526,17 +1560,20 @@ Ext.EventManager = function(){
 
          E.on(el, ename, wrap);
 
-        if(ename == "mousewheel" && el.addEventListener){             el.addEventListener("DOMMouseScroll", wrap, false);
+        if(ename == "mousewheel" && el.addEventListener){ // workaround for jQuery
+            el.addEventListener("DOMMouseScroll", wrap, false);
             E.on(window, 'unload', function(){
                 el.removeEventListener("DOMMouseScroll", wrap, false);
             });
         }
-        if(ename == "mousedown" && el == document){             Ext.EventManager.stoppedMouseDownEvent.addListener(wrap);
+        if(ename == "mousedown" && el == document){ // fix stopped mousedowns on the document
+            Ext.EventManager.stoppedMouseDownEvent.addListener(wrap);
         }
     }
 
     var removeListener = function(el, ename, fn, scope){
         el = Ext.getDom(el);
+
         var id = Ext.id(el), es = elHash[id], wrap;
         if(es){
             var ls = es[ename], l;
@@ -1555,7 +1592,8 @@ Ext.EventManager = function(){
         if(ename == "mousewheel" && el.addEventListener && wrap){
             el.removeEventListener("DOMMouseScroll", wrap, false);
         }
-        if(ename == "mousedown" && el == document && wrap){             Ext.EventManager.stoppedMouseDownEvent.removeListener(wrap);
+        if(ename == "mousedown" && el == document && wrap){ // fix stopped mousedowns on the document
+            Ext.EventManager.stoppedMouseDownEvent.removeListener(wrap);
         }
     }
 
@@ -1577,65 +1615,60 @@ Ext.EventManager = function(){
         }
     }
 
-     var fireDocReady = function(){
+
+    var fireDocReady = function(){
         if(!docReadyState){
-            docReadyState = Ext.isReady = true;
+            docReadyState = true;
+            Ext.isReady = true;
+            if(docReadyProcId){
+                clearInterval(docReadyProcId);
+            }
             if(Ext.isGecko || Ext.isOpera) {
                 document.removeEventListener("DOMContentLoaded", fireDocReady, false);
             }
+            if(Ext.isIE){
+                var defer = document.getElementById("ie-deferred-loader");
+                if(defer){
+                    defer.onreadystatechange = null;
+                    defer.parentNode.removeChild(defer);
+                }
+            }
+            if(docReadyEvent){
+                docReadyEvent.fire();
+                docReadyEvent.clearListeners();
+            }
         }
-        if(docReadyProcId){
-            clearInterval(docReadyProcId);
-            docReadyProcId = null;
-        }
-        if(docReadyEvent){
-            docReadyEvent.fire();
-            docReadyEvent.clearListeners();
-       }
     };
 
     var initDocReady = function(){
         docReadyEvent = new Ext.util.Event();
-
-        if(Ext.isReady){
-            return;
-        }
-
-                E.on(window, 'load', fireDocReady);
-
         if(Ext.isGecko || Ext.isOpera) {
-            document.addEventListener('DOMContentLoaded', fireDocReady, false);
-        }
-        else if(Ext.isIE){
-            docReadyProcId = setInterval(function(){
-                try{
-                                        Ext.isReady || (document.documentElement.doScroll('left'));
-                }catch(e){
-                    return;
+            document.addEventListener("DOMContentLoaded", fireDocReady, false);
+        }else if(Ext.isIE){
+            document.write("<s"+'cript id="ie-deferred-loader" defer="defer" src="/'+'/:"></s'+"cript>");
+            var defer = document.getElementById("ie-deferred-loader");
+            defer.onreadystatechange = function(){
+                if(this.readyState == "complete"){
+                    fireDocReady();
                 }
-                fireDocReady();              }, 5);
-
-			document.onreadystatechange = function(){
-				if(document.readyState == 'complete'){
-					document.onreadystatechange = null;
-					fireDocReady();
-				}
             };
-        }
-        else if(Ext.isSafari){
+        }else if(Ext.isWebKit){
             docReadyProcId = setInterval(function(){
                 var rs = document.readyState;
-                if(rs == 'complete') {
+                if(rs == "complete") {
                     fireDocReady();
                  }
             }, 10);
         }
+        // no matter what, make sure it fires on load
+        E.on(window, "load", fireDocReady);
     };
 
     var createBuffered = function(h, o){
         var task = new Ext.util.DelayedTask(h);
         return function(e){
-                        e = new Ext.EventObjectImpl(e);
+            // create new event object impl so new events don't wipe out properties
+            e = new Ext.EventObjectImpl(e);
             task.delay(o.buffer, h, null, [e]);
         };
     };
@@ -1649,7 +1682,8 @@ Ext.EventManager = function(){
 
     var createDelayed = function(h, o){
         return function(e){
-                        e = new Ext.EventObjectImpl(e);
+            // create new event object impl so new events don't wipe out properties
+            e = new Ext.EventObjectImpl(e);
             setTimeout(function(){
                 h(e);
             }, o.delay || 10);
@@ -1664,7 +1698,8 @@ Ext.EventManager = function(){
             throw "Error listening for \"" + ename + '\". Element "' + element + '" doesn\'t exist.';
         }
         var h = function(e){
-                        if(!window[xname]){
+            // prevent errors while unload occurring
+            if(!window[xname]){
                 return;
             }
             e = Ext.EventObject.setEvent(e);
@@ -1707,7 +1742,9 @@ Ext.EventManager = function(){
         return h;
     };
 
-    var propRe = /^(?:scope|delay|buffer|single|stopEvent|preventDefault|stopPropagation|normalized|args|delegate)$/;
+    var propRe = /^(?:scope|delay|buffer|single|stopEvent|preventDefault|stopPropagation|normalized|args|delegate)$/,
+        curWidth = 0,
+        curHeight = 0;
     var pub = {
 
     
@@ -1719,9 +1756,11 @@ Ext.EventManager = function(){
                         continue;
                     }
                     if(typeof o[e] == "function"){
-                                                listen(element, e, o, o[e], o.scope);
+                        // shared options
+                        listen(element, e, o, o[e], o.scope);
                     }else{
-                                                listen(element, e, o[e]);
+                        // individual options
+                        listen(element, e, o[e]);
                     }
                 }
                 return;
@@ -1740,30 +1779,46 @@ Ext.EventManager = function(){
         },
 
         
-         onDocumentReady : function(fn, scope, options){
-			if(!docReadyEvent){
+        onDocumentReady : function(fn, scope, options){
+            if(docReadyState){ // if it already fired
+                docReadyEvent.addListener(fn, scope, options);
+                docReadyEvent.fire();
+                docReadyEvent.clearListeners();
+                return;
+            }
+            if(!docReadyEvent){
                 initDocReady();
-			}
-			if(docReadyState || Ext.isReady){ 				options || (options = {});
-				fn.defer(options.delay||0, scope);
-			}else{
-				docReadyEvent.addListener(fn, scope, options);
-			}
+            }
+            options = options || {};
+            if(!options.delay){
+                options.delay = 1;
+            }
+            docReadyEvent.addListener(fn, scope, options);
+        },
+        
+        // private
+        doResizeEvent: function(){
+            var h = D.getViewHeight(),
+                w = D.getViewWidth();
+            
+            //whacky problem in IE where the resize event will fire even though the w/h are the same.
+            if(curHeight != h || curWidth != w){
+                resizeEvent.fire(curWidth = w, curHeight = h);
+            }
         },
 
         
         onWindowResize : function(fn, scope, options){
             if(!resizeEvent){
                 resizeEvent = new Ext.util.Event();
-                resizeTask = new Ext.util.DelayedTask(function(){
-                    resizeEvent.fire(D.getViewWidth(), D.getViewHeight());
-                });
+                resizeTask = new Ext.util.DelayedTask(this.doResizeEvent);
                 E.on(window, "resize", this.fireWindowResize, this);
             }
             resizeEvent.addListener(fn, scope, options);
         },
 
-                fireWindowResize : function(){
+        // exposed only to allow manual firing
+        fireWindowResize : function(){
             if(resizeEvent){
                 if((Ext.isIE||Ext.isAir) && resizeTask){
                     resizeTask.delay(50);
@@ -1798,7 +1853,8 @@ Ext.EventManager = function(){
             }
         },
 
-                fireResize : function(){
+        // private
+        fireResize : function(){
             if(resizeEvent){
                 resizeEvent.fire(D.getViewWidth(), D.getViewHeight());
             }
@@ -1820,15 +1876,18 @@ Ext.EventManager = function(){
 Ext.onReady = Ext.EventManager.onDocumentReady;
 
 
+// Initialize doc classes
 (function(){
     var initExtCss = function(){
-                var bd = document.body || document.getElementsByTagName('body')[0];
+        // find the body element
+        var bd = document.body || document.getElementsByTagName('body')[0];
         if(!bd){ return false; }
         var cls = [' ',
-                Ext.isIE ? "ext-ie " + (Ext.isIE6 ? 'ext-ie6' : 'ext-ie7')
+                Ext.isIE ? "ext-ie " + (Ext.isIE6 ? 'ext-ie6' : (Ext.isIE7 ? 'ext-ie7' : 'ext-ie8'))
                 : Ext.isGecko ? "ext-gecko " + (Ext.isGecko2 ? 'ext-gecko2' : 'ext-gecko3')
                 : Ext.isOpera ? "ext-opera"
-                : Ext.isSafari ? "ext-safari" : ""];
+                : Ext.isSafari ? "ext-safari"
+                : Ext.isChrome ? "ext-chrome" : ""];
 
         if(Ext.isMac){
             cls.push("ext-mac");
@@ -1836,12 +1895,11 @@ Ext.onReady = Ext.EventManager.onDocumentReady;
         if(Ext.isLinux){
             cls.push("ext-linux");
         }
-        if(Ext.isBorderBox){
-            cls.push('ext-border-box');
-        }
-        if(Ext.isStrict){             var p = bd.parentNode;
+
+        if(Ext.isStrict || Ext.isBorderBox){ // add to the parent to allow for selectors like ".ext-strict .ext-ie"
+            var p = bd.parentNode;
             if(p){
-                p.className += ' ext-strict';
+                p.className += Ext.isStrict ? ' ext-strict' : ' ext-border-box';
             }
         }
         bd.className += cls.join(' ');
@@ -1858,11 +1916,23 @@ Ext.EventObject = function(){
 
     var E = Ext.lib.Event;
 
-        var safariKeys = {
-        3 : 13,         63234 : 37,         63235 : 39,         63232 : 38,         63233 : 40,         63276 : 33,         63277 : 34,         63272 : 46,         63273 : 36,         63275 : 35      };
+    // safari keypress events for special keys return bad keycodes
+    var safariKeys = {
+        3 : 13, // enter
+        63234 : 37, // left
+        63235 : 39, // right
+        63232 : 38, // up
+        63233 : 40, // down
+        63276 : 33, // page up
+        63277 : 34, // page down
+        63272 : 46, // delete
+        63273 : 36, // home
+        63275 : 35  // end
+    };
 
-        var btnMap = Ext.isIE ? {1:0,4:1,2:2} :
-                (Ext.isSafari ? {1:0,2:1,3:2} : {0:0,1:1,2:2});
+    // normalize button clicks
+    var btnMap = Ext.isIE ? {1:0,4:1,2:2} :
+                (Ext.isWebKit ? {1:0,2:1,3:2} : {0:0,1:1,2:2});
 
     Ext.EventObjectImpl = function(e){
         if(e){
@@ -1896,7 +1966,8 @@ Ext.EventObject = function(){
         SHIFT: 16,
         
         CTRL: 17,
-        CONTROL : 17,         
+        CONTROL : 17, // legacy
+        
         ALT: 18,
         
         PAUSE: 19,
@@ -1908,9 +1979,11 @@ Ext.EventObject = function(){
         SPACE: 32,
         
         PAGE_UP: 33,
-        PAGEUP : 33,         
+        PAGEUP : 33, // legacy
+        
         PAGE_DOWN: 34,
-        PAGEDOWN : 34,         
+        PAGEDOWN : 34, // legacy
+        
         END: 35,
         
         HOME: 36,
@@ -2059,22 +2132,28 @@ Ext.EventObject = function(){
 
            
         setEvent : function(e){
-            if(e == this || (e && e.browserEvent)){                 return e;
+            if(e == this || (e && e.browserEvent)){ // already wrapped
+                return e;
             }
             this.browserEvent = e;
             if(e){
-                                this.button = e.button ? btnMap[e.button] : (e.which ? e.which-1 : -1);
+                // normalize buttons
+                this.button = e.button ? btnMap[e.button] : (e.which ? e.which-1 : -1);
                 if(e.type == 'click' && this.button == -1){
                     this.button = 0;
                 }
                 this.type = e.type;
                 this.shiftKey = e.shiftKey;
-                                this.ctrlKey = e.ctrlKey || e.metaKey;
+                // mac metaKey behaves like ctrlKey
+                this.ctrlKey = e.ctrlKey || e.metaKey;
                 this.altKey = e.altKey;
-                                this.keyCode = e.keyCode;
+                // in getKey these will be normalized for the mac
+                this.keyCode = e.keyCode;
                 this.charCode = e.charCode;
-                                this.target = E.getTarget(e);
-                                this.xy = E.getXY(e);
+                // cache the target for the delayed and or buffered events
+                this.target = E.getTarget(e);
+                // same for XY
+                this.xy = E.getXY(e);
             }else{
                 this.button = -1;
                 this.shiftKey = false;
@@ -2114,12 +2193,12 @@ Ext.EventObject = function(){
 
         isSpecialKey : function(){
             var k = this.keyCode;
-            return (this.type == 'keypress' && this.ctrlKey) || k == 9 || k == 13  || k == 40 || k == 27 ||
-            (k == 16) || (k == 17) ||
-            (k >= 18 && k <= 20) ||
-            (k >= 33 && k <= 35) ||
-            (k >= 36 && k <= 39) ||
-            (k >= 44 && k <= 45);
+            k = Ext.isSafari ? (safariKeys[k] || k) : k;
+            return (this.type == 'keypress' && this.ctrlKey) ||
+		this.isNavKeyPress() ||
+        (k == this.BACKSPACE) || // Backspace
+		(k >= 16 && k <= 20) || // Shift, Ctrl, Alt, Pause, Caps Lock
+		(k >= 44 && k <= 45);   // Print Screen, Insert
         },
 
         
@@ -2197,9 +2276,9 @@ Ext.EventObject = function(){
         },
 
         
-        within : function(el, related){
+        within : function(el, related, allowEl){
             var t = this[related ? "getRelatedTarget" : "getTarget"]();
-            return t && Ext.fly(el).contains(t);
+            return t && ((allowEl ? (t === Ext.getDom(el)) : false) || Ext.fly(el).contains(t));
         },
 
         getPoint : function(){
@@ -2215,6 +2294,7 @@ var D = Ext.lib.Dom;
 var E = Ext.lib.Event;
 var A = Ext.lib.Anim;
 
+// local style camelizing for speed
 var propCache = {};
 var camelRe = /(-[a-z])/gi;
 var camelFn = function(m, a){ return a.charAt(1).toUpperCase(); };
@@ -2223,10 +2303,12 @@ var view = document.defaultView;
 Ext.Element = function(element, forceNew){
     var dom = typeof element == "string" ?
             document.getElementById(element) : element;
-    if(!dom){         return null;
+    if(!dom){ // invalid id/element
+        return null;
     }
     var id = dom.id;
-    if(forceNew !== true && id && Ext.Element.cache[id]){         return Ext.Element.cache[id];
+    if(forceNew !== true && id && Ext.Element.cache[id]){ // element object already exists
+        return Ext.Element.cache[id];
     }
 
     
@@ -2239,6 +2321,51 @@ Ext.Element = function(element, forceNew){
 var El = Ext.Element;
 
 El.prototype = {
+//  Mouse events
+    
+    
+    
+    
+    
+    
+    
+
+//  Keyboard events
+    
+    
+    
+
+
+//  HTML frame/object events
+    
+    
+    
+    
+    
+    
+
+//  Form events
+    
+    
+    
+    
+    
+    
+
+//  User Interface events
+    
+    
+    
+
+//  DOM Mutation events
+    
+    
+    
+    
+    
+    
+    
+
     
     originalDisplay : "",
 
@@ -2263,7 +2390,7 @@ El.prototype = {
         maxDepth = maxDepth || 50;
         if(typeof maxDepth != "number"){
             stopEl = Ext.getDom(maxDepth);
-            maxDepth = 10;
+            maxDepth = Number.MAX_VALUE;
         }
         while(p && p.nodeType == 1 && depth < maxDepth && p != b && p != stopEl){
             if(dq.is(p, simpleSelector)){
@@ -2318,7 +2445,8 @@ El.prototype = {
         return anim;
     },
 
-        preanim : function(a, i){
+    // private legacy anim prep
+    preanim : function(a, i){
         return !a[i] ? false : (typeof a[i] == "object" ? a[i]: {duration: a[i+1], callback: a[i+2], easing: a[i+3]});
     },
 
@@ -2364,7 +2492,8 @@ El.prototype = {
         }else if(b > cb){
             c.scrollTop = b-ch;
         }
-        c.scrollTop = c.scrollTop; 
+        c.scrollTop = c.scrollTop; // corrects IE, other browsers will ignore
+
         if(hscroll !== false){
 			if(el.offsetWidth > c.clientWidth || l < cl){
                 c.scrollLeft = l;
@@ -2376,7 +2505,8 @@ El.prototype = {
         return this;
     },
 
-        scrollChildIntoView : function(child, hscroll){
+    // private
+    scrollChildIntoView : function(child, hscroll){
         Ext.fly(child, '_scrollChildIntoView').scrollIntoView(this, hscroll);
     },
 
@@ -2384,15 +2514,18 @@ El.prototype = {
     autoHeight : function(animate, duration, onComplete, easing){
         var oldHeight = this.getHeight();
         this.clip();
-        this.setHeight(1);         setTimeout(function(){
-            var height = parseInt(this.dom.scrollHeight, 10);             if(!animate){
+        this.setHeight(1); // force clipping
+        setTimeout(function(){
+            var height = parseInt(this.dom.scrollHeight, 10); // parseInt for Safari
+            if(!animate){
                 this.setHeight(height);
                 this.unclip();
                 if(typeof onComplete == "function"){
                     onComplete();
                 }
             }else{
-                this.setHeight(oldHeight);                 this.setHeight(height, animate, duration, function(){
+                this.setHeight(oldHeight); // restore original height
+                this.setHeight(height, animate, duration, function(){
                     this.unclip();
                     if(typeof onComplete == "function") onComplete();
                 }.createDelegate(this), easing);
@@ -2473,7 +2606,8 @@ El.prototype = {
                 this.dom.style.visibility = visible ? "visible" : "hidden";
             }
         }else{
-                        var dom = this.dom;
+            // closure for composites
+            var dom = this.dom;
             var visMode = this.visibilityMode;
             if(visible){
                 this.setOpacity(.01);
@@ -2581,7 +2715,8 @@ El.prototype = {
         return this;
     },
 
-        classReCache: {},
+    // private
+    classReCache: {},
 
     
     toggleClass : function(className){
@@ -2785,14 +2920,14 @@ El.prototype = {
 
     
     getHeight : function(contentHeight){
-        var h = this.dom.offsetHeight || 0;
+        var h = Math.max(this.dom.offsetHeight, this.dom.clientHeight) || 0;
         h = contentHeight !== true ? h : h-this.getBorderWidth("tb")-this.getPadding("tb");
         return h < 0 ? 0 : h;
     },
 
     
     getWidth : function(contentWidth){
-        var w = this.dom.offsetWidth || 0;
+        var w = Math.max(this.dom.offsetWidth, this.dom.clientWidth) || 0;
         w = contentWidth !== true ? w : w-this.getBorderWidth("lr")-this.getPadding("lr");
         return w < 0 ? 0 : w;
     },
@@ -2862,7 +2997,8 @@ El.prototype = {
         return asNumber ? parseInt(this.dom.value, 10) : this.dom.value;
     },
 
-        adjustWidth : function(width){
+    // private
+    adjustWidth : function(width){
         if(typeof width == "number"){
             if(this.autoBoxAdjust && !this.isBorderBox()){
                width -= (this.getBorderWidth("lr") + this.getPadding("lr"));
@@ -2874,7 +3010,8 @@ El.prototype = {
         return width;
     },
 
-        adjustHeight : function(height){
+    // private
+    adjustHeight : function(height){
         if(typeof height == "number"){
            if(this.autoBoxAdjust && !this.isBorderBox()){
                height -= (this.getBorderWidth("tb") + this.getPadding("tb"));
@@ -2910,7 +3047,8 @@ El.prototype = {
 
     
      setSize : function(width, height, animate){
-        if(typeof width == "object"){             height = width.height; width = width.width;
+        if(typeof width == "object"){ // in case of object from getSize()
+            height = width.height; width = width.width;
         }
         width = this.adjustWidth(width); height = this.adjustHeight(height);
         if(!animate || !A){
@@ -3089,16 +3227,21 @@ El.prototype = {
         return this;
     },
 
-        fixDisplay : function(){
+    // private
+    fixDisplay : function(){
         if(this.getStyle("display") == "none"){
             this.setStyle("visibility", "hidden");
-            this.setStyle("display", this.originalDisplay);             if(this.getStyle("display") == "none"){                 this.setStyle("display", "block");
+            this.setStyle("display", this.originalDisplay); // first try reverting to default
+            if(this.getStyle("display") == "none"){ // if that fails, default to block
+                this.setStyle("display", "block");
             }
         }
     },
 
-    	setOverflow : function(v){
-    	if(v=='auto' && Ext.isMac && Ext.isGecko2){     		this.dom.style.overflow = 'hidden';
+    // private
+	setOverflow : function(v){
+    	if(v=='auto' && Ext.isMac && Ext.isGecko2){ // work around stupid FF 2.0/Mac scroll bar bug
+    		this.dom.style.overflow = 'hidden';
         	(function(){this.dom.style.overflow = 'auto';}).defer(1, this);
     	}else{
     		this.dom.style.overflow = v;
@@ -3170,7 +3313,9 @@ El.prototype = {
 
     
     getAnchorXY : function(anchor, local, s){
-                
+        //Passing a different size is useful for pre-calculating anchors,
+        //especially for anchored animations that change the el size.
+
         var w, h, vp = false;
         if(!s){
             var d = this.dom;
@@ -3229,7 +3374,8 @@ El.prototype = {
             var sc = this.getScroll();
             return [x + sc.left, y + sc.top];
         }
-                var o = this.getXY();
+        //Add the element's offset xy
+        var o = this.getXY();
         return [x+o[0], y+o[1]];
     },
 
@@ -3240,7 +3386,8 @@ El.prototype = {
             throw "Element.alignToXY with an element that doesn't exist";
         }
         var d = this.dom;
-        var c = false;         var p1 = "", p2 = "";
+        var c = false; //constrain to viewport
+        var p1 = "", p2 = "";
         o = o || [0,0];
 
         if(!p){
@@ -3257,17 +3404,24 @@ El.prototype = {
         }
         p1 = m[1]; p2 = m[2]; c = !!m[3];
 
-                        var a1 = this.getAnchorXY(p1, true);
+        //Subtract the aligned el's internal xy from the target's offset xy
+        //plus custom offset to get the aligned el's new offset xy
+        var a1 = this.getAnchorXY(p1, true);
         var a2 = el.getAnchorXY(p2, false);
 
         var x = a2[0] - a1[0] + o[0];
         var y = a2[1] - a1[1] + o[1];
 
         if(c){
-                        var w = this.getWidth(), h = this.getHeight(), r = el.getRegion();
-                        var dw = D.getViewWidth()-5, dh = D.getViewHeight()-5;
+            //constrain the aligned el to viewport if necessary
+            var w = this.getWidth(), h = this.getHeight(), r = el.getRegion();
+            // 5px of margin for ie
+            var dw = D.getViewWidth()-5, dh = D.getViewHeight()-5;
 
-                                                var p1y = p1.charAt(0), p1x = p1.charAt(p1.length-1);
+            //If we are at a viewport boundary and the aligned el is anchored on a target border that is
+            //perpendicular to the vp border, allow the aligned el to slide on that border,
+            //otherwise swap the aligned el to the opposite border of the target.
+            var p1y = p1.charAt(0), p1x = p1.charAt(p1.length-1);
            var p2y = p2.charAt(0), p2x = p2.charAt(p2.length-1);
            var swapY = ((p1y=="t" && p2y=="b") || (p1y=="b" && p2y=="t"));
            var swapX = ((p1x=="r" && p2x=="l") || (p1x=="l" && p2x=="r"));
@@ -3292,7 +3446,8 @@ El.prototype = {
         return [x,y];
     },
 
-        getConstrainToXY : function(){
+    // private
+    getConstrainToXY : function(){
         var os = {top:0, left:0, bottom:0, right: 0};
 
         return function(el, local, offsets, proposedXY){
@@ -3328,9 +3483,11 @@ El.prototype = {
             var x = xy[0], y = xy[1];
             var w = this.dom.offsetWidth, h = this.dom.offsetHeight;
 
-                        var moved = false;
+            // only move it if it needs it
+            var moved = false;
 
-                        if((x + w) > vr){
+            // first validate right/bottom
+            if((x + w) > vr){
                 x = vr - w;
                 moved = true;
             }
@@ -3338,7 +3495,8 @@ El.prototype = {
                 y = vb - h;
                 moved = true;
             }
-                        if(x < vx){
+            // then make sure top/left isn't negative
+            if(x < vx){
                 x = vx;
                 moved = true;
             }
@@ -3350,7 +3508,8 @@ El.prototype = {
         };
     }(),
 
-        adjustForConstraints : function(xy, parent, offsets){
+    // private
+    adjustForConstraints : function(xy, parent, offsets){
         return this.getConstrainToXY(parent || document, false, offsets, xy) ||  xy;
     },
 
@@ -3373,7 +3532,8 @@ El.prototype = {
             Ext.EventManager.on(window, 'scroll', action, this,
                 {buffer: tm == 'number' ? monitorScroll : 50});
         }
-        action.call(this);         return this;
+        action.call(this); // align immediately
+        return this;
     },
     
     clearOpacity : function(){
@@ -3564,7 +3724,8 @@ El.prototype = {
          }
     },
 
-        addStyles : function(sides, styles){
+    // private
+    addStyles : function(sides, styles){
         var val = 0, v, w;
         for(var i = 0, len = sides.length; i < len; i++){
             v = this.getStyle(styles[sides.charAt(i)]);
@@ -3596,7 +3757,7 @@ El.prototype = {
     
     mask : function(msg, msgCls){
         if(this.getStyle("position") == "static"){
-            this.setStyle("position", "relative");
+            this.addClass("x-masked-relative");
         }
         if(this._maskMsg){
             this._maskMsg.remove();
@@ -3617,7 +3778,8 @@ El.prototype = {
             mm.setDisplayed(true);
             mm.center(this);
         }
-        if(Ext.isIE && !(Ext.isIE7 && Ext.isStrict) && this.getStyle('height') == 'auto'){             this._mask.setSize(this.dom.clientWidth, this.getHeight());
+        if(Ext.isIE && !(Ext.isIE7 && Ext.isStrict) && this.getStyle('height') == 'auto'){ // ie will not expand full height automatically
+            this._mask.setSize(this.getWidth(), this.getHeight());
         }
         return this._mask;
     },
@@ -3632,7 +3794,7 @@ El.prototype = {
             this._mask.remove();
             delete this._mask;
         }
-        this.removeClass("x-masked");
+        this.removeClass(["x-masked", "x-masked-relative"]);
     },
 
     
@@ -3809,11 +3971,12 @@ El.prototype = {
     
     insertFirst: function(el, returnDom){
         el = el || {};
-        if(typeof el == 'object' && !el.nodeType && !el.dom){             return this.createChild(el, this.dom.firstChild, returnDom);
-        }else{
+        if(el.nodeType || el.dom){ // dh config
             el = Ext.getDom(el);
             this.dom.insertBefore(el, this.dom.firstChild);
             return !returnDom ? Ext.get(el) : el;
+        }else{
+            return this.createChild(el, this.dom.firstChild, returnDom);
         }
     },
 
@@ -3830,16 +3993,16 @@ El.prototype = {
         el = el || {};
         var refNode = where == 'before' ? this.dom : this.dom.nextSibling;
 
-        if(typeof el == 'object' && !el.nodeType && !el.dom){             if(where == 'after' && !this.dom.nextSibling){
-                rt = Ext.DomHelper.append(this.dom.parentNode, el, !returnDom);
-            }else{
-                rt = Ext.DomHelper[where == 'after' ? 'insertAfter' : 'insertBefore'](this.dom, el, !returnDom);
-            }
-
-        }else{
+        if(el.nodeType || el.dom){ // dh config
             rt = this.dom.parentNode.insertBefore(Ext.getDom(el), refNode);
             if(!returnDom){
                 rt = Ext.get(rt);
+            }
+        }else{
+            if(where == 'after' && !this.dom.nextSibling){
+                rt = Ext.DomHelper.append(this.dom.parentNode, el, !returnDom);
+            }else{
+                rt = Ext.DomHelper[where == 'after' ? 'insertAfter' : 'insertBefore'](this.dom, el, !returnDom);
             }
         }
         return rt;
@@ -3865,13 +4028,14 @@ El.prototype = {
 
     
     replaceWith: function(el){
-        if(typeof el == 'object' && !el.nodeType && !el.dom){             el = this.insertSibling(el, 'before');
-        }else{
+        if(el.nodeType || el.dom){ // dh config
             el = Ext.getDom(el);
             this.dom.parentNode.insertBefore(el, this.dom);
+        }else{
+            el = this.insertSibling(el, 'before');
         }
         El.uncache(this.id);
-        this.dom.parentNode.removeChild(this.dom);
+        Ext.removeNode(this.dom);
         this.dom = el;
         this.id = Ext.id(el);
         El.cache[this.id] = this;
@@ -4101,7 +4265,8 @@ var ep = El.prototype;
 
 
 ep.on = ep.addListener;
-    ep.mon = ep.addListener;
+    // backwards compat
+ep.mon = ep.addListener;
 
 ep.getUpdateManager = ep.getUpdater;
 
@@ -4111,8 +4276,10 @@ ep.un = ep.removeListener;
 
 ep.autoBoxAdjust = true;
 
+// private
 El.unitPattern = /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i;
 
+// private
 El.addUnits = function(v, defaultUnit){
     if(v === "" || v == "auto"){
         return v;
@@ -4126,6 +4293,7 @@ El.addUnits = function(v, defaultUnit){
     return v;
 };
 
+// special markup used throughout Ext when box wrapping elements
 El.boxMarkup = '<div class="{0}-tl"><div class="{0}-tr"><div class="{0}-tc"></div></div></div><div class="{0}-ml"><div class="{0}-mr"><div class="{0}-mc"></div></div></div><div class="{0}-bl"><div class="{0}-br"><div class="{0}-bc"></div></div></div>';
 
 El.VISIBILITY = 1;
@@ -4147,7 +4315,8 @@ var docEl;
 El.get = function(el){
     var ex, elm, id;
     if(!el){ return null; }
-    if(typeof el == "string"){         if(!(elm = document.getElementById(el))){
+    if(typeof el == "string"){ // element id
+        if(!(elm = document.getElementById(el))){
             return null;
         }
         if(ex = El.cache[el]){
@@ -4156,7 +4325,8 @@ El.get = function(el){
             ex = El.cache[el] = new El(elm);
         }
         return ex;
-    }else if(el.tagName){         if(!(id = el.id)){
+    }else if(el.tagName){ // dom element
+        if(!(id = el.id)){
             id = Ext.id(el);
         }
         if(ex = El.cache[id]){
@@ -4167,14 +4337,18 @@ El.get = function(el){
         return ex;
     }else if(el instanceof El){
         if(el != docEl){
-            el.dom = document.getElementById(el.id) || el.dom;                                                                       El.cache[el.id] = el;         }
+            el.dom = document.getElementById(el.id) || el.dom; // refresh dom element in case no longer valid,
+                                                          // catch case where it hasn't been appended
+            El.cache[el.id] = el; // in case it was created directly with Element(), let's cache it
+        }
         return el;
     }else if(el.isComposite){
         return el;
     }else if(Ext.isArray(el)){
         return El.select(el);
     }else if(el == document){
-                if(!docEl){
+        // create a bogus element object representing the document object
+        if(!docEl){
             var f = function(){};
             f.prototype = El.prototype;
             docEl = new f();
@@ -4185,6 +4359,7 @@ El.get = function(el){
     return null;
 };
 
+// private
 El.uncache = function(el){
     for(var i = 0, a = arguments, len = a.length; i < len; i++) {
         if(a[i]){
@@ -4193,6 +4368,9 @@ El.uncache = function(el){
     }
 };
 
+// private
+// Garbage collection - uncache elements/purge listeners on orphaned elements
+// so we don't hold a reference and cause the browser to retain them
 El.garbageCollect = function(){
     if(!Ext.enableGarbageCollector){
         clearInterval(El.collectorThread);
@@ -4200,7 +4378,24 @@ El.garbageCollect = function(){
     }
     for(var eid in El.cache){
         var el = El.cache[eid], d = el.dom;
-                                                                                                                                                if(!d || !d.parentNode || (!d.offsetParent && !document.getElementById(eid))){
+        // -------------------------------------------------------
+        // Determining what is garbage:
+        // -------------------------------------------------------
+        // !d
+        // dom node is null, definitely garbage
+        // -------------------------------------------------------
+        // !d.parentNode
+        // no parentNode == direct orphan, definitely garbage
+        // -------------------------------------------------------
+        // !d.offsetParent && !document.getElementById(eid)
+        // display none elements have no offsetParent so we will
+        // also try to look it up by it's id. However, check
+        // offsetParent first so we don't do unneeded lookups.
+        // This enables collection of elements that are not orphans
+        // directly, but somewhere up the line they have an orphan
+        // parent.
+        // -------------------------------------------------------
+        if(!d || !d.parentNode || (!d.offsetParent && !document.getElementById(eid))){
             delete El.cache[eid];
             if(d && Ext.enableListenerCollection){
                 Ext.EventManager.removeAll(d);
@@ -4214,6 +4409,7 @@ var flyFn = function(){};
 flyFn.prototype = El.prototype;
 var _cls = new flyFn();
 
+// dom is optional
 El.Flyweight = function(dom){
     this.dom = dom;
 };
@@ -4241,6 +4437,7 @@ Ext.get = El.get;
 
 Ext.fly = El.fly;
 
+// speedy lookup for elements never to box adjust
 var noBoxAdjust = Ext.isStrict ? {
     select:1
 } : {
@@ -4257,6 +4454,7 @@ Ext.EventManager.on(window, 'unload', function(){
 });
 })();
 
+//Notifies Element that fx methods are available
 Ext.enableFx = true;
 
 
@@ -4270,25 +4468,31 @@ Ext.Fx = {
 
             anchor = anchor || "t";
 
-                        this.fixDisplay();
+            // fix display to visibility
+            this.fixDisplay();
 
-                        var r = this.getFxRestore();
+            // restore values after effect
+            var r = this.getFxRestore();
             var b = this.getBox();
-                        this.setSize(b);
+            // fixed size for slide
+            this.setSize(b);
 
-                        var wrap = this.fxWrap(r.pos, o, "hidden");
+            // wrap if needed
+            var wrap = this.fxWrap(r.pos, o, "hidden");
 
             var st = this.dom.style;
             st.visibility = "visible";
             st.position = "absolute";
 
-                        var after = function(){
+            // clear out temp styles after slide and unwrap
+            var after = function(){
                 el.fxUnwrap(wrap, r.pos, o);
                 st.width = r.width;
                 st.height = r.height;
                 el.afterFx(o);
             };
-                        var a, pt = {to: [b.x, b.y]}, bw = {to: b.width}, bh = {to: b.height};
+            // time to calc the positions
+            var a, pt = {to: [b.x, b.y]}, bw = {to: b.width}, bh = {to: b.height};
 
             switch(anchor.toLowerCase()){
                 case "t":
@@ -4358,12 +4562,15 @@ Ext.Fx = {
 
             anchor = anchor || "t";
 
-                        var r = this.getFxRestore();
+            // restore values after effect
+            var r = this.getFxRestore();
             
             var b = this.getBox();
-                        this.setSize(b);
+            // fixed size for slide
+            this.setSize(b);
 
-                        var wrap = this.fxWrap(r.pos, o, "visible");
+            // wrap if needed
+            var wrap = this.fxWrap(r.pos, o, "visible");
 
             var st = this.dom.style;
             st.visibility = "visible";
@@ -4440,7 +4647,8 @@ Ext.Fx = {
             this.clearOpacity();
             this.show();
 
-                        var r = this.getFxRestore();
+            // restore values after effect
+            var r = this.getFxRestore();
             var st = this.dom.style;
 
             var after = function(){
@@ -4486,7 +4694,8 @@ Ext.Fx = {
             this.clearOpacity();
             this.clip();
 
-                        var r = this.getFxRestore();
+            // restore values after effect
+            var r = this.getFxRestore();
             var st = this.dom.style;
 
             var after = function(){
@@ -4551,58 +4760,95 @@ Ext.Fx = {
 
    
     frame : function(color, count, o){
-        var el = this.getFxEl();
+        var el = this.getFxEl(),
+            proxy,
+            active;
+            
         o = o || {};
 
         el.queueFx(o, function(){
-            color = color || "#C3DAF9";
+            color = color || "#C3DAF9"
             if(color.length == 6){
                 color = "#" + color;
-            }
+            }            
             count = count || 1;
-            var duration = o.duration || 1;
             this.show();
 
-            var b = this.getBox();
-            var animFn = function(){
-                var proxy = Ext.getBody().createChild({
-                     style:{
-                        visbility:"hidden",
-                        position:"absolute",
-                        "z-index":"35000",                         border:"0px solid " + color
-                     }
-                  });
+            var xy = this.getXY(),
+                dom = this.dom,
+                b = {x: xy[0], y: xy[1], 0: xy[0], 1: xy[1], width: dom.offsetWidth, height: dom.offsetHeight},
+                proxy,
+                queue = function(){
+                    proxy = Ext.get(document.body || document.documentElement).createChild({
+                        style:{
+                            visbility: 'hidden',
+                            position : 'absolute',
+                            "z-index": 35000, // yee haw
+                            border : "0px solid " + color
+                        }
+                    });
+                    return proxy.queueFx({}, animFn);
+                };
+            
+            
+            arguments.callee.anim = {
+                isAnimated: function(){
+                    return true;
+                },
+                stop: function() {
+                    count = 0;
+                    proxy.stopFx();
+                }
+            };
+            
+            function animFn(){
                 var scale = Ext.isBorderBox ? 2 : 1;
-                proxy.animate({
-                    top:{from:b.y, to:b.y - 20},
-                    left:{from:b.x, to:b.x - 20},
-                    borderWidth:{from:0, to:10},
-                    opacity:{from:1, to:0},
-                    height:{from:b.height, to:(b.height + (20*scale))},
-                    width:{from:b.width, to:(b.width + (20*scale))}
-                }, duration, function(){
-                    proxy.remove();
-                    if(--count > 0){
-                         animFn();
-                    }else{
-                        el.afterFx(o);
+                active = proxy.anim({
+                    top : {from : b.y, to : b.y - 20},
+                    left : {from : b.x, to : b.x - 20},
+                    borderWidth : {from : 0, to : 10},
+                    opacity : {from : 1, to : 0},
+                    height : {from : b.height, to : b.height + 20 * scale},
+                    width : {from : b.width, to : b.width + 20 * scale}
+                },{
+                    duration: o.duration || 1,
+                    callback: function() {
+                        proxy.remove();
+                        --count > 0 ? queue() : el.afterFx(o);
                     }
                 });
+                arguments.callee.anim = {
+                    isAnimated: function(){
+                        return true;
+                    },
+                    stop: function(){
+                        active.stop();
+                    }
+                };
             };
-            animFn.call(this);
+            queue();
         });
         return this;
     },
 
    
     pause : function(seconds){
-        var el = this.getFxEl();
-        var o = {};
+        var el = this.getFxEl(),
+            t;
 
-        el.queueFx(o, function(){
-            setTimeout(function(){
-                el.afterFx(o);
+        el.queueFx({}, function(){
+            t = setTimeout(function(){
+                el.afterFx({});
             }, seconds * 1000);
+            arguments.callee.anim = {
+                isAnimated: function(){
+                    return true;
+                },
+                stop: function(){
+                    clearTimeout(t);
+                    el.afterFx({});
+                }
+            };
         });
         return this;
     },
@@ -4632,14 +4878,17 @@ Ext.Fx = {
         var el = this.getFxEl();
         o = o || {};
         el.queueFx(o, function(){
-            arguments.callee.anim = this.fxanim({opacity:{to:o.endOpacity || 0}},
+            var to = o.endOpacity || 0;
+            arguments.callee.anim = this.fxanim({opacity:{to:to}},
                 o, null, .5, "easeOut", function(){
-                if(this.visibilityMode == Ext.Element.DISPLAY || o.useDisplay){
-                     this.dom.style.display = "none";
-                }else{
-                     this.dom.style.visibility = "hidden";
+                if(to === 0){
+                    if(this.visibilityMode == Ext.Element.DISPLAY || o.useDisplay){
+                         this.dom.style.display = "none";
+                    }else{
+                         this.dom.style.visibility = "hidden";
+                    }
+                    this.clearOpacity();
                 }
-                this.clearOpacity();
                 el.afterFx(o);
             });
         });
@@ -4707,7 +4956,8 @@ Ext.Fx = {
         el.queueFx(o, function(){
             anchor = anchor || "b";
 
-                        var r = this.getFxRestore();
+            // restore values after effect
+            var r = this.getFxRestore();
             var w = this.getWidth(),
                 h = this.getHeight();
 
@@ -4803,7 +5053,8 @@ Ext.Fx = {
         if(this.hasActiveFx()){
             var cur = this.fxQueue[0];
             if(cur && cur.anim && cur.anim.isAnimated()){
-                this.fxQueue = [cur];                 cur.anim.stop(true);
+                this.fxQueue = [cur]; // clear out others
+                cur.anim.stop(true);
             }
         }
         return this;
@@ -4900,15 +5151,18 @@ Ext.Fx = {
         if(o.remove === true){
             this.remove();
         }
-        Ext.callback(o.callback, o.scope, [this]);
         if(!o.concurrent){
             this.fxQueue.shift();
+        }
+        Ext.callback(o.callback, o.scope, [this]);
+        if(!o.concurrent){
             this.nextFx();
         }
     },
 
 	
-    getFxEl : function(){         return Ext.get(this.dom);
+    getFxEl : function(){ // support for composite element fx
+        return Ext.get(this.dom);
     },
 
 	
@@ -4929,8 +5183,11 @@ Ext.Fx = {
     }
 };
 
+// backwords compat
 Ext.Fx.resize = Ext.Fx.scale;
 
+//When included, Ext.Fx is automatically applied to Element so that all basic
+//effects are available directly via the Element API
 Ext.apply(Ext.Element.prototype, Ext.Fx);
 
 
@@ -5126,7 +5383,7 @@ Ext.extend(Ext.CompositeElementLite, Ext.CompositeElement, {
         return this.el;
     },
 
-    
+    // fixes scope with flyweight
     addListener : function(eventName, handler, scope, opt){
         var els = this.elements;
         for(var i = 0, len = els.length; i < len; i++) {
@@ -5275,7 +5532,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
                 url += (url.indexOf('?') != -1 ? '&' : '?') + dcp + '=' + (new Date().getTime());
             }
 
-            if(typeof o.autoAbort == 'boolean'){                 if(o.autoAbort){
+            if(typeof o.autoAbort == 'boolean'){ // options gets top priority
+                if(o.autoAbort){
                     this.abort();
                 }
             }else if(this.autoAbort !== false){
@@ -5309,7 +5567,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         }
     },
 
-        handleResponse : function(response){
+    // private
+    handleResponse : function(response){
         this.transId = false;
         var options = response.argument.options;
         response.argument = options ? options.argument : null;
@@ -5318,7 +5577,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         Ext.callback(options.callback, options.scope, [options, true, response]);
     },
 
-        handleFailure : function(response, e){
+    // private
+    handleFailure : function(response, e){
         this.transId = false;
         var options = response.argument.options;
         response.argument = options ? options.argument : null;
@@ -5327,7 +5587,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         Ext.callback(options.callback, options.scope, [options, false, response]);
     },
 
-        doFormUpload : function(o, ps, url){
+    // private
+    doFormUpload : function(o, ps, url){
         var id = Ext.id();
         var frame = document.createElement('iframe');
         frame.id = id;
@@ -5342,7 +5603,14 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
            document.frames[id].name = id;
         }
 
-        var form = Ext.getDom(o.form);
+        var form = Ext.getDom(o.form),
+            buf = {
+                target: form.target,
+                method: form.method,
+                encoding: form.encoding,
+                enctype: form.enctype,
+                action: form.action
+            };
         form.target = id;
         form.method = 'POST';
         form.enctype = form.encoding = 'multipart/form-data';
@@ -5351,7 +5619,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         }
 
         var hiddens, hd;
-        if(ps){             hiddens = [];
+        if(ps){ // add dynamic params
+            hiddens = [];
             ps = Ext.urlDecode(ps, false);
             for(var k in ps){
                 if(ps.hasOwnProperty(k)){
@@ -5366,13 +5635,15 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         }
 
         function cb(){
-            var r = {                  responseText : '',
+            var r = {  // bogus response object
+                responseText : '',
                 responseXML : null
             };
 
             r.argument = o ? o.argument : null;
 
-            try {                 var doc;
+            try { //
+                var doc;
                 if(Ext.isIE){
                     doc = frame.contentWindow.document;
                 }else {
@@ -5388,7 +5659,8 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
                 }
             }
             catch(e) {
-                            }
+                // ignore
+            }
 
             Ext.EventManager.removeListener(frame, 'load', cb, this);
 
@@ -5403,7 +5675,14 @@ Ext.extend(Ext.data.Connection, Ext.util.Observable, {
         Ext.EventManager.on(frame, 'load', cb, this);
         form.submit();
 
-        if(hiddens){             for(var i = 0, len = hiddens.length; i < len; i++){
+        form.target = buf.target;
+        form.method = buf.method;
+        form.enctype = buf.enctype;
+        form.encoding = buf.encoding;
+        form.action = buf.action;
+        
+        if(hiddens){ // remove dynamic params
+            for(var i = 0, len = hiddens.length; i < len; i++){
                 Ext.removeNode(hiddens[i]);
             }
         }
@@ -5497,7 +5776,8 @@ Ext.Updater = Ext.extend(Ext.util.Observable, {
     update : function(url, params, callback, discardUrl){
         if(this.fireEvent("beforeupdate", this.el, url, params) !== false){
             var cfg, callerScope;
-            if(typeof url == "object"){                 cfg = url;
+            if(typeof url == "object"){ // must be config object
+                cfg = url;
                 url = cfg.url;
                 params = params || cfg.params;
                 callback = callback || cfg.callback;
@@ -5604,10 +5884,12 @@ Ext.Updater = Ext.extend(Ext.util.Observable, {
         }
     },
 
-        processSuccess : function(response){
+    // private
+    processSuccess : function(response){
         this.transaction = null;
         if(response.argument.form && response.argument.reset){
-            try{                 response.argument.form.reset();
+            try{ // put in try/catch since some older FF releases had problems with this
+                response.argument.form.reset();
             }catch(e){}
         }
         if(this.loadScripts){
@@ -5619,14 +5901,16 @@ Ext.Updater = Ext.extend(Ext.util.Observable, {
         }
     },
 
-        updateComplete : function(response){
+    // private
+    updateComplete : function(response){
         this.fireEvent("update", this.el, response);
         if(typeof response.argument.callback == "function"){
             response.argument.callback.call(response.argument.scope, this.el, true, response, response.argument.options);
         }
     },
 
-        processFailure : function(response){
+    // private
+    processFailure : function(response){
         this.transaction = null;
         this.fireEvent("failure", this.el, response);
         if(typeof response.argument.callback == "function"){
@@ -5701,35 +5985,29 @@ Ext.UpdateManager = Ext.Updater;
 
 
 Ext.util.DelayedTask = function(fn, scope, args){
-    var id = null, d, t;
+    var id = null;
 
     var call = function(){
-        var now = new Date().getTime();
-        if(now - t >= d){
-            clearInterval(id);
-            id = null;
-            fn.apply(scope, args || []);
-        }
+        id = null;
+        fn.apply(scope, args || []);
     };
     
     this.delay = function(delay, newFn, newScope, newArgs){
-        if(id && delay != d){
+        if(id){
             this.cancel();
         }
-        d = delay;
-        t = new Date().getTime();
         fn = newFn || fn;
         scope = newScope || scope;
         args = newArgs || args;
         if(!id){
-            id = setInterval(call, d);
+            id = setTimeout(call, delay);
         }
     };
 
     
     this.cancel = function(){
         if(id){
-            clearInterval(id);
+            clearTimeout(id);
             id = null;
         }
     };

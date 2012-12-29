@@ -444,7 +444,7 @@ public class Asset extends CurrikiDocument {
 
     public void addAttachment(InputStream iStream, String name) throws XWikiException, IOException {
         assertCanEdit();
-        XWikiAttachment att = addAttachment(name, iStream).getAttachment();
+        XWikiAttachment att = addAttachment(name, iStream);//.getAttachment();
         getDoc().saveAttachmentContent(att, context);
     }
 
