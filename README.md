@@ -1,4 +1,5 @@
-i2gCurriki
-==========
+i2gCurrikiFork
+==============
 
-the set of differences between curriki 1.8.10 and the i2geo platform. This should become a fork one day.
+A fork of the Curriki platform for http://i2geo.net
+
