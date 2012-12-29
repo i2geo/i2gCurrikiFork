@@ -1,5 +1,8 @@
 *.class
-
+*~
+target
+overlays
+xwiki.log
 # Package Files #
 *.jar
 *.war

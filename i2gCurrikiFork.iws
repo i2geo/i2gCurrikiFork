@@ -2,6 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b9d201b1-00fa-45ea-9540-e82dd8f0f179" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/cactus/org/gelc/xwiki/plugins/assets/cactus/AssetManagerPluginTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/java/org/gelc/xwiki/plugins/assets/AssetManagerPluginTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/java/org/gelc/xwiki/plugins/framework/FrameworkManagerPluginTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/java/org/gelc/xwiki/plugins/mime/MimeTypePluginTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/resources/framework_Arizona.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/resources/metadata.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/curriki-old/gelcplugins/src/test/resources/xwiki.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/hsqldb/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/hsqldb/src/assemble/database.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/pgsql/pom.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i2gCurrikiFork.ipr" afterPath="$PROJECT_DIR$/i2gCurrikiFork.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i2gCurrikiFork.iws" afterPath="$PROJECT_DIR$/i2gCurrikiFork.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="i2gCurrikiFork.iws" />
@@ -60,82 +72,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LOMMacro.vm" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/LOMMacro.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="33" selection-start="12081" selection-end="12081" vertical-scroll-proportion="0.39658445">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OAI.vm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/OAI.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="1282" vertical-scroll-proportion="-0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OAITool.grv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/OAITool.grv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="5" selection-start="4940" selection-end="4940" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlatformStats.vm" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PlatformStats.vm" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/About/PlatformStats.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="250" selection-start="619" selection-end="849" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lucene.vm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/Admin/Lucene.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="52" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LucenePluginApi.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePluginApi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="45" selection-start="7107" selection-end="7107" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LucenePlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePlugin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="20" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchResults.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/SearchResults.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="22" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Asset.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/asset/src/main/java/org/curriki/xwiki/plugin/asset/Asset.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="371" column="52" selection-start="14539" selection-end="14539" vertical-scroll-proportion="0.0">
+            <state line="16" column="250" selection-start="619" selection-end="849" vertical-scroll-proportion="0.017429193">
               <folding />
             </state>
           </provider>
@@ -147,6 +87,9 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -179,12 +122,11 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="353" />
-    <option name="y" value="342" />
-    <option name="width" value="1238" />
-    <option name="height" value="735" />
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1104" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -210,6 +152,26 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -368,202 +330,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="harvester" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oaiprovider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="harvester" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="provider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -574,6 +340,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -582,8 +349,8 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.HaversterAttempt">
     <configuration default="false" name="HaversterAttempt" type="Application" factoryName="Application" temporary="true">
@@ -709,24 +476,6 @@
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
   </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="$PROJECT_DIR$" />
-          <option name="myCopyRoot" value="$PROJECT_DIR$" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="$PROJECT_DIR$" />
-          <option name="myCopyRoot" value="$PROJECT_DIR$" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b9d201b1-00fa-45ea-9540-e82dd8f0f179" name="Default" comment="" />
@@ -736,8 +485,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="353" y="342" width="1238" height="735" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1920" height="1104" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -753,7 +502,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26845637" sideWeight="0.98953664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2678762" sideWeight="0.98953664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32742155" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -858,61 +607,44 @@
         <state line="107" column="14" selection-start="4027" selection-end="4027" vertical-scroll-proportion="0.33292684" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/OAITool.grv">
+    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/SearchResults.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="5" selection-start="4940" selection-end="4940" vertical-scroll-proportion="0.0">
+        <state line="103" column="22" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.016736401">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/About/PlatformStats.vm">
+    <entry file="file://$PROJECT_DIR$/plugins/asset/src/main/java/org/curriki/xwiki/plugin/asset/Asset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="250" selection-start="619" selection-end="849" vertical-scroll-proportion="0.0">
+        <state line="406" column="0" selection-start="16605" selection-end="16605" vertical-scroll-proportion="0.60251045">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/Admin/Lucene.vm">
+    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="52" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0">
+        <state line="157" column="20" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.016736401">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePluginApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="45" selection-start="7107" selection-end="7107" vertical-scroll-proportion="0.0">
+        <state line="180" column="45" selection-start="7107" selection-end="7107" vertical-scroll-proportion="0.016736401">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/SearchResults.java">
+    <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/Admin/Lucene.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="22" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/asset/src/main/java/org/curriki/xwiki/plugin/asset/Asset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="371" column="52" selection-start="14539" selection-end="14539" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="20" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.0">
+        <state line="57" column="0" selection-start="2304" selection-end="2304" vertical-scroll-proportion="0.017429193">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/OAI.vm">
+    <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/About/PlatformStats.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="1282" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/LOMMacro.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="33" selection-start="12081" selection-end="12081" vertical-scroll-proportion="0.39658445">
+        <state line="16" column="250" selection-start="619" selection-end="849" vertical-scroll-proportion="0.017429193">
           <folding />
         </state>
       </provider>

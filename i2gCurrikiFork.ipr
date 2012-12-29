@@ -185,9 +185,7 @@
             <element id="library" level="project" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-skinx:1.1" />
             <element id="library" level="project" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-scheduler:1.3" />
             <element id="library" level="project" name="Maven: quartz:quartz:1.5.2" />
-            <element id="archive" name="i2geo-plugin-oaiprovider-1.1-SNAPSHOT.jar">
-              <element id="module-output" name="i2geo-plugin-oaiprovider" />
-            </element>
+            <element id="library" level="project" name="Maven: net.i2geo.platform:i2geo-plugin-oaiprovider:1.1-SNAPSHOT" />
             <element id="library" level="project" name="Maven: com.lyncode:xoai:2.2.9" />
             <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.5" />
             <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.2.1" />
@@ -253,6 +251,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file url="file://$PROJECT_DIR$/web/overlays" />
     <file url="file://$PROJECT_DIR$/web/overlays" />
     <file type="web" url="file://$PROJECT_DIR$/web" />
   </component>
@@ -439,6 +438,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/wiki/curriki-wiki.iml" filepath="$PROJECT_DIR$/wiki/curriki-wiki.iml" />
       <module fileurl="file://$PROJECT_DIR$/i2geo-platform-parent.iml" filepath="$PROJECT_DIR$/i2geo-platform-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/i2geo-platform-web.iml" filepath="$PROJECT_DIR$/web/i2geo-platform-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugins/currikiactivitystream/i2geo-plugin-activitystream.iml" filepath="$PROJECT_DIR$/plugins/currikiactivitystream/i2geo-plugin-activitystream.iml" />
@@ -472,7 +472,9 @@
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="svn" />
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/wiki" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="XPathView.XPathProjectComponent">
@@ -1239,17 +1241,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/jtidy/jtidy/8.0-20060801.131059-3-dev/jtidy-8.0-20060801.131059-3-dev-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: junit:junit:3.8.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: junit:junit:3.8.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2.jar!/" />
@@ -1292,6 +1283,19 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/net/i2geo/appl/WIRIS_HTML_conversion/1.0-SNAPSHOT/WIRIS_HTML_conversion-1.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.i2geo.platform:i2geo-plugin-oaiprovider:1.1-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/i2geo/platform/i2geo-plugin-oaiprovider/1.1-SNAPSHOT/i2geo-plugin-oaiprovider-1.1-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/plugins/oaiprovider/pom-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/net/i2geo/platform/i2geo-plugin-oaiprovider/1.1-SNAPSHOT/i2geo-plugin-oaiprovider-1.1-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/plugins/oaiprovider/pom-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/net/i2geo/platform/i2geo-plugin-oaiprovider/1.1-SNAPSHOT/i2geo-plugin-oaiprovider-1.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: net.i2geo:i2geoAPI:1.0-SNAPSHOT">

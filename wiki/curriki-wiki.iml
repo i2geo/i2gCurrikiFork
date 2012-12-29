@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="web" name="Web">
-      <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
-          <root url="file://$MODULE_DIR$/target/maven-shared-archive-resources" relative="WEB-INF" />
-          <root url="file://$MODULE_DIR$/overlays/com.xpn.xwiki.platform.xwiki-web-standard-1.5" relative="/" />
-        </webroots>
-      </configuration>
-    </facet>
     <facet type="AspectJ" name="AspectJ">
       <configuration>
         <option name="overrideAspectPath" value="true" />
@@ -23,6 +11,7 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -182,14 +171,6 @@
     <orderEntry type="library" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-skinx:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-scheduler:1.3" level="project" />
     <orderEntry type="library" name="Maven: quartz:quartz:1.5.2" level="project" />
-    <orderEntry type="library" name="Maven: net.i2geo.platform:i2geo-plugin-oaiprovider:1.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.lyncode:xoai:2.2.9" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.dspace:oaicat:1.5.48" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-io:1.3.2" level="project" />
     <orderEntry type="module" module-name="i2geo-plugin-activitystream" />
     <orderEntry type="library" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-activitystream:1.1" level="project" />
     <orderEntry type="module" module-name="i2geo-plugin-servlet" />
@@ -203,47 +184,6 @@
     <orderEntry type="library" name="Maven: org.json:org.json:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.noelios.restlet:com.noelios.restlet.ext.servlet:1.1-M3" level="project" />
     <orderEntry type="library" name="Maven: com.noelios.restlet:com.noelios.restlet:1.1-M3" level="project" />
-  </component>
-  <component name="NotificationConfiguration">
-    <notification groupId="Grape" />
-    <notification groupId="FindInPath" displayType="TOOL_WINDOW" shouldLog="false" />
-    <notification groupId="Framework Detection" />
-    <notification groupId="PHPUnit Generate Actions" />
-    <notification groupId="PHPUnit" displayType="TOOL_WINDOW" shouldLog="false" />
-    <notification groupId="External Executable Critical Failures" displayType="TOOL_WINDOW" />
-    <notification groupId="Git Minor Notifications" />
-    <notification groupId="Git Important Messages" displayType="STICKY_BALLOON" />
-    <notification groupId="Git Messages" displayType="TOOL_WINDOW" />
-    <notification groupId="Maven Import" displayType="STICKY_BALLOON" />
-    <notification groupId="Compiler" displayType="NONE" />
-    <notification groupId="IDE Usage Statistics" displayType="STICKY_BALLOON" shouldLog="false" />
-    <notification groupId="IDE Fatal Errors" displayType="NONE" />
-    <notification groupId="Groovy DSL errors" />
-    <notification groupId="HotSwap" displayType="TOOL_WINDOW" />
-    <notification groupId="Database" displayType="TOOL_WINDOW" />
-    <notification groupId="Debugger messages" displayType="TOOL_WINDOW" shouldLog="false" />
-    <notification groupId="Git Important Errors" displayType="STICKY_BALLOON" />
-    <notification groupId="Facet Detector" />
-    <notification groupId="Subversion" displayType="STICKY_BALLOON" />
-    <notification groupId="Plugin Error" />
-    <notification groupId="Load Error" displayType="STICKY_BALLOON" />
-    <notification groupId="System Messages" displayType="STICKY_BALLOON" />
-    <notification groupId="Indexing" shouldLog="false" />
-    <notification groupId="Updater" />
-    <notification groupId="AspectJ" />
-    <notification groupId="Execution" displayType="NONE" />
-    <notification groupId="Maven" />
-    <notification groupId="Project Loading Error" />
-    <notification groupId="Common Version Control Messages" displayType="TOOL_WINDOW" />
-    <notification groupId="Test Runner" displayType="NONE" />
-    <toolWindow group="Git Messages" />
-    <toolWindow group="External Executable Critical Failures" />
-    <toolWindow group="Common Version Control Messages" />
-    <toolWindow group="Database" />
-    <toolWindow group="Debugger messages" />
-    <toolWindow group="FindInPath" />
-    <toolWindow group="HotSwap" />
-    <toolWindow group="PHPUnit" />
   </component>
 </module>
 
