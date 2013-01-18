@@ -36,7 +36,7 @@
 ##
 ## Edit menu
 ##
-#if($isAdvancedUser)
+###if($isAdvancedUser)
 #xwikitopmenuentrystart($doc.getURL($editaction, $languageparams) $msg.get("edit") "tmEdit")
 #submenuitem($doc.getURL("edit", "${languageparams}&amp;editor=wiki") $msg.get("editwiki"))
 #submenuitem($doc.getURL("edit", "$languageparams&amp;editor=wysiwyg") $msg.get("editvisual"))
@@ -49,7 +49,7 @@
 #xwikitopmenuentryend()
 #else ## !isAdvanced
 #xwikitopmenuentry($doc.getURL($editaction, $languageparams) $msg.get("edit") "tmEdit")
-#end
+###end
 #end
 ##
 ## Show menu
