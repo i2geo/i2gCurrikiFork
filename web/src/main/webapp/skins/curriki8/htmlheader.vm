@@ -8,17 +8,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>#pageTitle()</title>
-<meta http-equiv="Content-Type" content="text/html; charset=$xwiki.encoding" />
-$xwiki.parseContent($!xwiki.getWebPreference("meta"))
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+##    <!-- analytics -->#template("analytics.vm")<!-- /analytics -->
+    #if($doc.space.startsWith("Coll_"))
+    ## an asset
+        #set($assetObj=$!doc.getObject("CurrikiCode.AssetClass"))##
+        #set($description="$msg.get('global.description.aCurrikiResource.prefix'): $!{assetObj.description}")##
+        #if($description.length()>400)#set($description="${description.substring(0,397)}...")#end##
+        <meta name="description" content="$escapetool.xml($description.replaceAll('<[^>]+>','').replaceAll('\n',' '))" />
+        <meta name="author" content="$xwiki.getUserName($doc.creator,false).toString()" />
+    #else
+        <meta name="description" content="Curriki, the online education community, is building the first website to offer free, open-source instructional materials for K-12. We have thousands of free worksheets, lesson plans, exams, project ideas and activities for English language arts, math, science, social studies, technology integration and other subjects. All of our educational material is contributed by teachers and partners and is free and open source." />
+        <meta name="author" content="The Curriki team and community" />
+    #end
+    <meta name="language" content="$context.language" />
+    $xwiki.parseContent($!xwiki.getSpacePreference("meta"))
+#*
+    <meta name="keywords" content="education, curriculum, curricula, open-source, worksheets, lesson plans, exams, project ideas, activities, English language arts, Math, Science, Social Studies, educational, instructional materials, teachers, educators, teaching" />
+    <meta name="distribution" content="GLOBAL" />
+    <meta name="rating" content="General" />
+    *#
+##    <meta name="copyright" content="you need to choose your copyright" />
+##    <meta http-equiv="reply-to" content="" />
+    <meta name="revisit-after" content="7 days" />
+##
+    <link rel="alternate" type="application/rss+xml" title="Resource updates" href="/xwiki/bin/view/Main/WebRss?xpage=rdf" />
+    #set($vignette=$doc.getObject("VignettesCode.VignetteClass"))##
+    #if($vignette)
+    <link rel="image_src" href="/static/vignettesShaded/${doc.space}__${doc.name}__small.png"/>
+    #else
+    <link rel="image_src" href="/xwiki/skins/curriki8/logo_i2g.png"/>
+    #end
+##
+##
 ## #template("analytics.vm")
 #template("stylesheets.vm")
 <meta http-equiv="imagetoolbar" content="no" />
 #set($headerfile="html")
-
 <script type="text/javascript">
   window.browserLanguages = "${context.language},$!{request.getHeader("Accept-Language")}";
 </script>
-
 <!-- imitate google analytics method -->
 <script type="text/javascript">
   window.pageTracker = new Object();
@@ -27,7 +56,6 @@ $xwiki.parseContent($!xwiki.getWebPreference("meta"))
     img.src = "http://i2geo.net/static/tracker.png" + page + "?time=" + new Date();
   }
 </script>
-
 #template("javascripts.vm")
 #template("ie.vm")
 ## For development only. Reading styles from XWiki.style
