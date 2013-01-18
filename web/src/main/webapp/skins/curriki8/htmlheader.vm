@@ -62,7 +62,7 @@
 ## <link rel="stylesheet" href="$xwiki.getURL("XWiki.Style","view", "xpage=plain")" type="text/css" />
 ##
 #if ($doc.getObject("CurrikiCode.AssetClass"))
-<link rel="alternate" type="application/lom+xml" title="Wiki LOM Export" href="/xwiki/bin/view/Main/WebResourceLom?xpage=plain&id=${doc.web}.${doc.name}" />
+<link rel="alternate" type="application/lom+xml" title="LOM Export" href="/xwiki/bin/view/Metadata/LOM?xpage=plain&asset=${doc.fullName}" />
 #end
 ##
 #template("onloadunloadjs.vm")
