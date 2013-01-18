@@ -1169,23 +1169,23 @@ $memberdoc.getRenderedContent("$!content")</div>
  * Macro to display the page title
  *#
 #macro(pageTitle) ##{
-  #if($doc.fullName=="Search.WebHome") ##{
-    $msg.get("main.curriki") - $msg.get("caption.search")
-  #elseif($doc.fullName.startsWith("Coll_"))
-  i2geo - $doc.displayTitle
-  #elseif($doc.space == "MyCurriki")
-      #set($user = $context.user)#if($request.user)#set($user=$request.user)#end##
-      #set($userDoc=$xwiki.getDocument($user))##
-      #set($userObj=$userDoc.getObject("XWiki.XWikiUsers"))##
-  i2geo - $msg.get("mycurriki.tab.${doc.name.toLowerCase()}.label") - $userObj.first_name $userObj.last_name
-  #else ##}{
-      #if($title)$!escapetool.xml($!title.replaceAll('<[^>]+>','').replaceAll('\n',' '))
-      #elseif($doc.displayTitle)i2geo - $!escapetool.xml($!doc.displayTitle.replaceAll('<[^>]+>','').replaceAll('\n',' '))
-      #else i2geo $doc.name
-      #end
+    #if($doc.fullName=="Search.WebHome") ##{
+        $msg.get("main.curriki") - $msg.get("caption.search")
+    #elseif($doc.fullName.startsWith("Coll_"))
+    i2geo - $doc.displayTitle
+    #elseif($doc.space == "MyCurriki")
+        #set($user = $context.user)#if($request.user)#set($user=$request.user)#end##
+        #set($userDoc=$xwiki.getDocument($user))##
+        #set($userObj=$userDoc.getObject("XWiki.XWikiUsers"))##
+    i2geo - $msg.get("mycurriki.tab.${doc.name.toLowerCase()}.label") - $userObj.first_name $userObj.last_name
+    #else ##}{
+        #if($title)$!escapetool.xml($!title.replaceAll('<[^>]+>','').replaceAll('\n',' '))
+        #elseif($doc.displayTitle)i2geo - $!escapetool.xml($!doc.displayTitle.replaceAll('<[^>]+>','').replaceAll('\n',' '))
+        #else i2geo $doc.name
+        #end
     #end ##}
-  #end ## }
-#end ##}
+#end ## }
+##}
 ## End pageTitle
 
 ## From Add Path spec in EOU1
