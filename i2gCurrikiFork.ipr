@@ -185,14 +185,6 @@
             <element id="library" level="project" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-skinx:1.1" />
             <element id="library" level="project" name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-scheduler:1.3" />
             <element id="library" level="project" name="Maven: quartz:quartz:1.5.2" />
-            <element id="library" level="project" name="Maven: net.i2geo.platform:i2geo-plugin-oaiprovider:1.1-SNAPSHOT" />
-            <element id="library" level="project" name="Maven: com.lyncode:xoai:2.2.9" />
-            <element id="library" level="project" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.5" />
-            <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.2.1" />
-            <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.2.1" />
-            <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />
-            <element id="library" level="project" name="Maven: org.dspace:oaicat:1.5.48" />
-            <element id="library" level="project" name="Maven: org.apache.commons:commons-io:1.3.2" />
             <element id="archive" name="i2geo-plugin-activitystream-1.1-SNAPSHOT.jar">
               <element id="module-output" name="i2geo-plugin-activitystream" />
             </element>
@@ -244,9 +236,7 @@
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/plugins/oaiprovider" charset="UTF-8" />
-  </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
@@ -592,17 +582,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/google/googleapi/UNKNOWN/googleapi-UNKNOWN-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.lyncode:xoai:2.2.9">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/lyncode/xoai/2.2.9/xoai-2.2.9.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/lyncode/xoai/2.2.9/xoai-2.2.9-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/lyncode/xoai/2.2.9/xoai-2.2.9-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.noelios.restlet:com.noelios.restlet.ext.servlet:1.1-M3">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/noelios/restlet/com.noelios.restlet.ext.servlet/1.1-M3/com.noelios.restlet.ext.servlet-1.1-M3.jar!/" />
@@ -634,17 +613,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/novell/ldap/UNKNOWN/ldap-UNKNOWN-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.sun.xml.bind:jaxb-impl:2.2.5">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/sun/xml/bind/jaxb-impl/2.2.5/jaxb-impl-2.2.5.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/sun/xml/bind/jaxb-impl/2.2.5/jaxb-impl-2.2.5-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/sun/xml/bind/jaxb-impl/2.2.5/jaxb-impl-2.2.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.xpn.xwiki.platform.plugins:xwiki-plugin-activitystream:1.1">
@@ -1428,50 +1396,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/axis/axis/1.4/axis-1.4-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.commons:commons-io:1.3.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-io/1.3.2/commons-io-1.3.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-io/1.3.2/commons-io-1.3.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-io/1.3.2/commons-io-1.3.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.commons:commons-lang3:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.httpcomponents:httpclient:4.2.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.2.1/httpclient-4.2.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.2.1/httpclient-4.2.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.2.1/httpclient-4.2.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.httpcomponents:httpcore:4.2.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.2.1/httpcore-4.2.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.2.1/httpcore-4.2.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.2.1/httpcore-4.2.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apache.jackrabbit:jackrabbit-core:1.1">
