@@ -2,12 +2,1232 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="b9d201b1-00fa-45ea-9540-e82dd8f0f179" name="Default" comment="IG-621: Microformats for authors: hcard and rel=author">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i2gCurrikiFork.ipr" afterPath="$PROJECT_DIR$/i2gCurrikiFork.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/About" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CurrikiCode" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Main" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Notifications" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/PanelIncludes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Panels" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Registration" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Util" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/AdWordsInfoClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/AdWordsJumpPageTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/CreateGAWLPJoin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/CreateGAWLPPhaseII" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/CreateGAWLPSearchOnly" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/CreateGAWLP" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/FreeCurriculum" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/FreeWorksheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageLogExport" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageLogTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageLogWriter" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageLog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageTemplate.zh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/LandingPageTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/MathGeneral" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/NotesonGAWLPII" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/SubjectFrameWorks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/TemplateJs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/TestAdWordsJumpPage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/TestLandingPage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/TestPage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/WebHome.en" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump/englishlessons" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AdWordsJump" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/AdWordsJump" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ApplicationPageList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/CheckDB.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/CheckDB" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/CompareAll" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Compare" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Configuration" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ConnectionStatus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ConnectionTest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ContentPageList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/CopyDocument" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/EmailOptOut" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Export2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ExportFilter2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ExportFilter" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ExportPageList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ExportXML" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Export" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/FixAllGroupMembership" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/FlushCache" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/FrameworkAlignmentFixup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/GC" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/GetContent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/GiveProgRights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/GivePropRights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/GroupDelete" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ImportAll" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ImportExport" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Import" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Lucene2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/LuceneDetails" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/LuceneFullReindex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Lucene" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MacroTest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MemberDelete" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MemoryStatus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MigrateGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MigrationConvertAll" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MigrationConvertResult" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MigrationConvertStatus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/MonitorPluginReset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PageListRemovals" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PageList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PageRightsConfirmation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PageRights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PagedUsers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/R2SkinMacros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/R2SkinStatus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ReSaveGroupsTemplateSpace" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/RequestsStatus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Rights2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/RightsConfirmation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Rights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/ScheduleAssetCleanup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SiteMapExcludeName" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SiteMapExcludePage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SiteMapExcludeSpace" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SiteMap" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SpaceDelete" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SpacePages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/SpacesNoGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/UserSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WebHome.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WebSearch2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WebSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/WhatsNew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/AffiliateIDClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/AffiliateManagement" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/AffiliatePartnerClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/PartnerEncryptGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/RegistrationTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Affiliate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/AddConfirm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Import Framework" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/MyCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Publish" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Search" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Wizard1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Wizard1_tasks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Wizard2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Wizard3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/Wizard4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/list new assets" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager/test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/AssetManager" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/Categories" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/Category" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/CurrikiAppointsChiefAcademicOfficer" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/GELCNewNameAnnouncedCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/Macros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/Onlineconferencing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/PageName" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/ScottMcNealyInterview" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/WebHome2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Blog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Bobbi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Grillos" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Jones" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Keller" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Nelson" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/Roberts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Board" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/CurrikiReviewClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/CurrikiReviewStatusClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Macros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Nominate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/ReviewEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Review" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Reviews" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Test2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/48YuzT5EZIMK3D1G" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/7VXKXIi7vB8wNTxs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/AboutyourCollection" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/BhqnMy3y2bPds15C" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/Default" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/Egp6VbUk0KYW51LE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/FTbijjGOm5xWTmI4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/L0JAeNdE8ZZXD6kH" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/OBWN3HTf6jF2ZIRd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/OKVUFdwHzOpPS6z1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/c3EmjFnMbVHXLPOl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/hUMSzzSpfXEXgYDO" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/lRgI03PEAMvRbbr7" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/ma2aWRxSr238qHb8" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/s2ZxMIMgmMrQFl7q" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/uostqJjMj2lwksJb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/urAl8XyAIfcsn9lk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/xDcKNWwXZNhuvXWC" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates/xl3QwtWGJZeCfRoW" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Coll_Templates" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/ACELessonPlan" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/AssetDone" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/CurrikiExtendedLessonPlan" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/CurrikiStandardLessonPlan" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/EducateforSustainabilityLessonPlan" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/NortelLearniTLessonPlan.en" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/NortelLearniTLessonPlan" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/PopulateTableCss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/PopulateTableJs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/SimpleHTMLResource" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/SimpleWikiResource.en" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/SimpleWikiResource" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/StyledMacros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/TemplateThumbnails" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/WebQuest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/ArchiveAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/AssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/AssetLicenseClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/AssetSaveService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/AttachmentAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/CollectionReorderedClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/CompositeAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/CreateCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/DeleteCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/Documentation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/EditCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/EditReviewService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/EditViewTranslations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/EditViewTranslations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/EditViewTranslations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/ExternalAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/ImageAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/MimeTypeConfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/SaveCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/SaveReviewService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/SubAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/TextAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/UpdateAttachmentGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/VideoAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/ViewCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/ViewReviewService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode/WatchCurrikiGrowCache" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CurrikiCode" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/DigitalStoryTelling" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/Story6" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/WECCooley" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/WECWenner" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/cybersmart" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/fhsstChapters" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/fhsst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/nrocCourses" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/nroc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/smarthinking" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/wecReports" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo/wec" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Demo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Accessibility" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/AdultEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Agriculture" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Agriculture_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Algebra" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Alphabet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Alphabet_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Anthropology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Appliedmathematics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Architecture" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Arithmetic" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Arts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Astronomy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/BilingualEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Biology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/BodySystems&amp;Senses" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Botany" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Business" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Calculus" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_6" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Careers_7" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Chemistry" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Civics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ClassroomManagement" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/CulturalAwareness" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/CurrentEvents" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Dance" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/DataAnalysis&amp;Probability" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/DramaDramatics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EarlyChildhoodEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Earthscience" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Ecology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Economics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Education&amp;Teaching" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EducationAdministration" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EducationalFoundations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EducationalPsychology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EducationalTechnology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Engineering" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Entrepreneurship" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EnvironmentalHealth" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Equations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Estimation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/EvaluatingSources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/FLWriting" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Film" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ForeignLanguages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Generalscience" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Geography" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Geology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Geometry" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/GlobalAwareness" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Government" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Grammar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Graphing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Health" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/History Local" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/History" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/HistoryofScience" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/HumanSexuality" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/InformalEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Information&amp;MediaLiteracy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/InstructionalDesign" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/IntegratingTechnologyintotheClassroom" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Journalism" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/LanguageArts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/LanguageArts_Grammar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/LifeSciences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Linguistics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Listening&amp;Speaking" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ListeningComprehension" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Literature" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Mathematics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/MeasurementEvaluation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Measurement" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/MediaEthics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/MentalEmotionalHealth" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Mentoring" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Meteorology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/MulticulturalEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Music" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/NaturalHistory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/NumberSense&amp;Operations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Nutrition" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/OccupationalHomeEconomics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Oceanography" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/OnlineSafety" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Paleontology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Patterns" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Phonics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Photography" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/PhysicalSciences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Physics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/PoliticalSystems" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/PopularCulture" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ProblemSolving" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ProcessSkills" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Psychology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ReadingComprehension" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Reading" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Religion" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/ResearchMethods" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Research" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Research_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/SafetySmokingSubstanceAbusePrevention" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/School-to-work" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Science" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/SocialStudies" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Sociology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Speaking" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Spelling" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Spelling_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/StandardsAlignment" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/StateHistory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Statistics" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/StoryTelling" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/TeachingTechniques" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Technology" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Technology_0" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Technology_1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Technology_2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Thinking&amp;ProblemSolving" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Trade&amp;Industrial" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Trigonometry" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/UnitedStatesGovernment" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/UnitedStatesHistory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/UsingMultimedia&amp;theInternet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/VisualArts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/VocabularyWriting" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Vocabulary" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/VocationalEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/WorldHistory" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework/Writing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FW_masterFramework" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FeaturedContent/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FeaturedContent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Check" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/ExcludeList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Flag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/ResourceDeletedEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/ResourceImprovementEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/SeeCounts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/AboutyourCollectionTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/AboutyourCollection" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/AddFileDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ChooseCollectionDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ChooseCollectionWhenCreatingDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ChooseTemplateDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/Editor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ThankYouAddCollectionDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ThankYouAddCurrikiDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ThankYouCreateCollectionDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ThankYouDialog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT/ViditalkPlayback" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/GWT" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/AboutCreatingGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/AcceptMembershipRequestService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ActivityStreamTest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/BrowseGroupsbySubject" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Browse" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CollectionsSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ContributionsSearchSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ContributionsSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CreateMessageSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CreateMessageWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CreateNewGroupDone" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CreateNewGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CurriculumSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/CurriculumWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationAttachmentSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationAttachmentTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationCompareSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationEditAboutSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationEditPageSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationHistorySheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationNewWikiPageSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationViewPageSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/DocumentationWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Documentation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditGroupInfoService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditInfoSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditMastheadSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditMessageService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditSpaceUserProfileService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/EditWelcomeBlockService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/FeaturedGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Feed" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/FindGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/InviteMembersSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/InviteMembers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/JoinGroupSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Macros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateAcceptRequest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateCreateMessage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateCreateRequest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateCreateSpace" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateJoinSpace" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateRejectRequest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateSendInvitation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateSendRequest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MailTemplateUpdateNotification" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ManageRolesSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ManageRoles" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MembersService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MembersSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MembersWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MessageDeleteCommentService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MessageSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MessageTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MessagesSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/MessagesWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/RejectMembershipRequestService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/RequestMembershipSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/SaveGroupInfoService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/SaveMessageService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/SaveSpaceUserProfileService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/SaveWelcomeBlockService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ViewGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ViewMessageService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ViewSpaceUserProfileService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/ViewWelcomeBlockService" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/WantedRoleClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/WebHomeSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/WebHomeWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/ContributionsSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Contributions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/CreateMessage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Curriculum" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Documentation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/InviteMembers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/JoinGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/ManageRoles" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Members" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Messages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/RequestMembership" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Role_AffiliateGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/Role_ContributorParticipantGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups_TemplateSpace" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Home/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Home/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Home" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsAttributionNoDerivatives" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsAttributionNon-CommercialNoDerivatives" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsAttributionNon-CommercialShareAlike" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsAttributionNon-Commercial" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsAttributionSharealike" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsNon-Commercial" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CreativeCommonsSharealike" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/CurrikiLicense" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/GnuDocumentationLicense" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/PublicDomain" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Licences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AboutConnecting" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AboutContributing.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AboutContributing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AboutCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AboutFindingCollecting" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/About" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AddContent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/AllDocs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/BecomeSponsor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/BlogRss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Board" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/BrowseResources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/BrowseSearch2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/BrowseSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Browse" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Contact" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Contacts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/CreateContent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Donate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/EPA" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/EducationalProcessAgreement" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Elluminate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/EventCalendar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/FAQ" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/FeaturedContent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/FeaturedGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/FeaturedMembers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/FeaturedPartners" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotPasswordEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotPassword" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotUsernameEmail.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotUsernameEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotUsername" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotUsernamesEmail.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/ForgotUsernamesEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/GWTSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/JoinCurriki.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/JoinCurriki2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/JoinCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/LastChanges" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Leadership" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/LearnMore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/LicenseExplanation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/LuceneTest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/McNealy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Onlineconferencing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/OpenSource" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Partners" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/PrivacyPolicy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Register" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/SearchMembers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/SearchResources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Search" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/SpaceIndex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Sponsors" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/TOS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Tapestry" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/TestGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/TestLanguage.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/TestLanguage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Tour" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/Volunteer" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WebHome.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WebRss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WebSearch" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WhatsNew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WhyJoin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/WorldLanguages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/nroccourses" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/sampleimages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main/sitemap" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Main" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Members/MyBlog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Members/MyCollections" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Members/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Members/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Members" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/ChooseFromList" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/DefaultDisplay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/Others" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/animation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/audio" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/audio_mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/document" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/etc compression files zip selector" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/etc compression files zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/etc compression files" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/flashDisplay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/pictureDisplay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/picture" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/videoDisplay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType/video" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MimeType" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/BlogCreateArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/BlogCreateBlog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/BlogEditArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/BlogGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/BlogViewArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Blog" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Collections" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Contributions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/EditProfileEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/EditProfile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Favorites" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Groups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/MyAssets" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/MyPages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/ProfileHighlight" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Profile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/RemoveFavorite" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleCurrikinamedEdutopiasBestsitetodownloadfreelessons2007" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleESchoolNewsOnlineCurrikioffersnewworldofcoursecontent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleEdTechReviewAWikiforEducation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleHowtofixyourkidseducationfor200m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleInternationalHeraldTribuneSunMicrosystemschairtoutsopensourceeducationforK12kids" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleMcNealysaysSunevaluatingOpenSolarisonGPL" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleOerdervesAReviewoftheOpenEducationalResourcesOERMovement" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleOpenSource2010Reflectionson2007" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleSunsJavaFXhelpsbridgedigitaldivideMcNealysays" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleTechlearningTheCaseforOpenSource" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ArticleTechnologyLearningACrossroadsintheEdTechIndustry" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/CurrikiAppointsChiefAcademicOfficer" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/GELCNewNameAnnouncedCurriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/Onlineconferencing" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/ScottMcNealyInterview" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/TavisSmiley" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/News" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/PanelIncludes/WatchCurrikiGrowGuest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/PanelIncludes/WatchCurrikiGrowMember" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/PanelIncludes" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/AddClassProperty" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/AddObject" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Backlinks" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/ClassEditorWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/ClassSwitcher" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Contribute Content" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/CreatePanel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Developer" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/DocumentInformation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Donate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/EditTranslations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/FavResources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/FeaturedMembers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Footer" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/HomePageEditor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/HomePageUpdate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/IncludedDocuments" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/InformationArea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Join Curriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Members" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/My Curriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/My Groups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/MyGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/MyInformationArea" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Navigation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/New Panel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/NewPage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/ObjectEditorWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelEditor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelLayoutUpdate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/PanelWizard" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Recently Created" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RecentlyVisited.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RecentlyVisited.ro" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RecentlyVisited" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RightsEditorWelcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RightsHelp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/RightsTips" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Search" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Shortcuts.ro" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Shortcuts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Spaces.ro" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Spaces" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Sponsors" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/SyntaxHelp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/TOC" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/TableOfContents" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/ToDo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Toolbox" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/UselessPanel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Watch Curriki Grow" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Welcome To Curriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Welcome.de" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Welcome.ro" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/WelcomeMember" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/Welcome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels/XWikiSyntax" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Panels" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Photos/ScottMcnealy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Photos/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Photos/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Photos" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Complete" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailNotReceivedSent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailNotReceived" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailSent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailVerificationSent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailVerification" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/EmailVerified" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/ForgotLogin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/FormMacros" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/MailTemplateVerificationEmail" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/RegisterGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Register" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/STAF/MailTemplateStaf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/STAF/SendMessage" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/STAF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Blogs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Curriki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Groups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Members" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Tips" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Temp/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Temp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Util/JSTrans" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Util" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminExportSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminFieldsDisplaySheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminGeneralSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminGroupsSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminImportSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminInlineSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminPresentationSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminProgrammingSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminRegistrationSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminRightsSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AdminUsersSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Admin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ArticleClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ArticleClassTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ArticleClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AssetClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AssetLicenseClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/AssetTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/BlogRssCode" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/BlogSheet2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/BlogSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CalendarEvent" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CheckAccountCreation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ClassItemSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ClassItemTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ClassTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CollectionReorderedClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CompositeAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CompositeAssetTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CreateArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrentCurrikiSkin2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrentCurrikiSkin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.ru" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiSkin8" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiSkin8beta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiSpaceClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiUserRegistration" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiWelcomeBlockClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/DeleteDocument" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditArticle.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditProfileTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditRightsHelp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditToolbar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/EditorGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ExternalAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/FindAndRemoveAssets" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/FrameworkClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/FrameworkItemAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/FrameworkItemClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GWT" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GlobalClassTranslations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GlobalClassTranslations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GlobalClassTranslations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GlobalClassTranslations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Introduction to XML" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/InvitationClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/LicenceClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MemberCount" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MembershipRequestClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Menu.it" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Menu" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MimeTypeClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyBlogArticleClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyBlogArticleClassTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyBlogGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyBlogSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyCollectionsTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyContributionsTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyCurrikiBlogs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyCurrikiTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MySkin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/MyXWiki10Skin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/NecSkin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PhotoAlbumClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PhotoAlbumClassTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PhotoAlbumClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Policy Statements" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Preface" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PresentationClassEditSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PresentationClassS5Sheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PresentationClassSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PresentationClassTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/PresentationClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ProjectGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/RegisterGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/RegisterJS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/RegisterNewUser" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Requirements" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Results" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/RightsGroovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SaveArticle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SlideClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SpaceClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SpaceHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SpaceUserProfileClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Stories" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/SubAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/TagClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Templates" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/TextAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ToTranslate.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/ToTranslate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Toolbar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.fr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.hi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.ru" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.si" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/UPS" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/VIDITalkAssetClass" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/WebHome" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/WebPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XML" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XMLapplications" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiAllGroup" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiClasses" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiComments" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiCommonJavascript" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiGlobalRights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiGroupSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiGroupTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiGroups" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiPreferences" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiRights" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiSkins" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiSyntax" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiUserSheet" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiUserTemplate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/XWikiUsers" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/clean assetTemp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/sitemap" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/style" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/About/PlatformStats.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/DeletePagesOfList.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/ExportAllButPageList2.groovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/ExportOneFile.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/I2GMonitor.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/Lucene.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/MigrationConvertAll.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/MigrationConvertSome.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/OutputDigestAuth.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/OutputPasswd.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/RecentUsers.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/RunPasswd.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/SetDebug.groovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Admin/UpgradeJSTrans.groovy" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/ACELessonPlan.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/CurrikiStandardLessonPlan.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/EducateforSustainabilityLessonPlan.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/NortelLearniTLessonPlan.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/SimpleHTMLResource.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/SimpleWikiResource.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CreateResources/WebQuest.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/CurrikiCode/MimeTypeConfig.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Main/ForgotPassword.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Main/JoinCurriki.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Metadata/LOM.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Metadata/LOMMacro.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAI.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAITool.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Notifications/ResourceChangeNotifier.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/PanelIncludes/Navigation.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/PanelIncludes/QuickIntroVideos.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/PanelIncludes/WatchCurrikiGrowGuest.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/PanelIncludes/WatchCurrikiGrowMember.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Panels/HelpVideos.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Registration/EmailSent.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Registration/EmailVerification.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Registration/ForgotLogin.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/Cabri.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/Cinderella.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/GEONExT.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/GeoGebra.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/GeoPlan-GeoSpace.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/Geolabo.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/Geometrix.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/TracenPoche.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/WebHome.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/Wiris.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Softwares/ZuL.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCaRMetal.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCabri.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCabri2D.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCabri3d.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCinderella.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayCustom.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayGeoGebra.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayGeoGebra3.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayGeoNext.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayGeoPlane.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayGeospace.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayI2G.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayJSXGraph.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayTracenPoche.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayWiris.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayZUL.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/DisplayerTool.grv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Systems/PlayherHead.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CRS.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CompEd.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CreateResources.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/CurrikiGWTTranslations.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/DocumentBundle.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/EditView.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/FileCheck.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/GlobalClassTranslations.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Groups.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/MyCurriki.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/QF-Translations.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Registration.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/SKBi18n.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Search.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/ToTranslate.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/Translations.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/X.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.ch.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.cs.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.de.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.es.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.eu.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.fr.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.mk.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.nl.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.pt.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.ru.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/XWiki.zh.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Translations/refresh-from-i2geo.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/pages/Util/JSTrans.vm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Admin/PageList.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CRS/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/CreateResources/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/FileCheck/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Groups/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/MyCurriki/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Registration/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Resources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/Search/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/CurrikiGWTTranslation.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/GlobalClassTranslations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.es" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/Translations.pl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/XWiki/WebRssCode" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wiki/src/main/resources/package.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i2gCurrikiFork.iws" afterPath="$PROJECT_DIR$/i2gCurrikiFork.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/i2geo-platform-web.iml" afterPath="$PROJECT_DIR$/web/i2geo-platform-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/pom.xml" afterPath="$PROJECT_DIR$/web/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/htmlheader.vm" afterPath="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/htmlheader.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm" afterPath="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm" />
     </list>
     <ignored path="i2gCurrikiFork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,56 +1285,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="macros.vm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm">
+      <file leaf-file-name="LOMMacro.vm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/LOMMacro.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1164" column="8" selection-start="38388" selection-end="38388" vertical-scroll-proportion="-11.56">
+            <state line="13" column="49" selection-start="1047" selection-end="1047" vertical-scroll-proportion="-8.32">
+              <folding>
+                <marker date="1356563086000" expanded="true" signature="2212:3082" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OAI.vm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAI.vm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="234" column="29" selection-start="10832" selection-end="10832" vertical-scroll-proportion="-49.56">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="htmlheader.vm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/htmlheader.vm">
+      <file leaf-file-name="OAITool.grv" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAITool.grv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="117" selection-start="862" selection-end="937" vertical-scroll-proportion="-10.88">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mycurrikimacros.vm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/mycurriki/mycurrikimacros.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="33" selection-start="1325" selection-end="1325" vertical-scroll-proportion="-18.48">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assetsmacros.vm" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/assets/assetsmacros.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="38" selection-start="2467" selection-end="2467" vertical-scroll-proportion="0.16402116">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="0" selection-start="3670" selection-end="3670" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="23" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="148" column="32" selection-start="5908" selection-end="5908" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,8 +1329,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/OAIActions.vm" />
-        <option value="$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/LOM.vm" />
         <option value="$PROJECT_DIR$/../../configs/0000_141.48.93.1_80_i2geo.mathematik.uni-halle.de.conf" />
         <option value="$PROJECT_DIR$/../../configs/0000_141.48.93.1_80_draft.i2geo.net.conf" />
         <option value="$PROJECT_DIR$/plugins/oaiprovider/src/main/pages/Metadata/Try.vm" />
@@ -145,9 +1340,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/menuview.vm" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/assets/assetsmacros.vm" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/htmlheader.vm" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/assets/assetsmacros.vm" />
+        <option value="$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAI.vm" />
+        <option value="$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAITool.grv" />
       </list>
     </option>
   </component>
@@ -160,8 +1357,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1726" />
-    <option name="y" value="199" />
+    <option name="x" value="-1735" />
+    <option name="y" value="-128" />
     <option name="width" value="1279" />
     <option name="height" value="801" />
   </component>
@@ -191,6 +1388,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -216,6 +1423,462 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Systems" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Softwares" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Panels" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PanelIncludes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Notifications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Metadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CurrikiCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CreateResources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i2gCurrikiFork" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wiki" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="About" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -327,16 +1990,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i2gCurrikiFork" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -499,30 +2152,46 @@
       <created>1358510849059</created>
       <updated>1358510849059</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="cleanups, OAI-PMH is not a component, just a few pages.&#10;paul">
+      <created>1358510893778</created>
+      <updated>1358510893778</updated>
+    </task>
+    <task id="LOCAL-00004" summary="IG-620:  Titles and headers' polishes">
+      <created>1358510927081</created>
+      <updated>1358510927081</updated>
+    </task>
+    <task id="LOCAL-00005" summary="IG-482 LOM export broken &#10;replaced by the OAI-PMH LOM export.&#10;paul">
+      <created>1358511484875</created>
+      <updated>1358511484875</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ooops, previous commit had an #end too much.&#10;paul">
+      <created>1358516862848</created>
+      <updated>1358516862848</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1726" y="199" width="1279" height="801" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1735" y="-128" width="1279" height="801" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32647058" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05735294" sideWeight="0.4939173" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05735294" sideWeight="0.5004055" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32927817" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20229885" sideWeight="0.9991319" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40551502" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25304136" sideWeight="0.94264704" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32742155" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -535,7 +2204,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="true" />
     <option name="myTodoPanelSettings">
@@ -568,7 +2237,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="IG-621: Microformats for authors: hcard and rel=author" />
+    <option name="LAST_COMMIT_MESSAGE" value="ooops, previous commit had an #end too much.&#10;paul" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -583,6 +2252,10 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="slightly enhanced edit-menu with all possible edit types.&#10;paul" />
     <MESSAGE value="IG-621: Microformats for authors: hcard and rel=author" />
+    <MESSAGE value="cleanups, OAI-PMH is not a component, just a few pages.&#10;paul" />
+    <MESSAGE value="IG-620:  Titles and headers' polishes" />
+    <MESSAGE value="IG-482 LOM export broken &#10;replaced by the OAI-PMH LOM export.&#10;paul" />
+    <MESSAGE value="ooops, previous commit had an #end too much.&#10;paul" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -592,36 +2265,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/SearchResults.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="22" selection-start="3535" selection-end="3535" vertical-scroll-proportion="0.016736401" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/asset/src/main/java/org/curriki/xwiki/plugin/asset/Asset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="406" column="0" selection-start="16605" selection-end="16605" vertical-scroll-proportion="0.60251045" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="20" selection-start="5921" selection-end="5921" vertical-scroll-proportion="0.016736401" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/lucene/src/main/java/com/xpn/xwiki/plugin/lucene/LucenePluginApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="45" selection-start="7107" selection-end="7107" vertical-scroll-proportion="0.016736401" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../i2gCurriki/wiki/src/main/pages/Admin/Lucene.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="2304" selection-end="2304" vertical-scroll-proportion="0.017429193" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="42" selection-start="73" selection-end="73" vertical-scroll-proportion="0.050209206" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="15" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.44769874" />
@@ -632,59 +2275,83 @@
         <state line="16" column="250" selection-start="619" selection-end="849" vertical-scroll-proportion="0.017429193" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="23" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="0" selection-start="3670" selection-end="3670" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/editactions.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="5" selection-start="613" selection-end="613" vertical-scroll-proportion="0.40472177">
-          <folding />
-        </state>
+        <state line="15" column="5" selection-start="613" selection-end="613" vertical-scroll-proportion="0.40472177" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/menuview.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="2" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.30997303">
-          <folding />
-        </state>
+        <state line="37" column="2" selection-start="1621" selection-end="1621" vertical-scroll-proportion="0.30997303" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm">
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/view.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1164" column="8" selection-start="38388" selection-end="38388" vertical-scroll-proportion="-11.56">
-          <folding />
-        </state>
+        <state line="39" column="8" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.70957094" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/htmlheader.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="117" selection-start="862" selection-end="937" vertical-scroll-proportion="-10.88">
-          <folding />
-        </state>
+        <state line="32" column="50" selection-start="2256" selection-end="2256" vertical-scroll-proportion="0.3777403" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/macros.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1191" column="0" selection-start="39343" selection-end="39343" vertical-scroll-proportion="0.02698145" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/groups/groupsmacros.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="54" selection-start="2879" selection-end="2879" vertical-scroll-proportion="0.02698145" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/mycurriki/mycurrikimacros.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="33" selection-start="1325" selection-end="1325" vertical-scroll-proportion="-18.48">
-          <folding />
-        </state>
+        <state line="56" column="33" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.02601626" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/skins/curriki8/assets/assetsmacros.vm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="38" selection-start="2467" selection-end="2467" vertical-scroll-proportion="0.16402116">
+        <state line="51" column="23" selection-start="2494" selection-end="2494" vertical-scroll-proportion="0.02601626" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="0" selection-start="3670" selection-end="3670" vertical-scroll-proportion="0.025" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="23" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.125" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/LOM.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/LOMMacro.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="49" selection-start="1047" selection-end="1047" vertical-scroll-proportion="-8.32">
+          <folding>
+            <marker date="1356563086000" expanded="true" signature="2212:3082" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAI.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="234" column="29" selection-start="10832" selection-end="10832" vertical-scroll-proportion="-49.56">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wiki/src/main/pages/Metadata/OAITool.grv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="32" selection-start="5908" selection-end="5908" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
