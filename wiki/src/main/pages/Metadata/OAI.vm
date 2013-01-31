@@ -15,6 +15,7 @@
 #* @vtlvariable name="numbertool" type="org.apache.velocity.tools.generic.NumberTool" *# ##
 #* @vtlvariable name="searchi2g" type="net.i2geo.xwiki.impl.DefaultSearchI2GXWiki *# ##
 ##
+#if($request.verb)##
 #set($t=$xwiki.parseGroovyFromPage("${doc.space}.OAITool"))##
 $t.init($context,$xwiki,$request,$response)##
 $response.setContentType("text/xml")##
@@ -216,4 +217,39 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         #end
     </ListRecords>
 </OAI-PMH>
+#end
+#else## if($request.action)
+<html><head><title>i2geo's OAI PMH</title>
+    <link href="http://i2geo.net/xwiki/bin/skin/skins/curriki8/stylebase.css" rel="stylesheet" type="text/css"  />
+    <link href="http://i2geo.net/xwiki/bin/skin/skins/curriki8/style.css" rel="stylesheet" type="text/css"  />
+    <link href="/xwiki/skins/curriki8/style2.css" rel="stylesheet" type="text/css"  />
+
+</head>
+<body id="body" class="curriki" >
+<div id="main"><div id="shadow-right"><div id="right-panel"><div id="content" style="height:90%">
+<h1>i2geo's OAI PMH</h1>
+
+This is the <a href="http://www.openarchives.org/pmh/">OAI-PMH</a> end-point for the <a href="http://i2geo.net/">i2geo repository</a>.
+Since no <tt>verb</tt> parameter was provided in this request, this small explanatory text is provided.
+
+You may consider using a few such links to see the XML results rendered in your browser
+but this URL is normally designed to be provided to an OAI-PMH consumer tool.
+
+* <a href="http://i2geo.net/api/oai-pmh?verb=ListRecords&metadataPrefix=i2glom">first 100 records with <tt>ListRecords</tt></a>
+* <a href="http://i2geo.net/api/oai-pmh?verb=ListIdentifiers">first 100 identifiers using <tt>ListIdentifiers</tt></a>
+* <a href="http://i2geo.net/api/oai-pmh?verb=GetRecord&metadataPrefix=i2glom&identifier=oai:Coll_ChristianMercat:Distributivitedelamultiplicationsurladdition">example metadata record using <tt>GetRecord</tt></a> ##
+   of the resource <a href="http://i2geo.net/xwiki/bin/view/Coll_ChristianMercat/Distributivitedelamultiplicationsurladdition">Distributivité de la multiplication sur l'addition</a>
+* <a href="http://i2geo.net/api/oai-pmh?verb=Identify">show the profile of the repository using <tt>Identify</tt></a>
+
+This endpoint currently delivers a single metadata prefix, <tt>i2glom</tt>, documented in the
+<a href="http://i2geo.net/About/Metadata">description i2geo's metadata application profile</a>
+and has been conceived within the OpenDiscoverySpace project.
+## <img src="http://i2geo.net/xwiki/skins/curriki8/logo_i2g.png" title="i2geo" alt="i2geo" width="150" style="align:right; margin-left:2em;">
+
+    For more information, please contact <a href="mailto:paul@cermat.org">paul@cermat.org</a> or
+report bugs on <a href="http://youtrack.i2geo.net/youtrack/issues/IG">i2geo's youtrack</a>.
+
+<i>Paul Libbrecht, 2013-01-30</i>
+</div></div></div></div>
+</body></html>
 #end

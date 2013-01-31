@@ -139,6 +139,7 @@ public class OAITool {
         List docs;
         String hql = """, BaseObject as obj, StringProperty as prop where obj.name = doc.fullName and obj.className = 'CurrikiCode.AssetClass'
                 and obj.id=prop.id.id and prop.name='rights' and (prop.value='protected' or prop.value='public')
+                and doc.web!='GWT'
                 and doc.space!='AssetTemp' and doc.space!='CreateContent' and doc.name!='Favorites' and doc.name!='WebHome' """;
         if(fromParam!=null && untilParam!=null) {
             Date fromD = dateFormat.parse(from);
