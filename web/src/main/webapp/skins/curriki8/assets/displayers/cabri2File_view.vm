@@ -10,7 +10,7 @@
     #set($caption = $!asset.caption_text)	##liefert Title der Ressource
     #set($ok = $asset.use("CurrikiCode.AssetClass"))
     #if($!caption == "")
-    #set($caption = $!asset.description)
+        #set($caption = $!asset.display("description"))
     #end
 <div class="asset-display-download">
  <div class="asset-display-download-inner">
