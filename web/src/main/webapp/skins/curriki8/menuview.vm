@@ -45,6 +45,9 @@
 #if($hasadmin)
 #submenuitem($doc.getURL("edit", "editor=class") $msg.get("editclass"))
 #submenuitem($doc.getURL("edit", "editor=rights") $msg.get("editrights"))
+#if($doc.getObject("CurrikiCode.AssetClass"))
+#submenuitem("/xwiki/bin/view/FileCheck/Check?page=$doc.fullName" "Apply file check")
+#end
 #end
 #xwikitopmenuentryend()
 #else ## !isAdvanced
