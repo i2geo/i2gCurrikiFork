@@ -438,7 +438,7 @@ $errMsg
 #if($g_RegType == 'edit_profile') ##{
 function initRTEs() {
 	tinyMCE.init({
-		language: "en",
+		language: "en",safari_warning: false,
 		mode: "exact",
 		elements : "XWiki.XWikiUsers_0_comment,XWiki.XWikiUsers_0_contact,XWiki.XWikiUsers_0_websites",
 		theme : "advanced",

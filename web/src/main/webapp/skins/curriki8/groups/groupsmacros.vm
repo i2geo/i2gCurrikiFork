@@ -118,6 +118,7 @@
 		mode: "exact",
 		content_css: "$xwiki.getSkinFile("style.css", true)",
 		debug : false,
+        safari_notsupported: false,
 		remove_linebreaks : false,
 		plugins: 'table, contextmenu, paste, searchreplace',
         wiki_use_style: 'true',

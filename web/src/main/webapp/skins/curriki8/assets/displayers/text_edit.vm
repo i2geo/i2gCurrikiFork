@@ -76,6 +76,7 @@
                             mode : "exact",
                             elements : "content",
                             theme : "advanced",
+                            safari_warning: false,
                             plugins : "safari,table,save,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,media,searchreplace,print,contextmenu,paste,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras",
 
                             // Theme options
