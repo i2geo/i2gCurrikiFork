@@ -1,0 +1,1252 @@
+#* @vtlvariable name="xwiki" type="com.xpn.xwiki.api.XWiki" *# ##
+#* @vtlvariable name="util" type="com.xpn.xwiki.api.Util" *# ##
+#* @vtlvariable name="request" type="javax.servlet.http.HttpServletRequest" *# ##
+#* @vtlvariable name="context" type="com.xpn.xwiki.api.Context" *# ##
+#* @vtlvariable name="msg" type="com.xpn.xwiki.web.XWikiMessageTool" *# ##
+#* @vtlvariable name="escapetool" type="org.apache.velocity.tools.generic.EscapeTool" *# ##
+#* @vtlvariable name="newAsset" type="org.curriki.xwiki.plugin.asset.Asset" *# ##
+
+## ---------- PREAMBLE, CHECK AUTHORIZATION ----------
+## adapted from "WebQuest.vm", itself ported from curriki's CreateResources/WebQuest
+####################################	If not login, show login information
+#if( $context.user=="XWiki.XWikiGuest" )
+    #set( $logredir = $xwiki.getRequestURL() )
+    #set( $url = $xwiki.getURL("XWiki.XWikiLogin","login","xredirect=$logredir") )
+    $msg.get("createresources.needaccount", [$url])
+#else
+####################################	If logined, show page
+    #includeMacros("CreateResources.StyledMacros")
+    #set( $pageName   = $request.getParameter("pageName") )
+    #set( $cameFrom   = $request.getParameter("cameFrom") )
+    #set( $flow       = $request.getParameter("flow") )
+    #set( $parentPage = $request.getParameter("parentPage") )
+    #set( $publishSpace = $request.getParameter("publishSpace") )
+    #set( $reqparas = $request.getParameterNames() )
+    #if( "$!pageName" != "" )
+        #set( $newAsset  = $xwiki.curriki.fetchAsset($pageName) )
+    #else
+        #set( $newAsset = $xwiki.curriki.createAsset($util.null) )
+        $newAsset.set("rights", "private")
+    #end
+####################################	If newAsset is null, show error message with some detail
+    #if( "$!newAsset"=="" )
+        #if( "$!pageName" != "" )<p>asset creation error:</p>#else<p>asset lookup error:</p>#end
+    <dl>
+        <dt>request.method</dt><dd>$!request.method</dd>
+        <dt>request.page</dt><dd>$!request.page</dd>
+        <dt>getParameter("pageName")</dt><dd>$!pageName</dd>
+        <dt>getParameter("cameFrom")</dt><dd>$!cameFrom</dd>
+        <dt>getParameter("flow")</dt><dd>$!flow</dd>
+        <dt>getParameter("parentPage")</dt><dd>$!parentPage</dd>
+        <dt>getParameter("publishSpace")</dt><dd>$!publishSpace</dd>
+    </dl>
+    #else
+    ####################################	else, show page
+    {pre}
+    <script language="javascript" type="text/javascript">
+
+    function checkForm() {
+        var missed_fields_str = '';
+        if (getFieldContentStr('CurrikiCode.AssetClass_0_title') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, _('lesson.plan.required.fields.dialog.title'));
+        }
+        if (getFieldContentStr('CurrikiCode.AssetClass_0_description') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, _('lesson.plan.required.fields.dialog.description'));
+        }
+
+    ### TODO: adapt to the editors used and reactivate
+        #*
+        if (getWysiwygFieldContent('mce_editor_0', 'nlp_intro') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('wq.required.fields.dialog.introduction')');
+        }
+        if (getWysiwygFieldContent('mce_editor_1', 'nlp_task') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('wq.required.fields.dialog.task')');
+        }
+        if (getWysiwygFieldContent('mce_editor_2', 'nlp_process') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('wq.required.fields.dialog.process')');
+        }
+        if(!checkPlanTableText()){
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('wq.required.fields.dialog.evaluation')');
+        }
+        if (getWysiwygFieldContent('mce_editor_3', 'nlp_conclusion') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('wq.required.fields.dialog.conclusion')');
+        }
+        if (getFieldContentStr('CurrikiCode.AssetLicenseClass_0_rightsHolder') == null) {
+            missed_fields_str = appendSeparatedErrorMessageStr(missed_fields_str, '$msg.get('lesson.plan.required.fields.dialog.rights')');
+        }
+        if (getAttachmentsSize() > $msg.get("wq.file.size.maximum")) {
+            missed_fields_str = missed_fields_str + '\n\n' + '$msg.get('wq.file.size.oversize')';
+        } *#
+        var error_msg = "";
+        if(missed_fields_str != ''){
+            error_msg = _('lesson.plan.required.fields.dialog') + missed_fields_str;
+        }else{
+            if (getFieldContentStr('CurrikiCode.AssetClass_0_title').length > 250) {
+                error_msg = _("wq.title.more.250");
+            }
+        }
+
+        if (error_msg != '') { // since theres error messages, validation failed... bail out.
+            alert(error_msg);
+            setTextAssetToWikiText(_('form.done.wysiwyg.error.wikitext'));  // not POSTing due to 'false' return below, so this should not matter -- reset in case of going "back" in browser after successful POST??
+            setSuccessMessage('');     //not POSTing due to 'false' return below, so this should not matter -- reset in case of going "back" in browser after successful POST??
+            return false;
+        }
+        else {
+            setTextAssetToWikiText(formatTextareasIntoWikiText());
+            setSuccessMessage(_('form.done.created.lessonplan'));
+            return true;
+        }
+    }
+
+    function checkWebQuestDirty() {
+        if (getAttachmentsSize() > 0) {
+            return true;
+        }
+        if (getFieldContentStr('CurrikiCode.AssetClass_0_title') != null) {
+            return true;
+        }
+        if (getFieldContentStr('CurrikiCode.AssetClass_0_description') != null) {
+            return true;
+        }
+        if (wysiwygIsDirty('mce_editor_0')) {
+            return true;
+        }
+        if (wysiwygIsDirty('mce_editor_1')) {
+            return true;
+        }
+        if (wysiwygIsDirty('mce_editor_2')) {
+            return true;
+        }
+        if (wysiwygIsDirty('mce_editor_3')) {
+            return true;
+        }
+        return false;
+    }
+
+    function wysiwygIsDirty(wysiwyg_id_str) {
+        var wysiwyg_o = tinyMCE.getInstanceById(wysiwyg_id_str);
+        return ((wysiwyg_o != null) && wysiwyg_o.isDirty());
+    }
+
+    function formatTextareasIntoWikiText() {
+        var slp_str = '';		// the string we concat into the TextAssetClass contents
+        var title_markup_str = '*';
+        var vert_break_str = '\\\\\n\n'
+    ## TODO: adapt to the overall content
+
+        {
+            ## formal
+            slp_str = "1.1 Schulpraktische Übungen\r\n\r\n";
+            slp_str = slp_str + title_markup_str  + "Name:" + title_markup_str + " " + getFieldContentStr("hand_formal_Name") + " (" + getFieldContentStr("hand_formal_Semester") + " " + getFieldContentStr("hand_formal_Studienfach") + ")" + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Schule:" + title_markup_str + " " + getFieldContentStr("hand_formal_Schule") + " am " + getFieldContentStr("hand_formal_Datum") + " um " + getFieldContentStr("hand_formal_Uhrzeit")  + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Betreuung:" + title_markup_str + " " + getFieldContentStr("hand_formal_Mentor") + " " + getFieldContentStr("hand_formal_Hochschulbetreuung")  + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Schülerthema:" + title_markup_str + " " + getFieldContentStr("hand_formal_Thema") + "\r\n";
+
+        }
+
+
+        var textAreas1 = ["Bedingungen_institut","Bedingungen_anthropologisch"];
+
+        var mce_counter = 0;
+
+        slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + '1.1 ' + "Bedingungen";
+        for(var i=0; i<textAreas1.length; i++) {
+            var name = textAreas1[i];
+            if(typeof(name)=="undefined" || name==null) continue;
+            var f = getWysiwygFieldContent(name, "mce_editor_" + (mce_counter++));
+            if (f != null) {
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1.1 " + name.replace(/_/g," ") + ': ' +  vert_break_str + f;
+            }
+        }
+
+        var textAreas2 = ["Sach_Didaktisch","Sach_Methodisch","Sach_Lernziele"];
+        slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1 Sachanalyse";
+        for(i=0; i<textAreas2.length; i++) {
+            name = textAreas2[i];
+            f = getWysiwygFieldContent(name, "mce_editor_" + (mce_counter++));
+            if (f != null) {
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1.1 " + name.replace(/_/g," ") + ': ' + vert_break_str + f;
+            }
+        }
+
+
+        {	//js table
+            var form_table_text = getTableText();
+            if (form_table_text != null) {
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1 Verlaufsplan" +  vert_break_str + form_table_text
+            }
+        }
+
+        {
+            var file_list = getAttachmentsNames();
+            if (file_list.length > 0) {
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1" + _("wq.required.attachments.title") + vert_break_str + '#' + 'currikiattachmentBegin()\n';
+                for (var idx = 0; (idx < file_list.length); idx++) {
+                    // for macro currikiattachment($fname) see web/src/main/webapp/skins/curriki8/macros.vm
+                    slp_str = slp_str + '#' + 'currikiattachment("' + file_list[idx] + '")\n';
+                }
+                slp_str = slp_str + '#' + 'currikiattachmentEnd()\n' + vert_break_str;
+            }
+        }
+
+        {
+            var form_conclusion = getWysiwygFieldContent('Literatur', 'mce_editor_5');
+            if (form_conclusion != null) {
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') +  '1.1 Literatur'+  vert_break_str + form_conclusion;
+            }
+        }
+
+        return (slp_str);
+    }
+
+    function setTextAssetToWikiText(str) {
+        var input_field_TextAssetClass_o = $('CurrikiCode.TextAssetClass_0_text');
+        if (input_field_TextAssetClass_o != null) {
+            input_field_TextAssetClass_o.value = str;
+        }
+        else { alert('error in setTextAssetToWikiText()'); }
+    }
+
+    function getFieldContentStr(field_id_str) {
+        if(typeof(field_id_str)=="undefined" || field_id_str==null) return "";
+        var field_content_o   = $(field_id_str);
+        var field_content_str = (field_content_o==null) ? "" : field_content_o.value;
+        if ((field_content_str.length < 1) || (field_content_str.trim() == '')) {
+            return "";
+        }
+        else {
+            return (field_content_str);
+        }
+    }
+
+    // get wysiwyg contents... returns null if no content, else string of
+    // wikitext.  if wysiwyg_id_str WYSIWYG is not created due to platform or
+    // browser issues, fallback to using values in textarea assoc'd with
+    // wysiwyg (in which case plaintext, not wikitext).
+    function getWysiwygFieldContent(wysiwyg_id_str, textarea_fallback_id_str) {
+        if(typeof(textarea_fallback_id_str)=="undefined" || textarea_fallback_id_str==null) return "";
+        var wysiwyg_content_o = tinyMCE.getInstanceById(wysiwyg_id_str); // WYSIWYG Associated with "Content"
+        if (wysiwyg_content_o == null) { // no WYSIWYG-->falback to textarea contents...
+            var wysiwyg_content_txt  = $(textarea_fallback_id_str).value;
+            if ((wysiwyg_content_txt.length <= 1) || (wysiwyg_content_txt.trim() == '')) {
+                return null;	   // --> return signal for empty fallback textarea contents
+            }
+            else {
+                return wysiwyg_content_txt; // return fallback textarea contents
+            }
+        }
+        else if (!wysiwyg_content_o.isDirty()) { // WYSIWYG exists but empty...
+            return null;		// --> return signal for empty contents
+        }
+        else {			// WYSIWYG exists with content...
+            return (tinyMCE.getContent(wysiwyg_id_str));
+        }
+    }
+
+    function setSuccessMessage(str) {
+        var input_field_successMessage_o = $('successMessage');
+        if (input_field_successMessage_o != null) {
+            input_field_successMessage_o.value = str;
+        }
+        else { alert('error in setSuccessMessage()'); }
+    }
+
+    function appendSeparatedErrorMessageStr(message_str, missed_field_err_str) {
+        return(message_str + '\n\t\t' + missed_field_err_str);
+    }
+
+    var needUnloadDialog = false;
+    function clearUnloadDialog() {
+        needUnloadDialog = false;
+    }
+
+    function onWindowUnloading(e) {
+        // if the form is not "dirty" don't pop form.leaving.dialog
+        if (needUnloadDialog && checkWebQuestDirty()) {
+            e.browserEvent.returnValue = _('form.leaving.dialog');
+        }
+    }
+
+    function setUnloadDialog() {
+        // window.onbeforeunload = unloadDialog;
+        Ext.EventManager.on(window, 'beforeunload', onWindowUnloading);
+        needUnloadDialog = true;
+    }
+
+    function getAttachmentsSize() {
+        return (window.frames['attachment_iframe'].getAttachmentsSize());
+    }
+
+    function getAttachmentsNames() {
+        return (window.frames['attachment_iframe'].getAttachmentsNames());
+    }
+
+    function setAttachmentsIframeSize() {
+        var iframe_o = document.getElementById('attachment_iframe');
+        try {
+            if (iframe_o != null) {
+                iframe_o.height = iframe_o.style.height = 50;  // attempt reset because FF behavior is grow-only
+            }
+            // this is portable way of getting at iframe DOM content per
+            // http://www.mabaloo.com/Web-Development/Creating-controlling-and-manipulating-an-Iframe-through-JavaScript.html
+            var doc_o = (iframe_o.contentWindow || iframe_o.contentDocument);
+            if (doc_o.document) {
+                doc_o = doc_o.document;
+            }
+            // the iframe needs more space than 'scrollHeight' says, or we get
+            // scrollbars. 5 seems to accomodate the inner and outer margin, and
+            // inner and outer border, with one pixel for the margin itself.
+            // nb: iframe_o.style.height only works in IE, does nothing in FF.
+            // do em both for good measure?!
+            if (iframe_o != null) {
+                if (Ext.isIE6) {
+                    iframe_o.height = iframe_o.style.height = doc_o.body.scrollHeight * 2 + 5;
+                } else {
+                    iframe_o.height = iframe_o.style.height = doc_o.body.scrollHeight + 5;
+                }
+            }
+        }
+        catch(e) {
+            if (iframe_o != null) {
+                iframe_o.height = iframe_o.style.height = 300; // bigger default height value if things go wrong
+            }
+        }
+    }
+    </script>
+
+    <style type="text/css">
+        body.p-CreateResources-WebQuest .x-grid3-header {background:#93c53c;}
+        body.p-CreateResources-WebQuest .x-grid3-header span img {margin: -4px 0 -4px 4px;}
+        body.p-CreateResources-WebQuest .x-grid3-scroller .x-grid3-row {border-color: #ccc; border-top:none;}
+        body.p-CreateResources-WebQuest .x-grid3-scroller {margin-bottom:5px;}
+        body.p-CreateResources-WebQuest input[type="button"] {font-weight:normal;}
+        .x-grid3-hd-0{text-align:center;}
+        .x-grid3-hd-1{text-align:center;}
+        .x-grid3-hd-2{text-align:center;}
+        .x-grid3-hd-3{text-align:center;}
+        .x-grid3-hd-4{text-align:center;}
+        .x-grid3-td-0{border-right: 1px solid lightgray; padding-left: 0px !important;padding-right: 0px !important}
+        .x-grid3-td-1{border-right: 1px solid lightgray; padding-left: 0px !important;padding-right: 0px !important}
+        .x-grid3-td-2{border-right: 1px solid lightgray; padding-left: 0px !important;padding-right: 0px !important}
+        .x-grid3-td-3{border-right: 1px solid lightgray; padding-left: 0px !important;padding-right: 0px !important}
+        .x-grid3-td-4{padding-left: 0px !important;padding-right: 0px !important}
+        .x-grid3-col-0{white-space: normal; word-wrap:break-word;}
+        .x-grid3-col-1{white-space: normal; word-wrap:break-word;}
+        .x-grid3-col-2{white-space: normal; word-wrap:break-word;}
+        .x-grid3-col-3{white-space: normal; word-wrap:break-word;}
+        .x-grid3-col-4{white-space: normal; word-wrap:break-word;}
+        .x-form-field-ace{overflow:hidden}
+        table.x-grid3-row-table tr {height: 2em}
+
+        ## input {	width:90%; }
+        input.med { width:30%; }
+        input.tiny { width:2em;}
+        input.spanAll { width:90%;}
+    </style>
+    <script type="text/javascript" src="/xwiki/yui/yahoo/yahoo-min.js" ></script>
+    <script type="text/javascript" src="/xwiki/yui/treeview/treeview-min.js" ></script>
+    <script type="text/javascript" src="/xwiki/yui/treeview/checknode.js"></script>
+    <script>
+    // ----------------------------------- override YUI checknode method -------------------
+    /**
+     * jsj add
+     *Invoked when the user press space key
+     */
+    YAHOO.widget.CheckNode.prototype.getKeyCheck = function() {
+        return " if( 32 == (window.event ? event.keyCode : event.which) ){ "+"YAHOO.widget.TreeView.getNode(\'" + this.tree.id + "\'," +
+                this.index + ").checkClick();"+"if (event.preventDefault) event.preventDefault( ); else event.returnValue = false;}";
+    };
+
+    // Overrides YAHOO.widget.TextNode
+    YAHOO.widget.CheckNode.prototype.getNodeHtml = function() {
+        // this.logger.log("Generating html");
+        var sb = new Array();
+
+        sb[sb.length] = '<table border="0" cellpadding="0" cellspacing="0">';
+        sb[sb.length] = '<tr>';
+
+        for (i=0;i<this.depth;++i) {
+            sb[sb.length] = '<td class="' + this.getDepthStyle(i) + '">&#160;</td>';
+        }
+
+        sb[sb.length] = '<td';
+        sb[sb.length] = ' id="' + this.getToggleElId() + '"';
+        sb[sb.length] = ' class="' + this.getStyle() + '"';
+        if (this.hasChildren(true)) {
+            sb[sb.length] = ' onmouseover="this.className=';
+            sb[sb.length] = 'YAHOO.widget.TreeView.getNode(\'';
+            sb[sb.length] = this.tree.id + '\',' + this.index +  ').getHoverStyle()"';
+            sb[sb.length] = ' onmouseout="this.className=';
+            sb[sb.length] = 'YAHOO.widget.TreeView.getNode(\'';
+            sb[sb.length] = this.tree.id + '\',' + this.index +  ').getStyle()"';
+        }
+        sb[sb.length] = ' onclick="javascript:' + this.getToggleLink() + '">&#160;';
+        sb[sb.length] = '</td>';
+
+        // check box
+        sb[sb.length] = '<td';
+        sb[sb.length] = ' id="' + this.getCheckElId() + '"';
+        sb[sb.length] = ' class="' + this.getCheckStyle() + '"';
+        sb[sb.length] = ' onclick="javascript:' + this.getCheckLink() + '">';
+        sb[sb.length] = '&#160;</td>';
+
+
+        sb[sb.length] = '<td>';
+        sb[sb.length] = '<a';
+        sb[sb.length] = ' id="' + this.labelElId + '"';
+        sb[sb.length] = ' class="' + this.labelStyle + '"';
+        sb[sb.length] = ' href="' + this.href + '"';
+        sb[sb.length] = ' target="' + this.target + '"';
+        if (this.hasChildren(true)) {
+            sb[sb.length] = ' onmouseover="document.getElementById(\'';
+            sb[sb.length] = this.getToggleElId() + '\').className=';
+            sb[sb.length] = 'YAHOO.widget.TreeView.getNode(\'';
+            sb[sb.length] = this.tree.id + '\',' + this.index +  ').getHoverStyle()"';
+            sb[sb.length] = ' onmouseout="document.getElementById(\'';
+            sb[sb.length] = this.getToggleElId() + '\').className=';
+            sb[sb.length] = 'YAHOO.widget.TreeView.getNode(\'';
+            sb[sb.length] = this.tree.id + '\',' + this.index +  ').getStyle()"';
+        }
+        sb[sb.length] = ' onkeypress="javascript:' + this.getKeyCheck(this.event)+'">';
+        //sb[sb.length] = '>';
+        sb[sb.length] = this.label;
+        sb[sb.length] = '</a>';
+        sb[sb.length] = '</td>';
+        sb[sb.length] = '</tr>';
+        sb[sb.length] = '</table>';
+
+        return sb.join("");
+    };
+
+    var grid;                      // table
+    var isJumpToNext, isJumpToPre; // jump flag for table
+    var clickTabToNextNum=0, clickTabToPreNum=0, clickTabInGridToNextNum=0, clickTabInGridToPreNum=0;
+    // ------------------------------------ extend extjs ------------------------------------
+    Ext.apply(Ext.grid.GridView.prototype,{
+        // remove red triangles
+        doRender : function(cs, rs, ds, startRow, colCount, stripe){
+
+            var ts = this.templates, ct = ts.cell, rt = ts.row, last = colCount-1;
+            var tstyle = 'width:'+this.getTotalWidth()+';';
+            var buf = [], cb, c, p = {}, rp = {tstyle: tstyle}, r;
+            for(var j = 0, len = rs.length; j < len; j++){
+                r = rs[j]; cb = [];
+                var rowIndex = (j+startRow);
+                for(var i = 0; i < colCount; i++){
+                    c = cs[i];
+                    p.id = c.id;
+                    p.css = i == 0 ? 'x-grid3-cell-first ' : (i == last ? 'x-grid3-cell-last ' : '');
+                    p.attr = p.cellAttr = "";
+                    p.value = c.renderer(r.data[c.name], p, r, rowIndex, i, ds);
+                    p.style = c.style;
+                    if(p.value == undefined || p.value === "") p.value = "&#160;";
+                    cb[cb.length] = ct.apply(p);
+                }
+                var alt = [];
+                if(stripe && ((rowIndex+1) % 2 == 0)){
+                    alt[0] = "x-grid3-row-alt";
+                }
+                if(r.dirty){
+                    alt[1] = " x-grid3-dirty-row";
+                }
+                rp.cols = colCount;
+                if(this.getRowClass){
+                    alt[2] = this.getRowClass(r, rowIndex, rp, ds);
+                }
+                rp.alt = alt.join(" ");
+                rp.cells = cb.join("");
+                buf[buf.length] =  rt.apply(rp);
+            }
+            return buf.join("");
+        },
+
+        focusCell : function(row, col, hscroll){
+            row = Math.min(row, Math.max(0, this.getRows().length-1));
+            var xy = this.ensureVisible(row, col, hscroll);
+            this.focusEl.setXY(xy||this.scroller.getXY());
+            window.lastCellFocussed = {row:row, col:col};
+
+            if(Ext.isGecko){
+                // this.focusEl.focus();
+            }else{
+                // this.focusEl.focus.defer(1, this.focusEl);
+            }
+        },
+
+        // private
+        layout : function(){
+            if(!this.mainBody){
+                return; // not rendered
+            }
+            var g = this.grid;
+            var c = g.getGridEl();
+            var csize = c.getSize(true);
+            var vw = csize.width;
+
+            if(vw < 20 || csize.height < 20){ // display: none?
+                return;
+            }
+
+            if(g.autoHeight){
+                this.scroller.dom.style.overflow = 'hidden';
+            }else{
+                this.el.setSize(csize.width, csize.height);
+
+                var hdHeight = this.mainHd.getHeight();
+                var vh = csize.height - (hdHeight);
+
+                this.scroller.setSize(vw, vh);
+                if(this.innerHd){
+                    this.innerHd.style.width = (vw)+'px';
+                }
+            }
+            if(this.forceFit){
+                if(this.lastViewWidth != vw){
+                    this.fitColumns(false, false);
+
+                    this.lastViewWidth = vw;
+                }
+            }else {
+                this.autoExpand();
+                this.syncHeaderScroll();
+            }
+            this.onLayout(vw, vh);
+        }
+    });
+    Ext.apply(Ext.grid.EditorGridPanel.prototype,{
+        // multi-lines wrapper and clear default value
+        preEditValue : function(r, field){
+            var value = r.data[field];
+            if(!r.dirty||(r.dirty && typeof r.modified[field] == 'undefined')){
+                value='';
+            }else if(typeof value == 'string'){
+                value=value.replace(/<br\/>/gi,'\r\n');
+                value=this.autoEncode ? Ext.util.Format.htmlDecode(value) : value;
+            }
+            return value;
+        },
+        postEditValue : function(value, originalValue, r, field){
+            if(typeof value == 'string'){
+                value=this.autoEncode ? Ext.util.Format.htmlEncode(value) : value;
+                value=value.replace(/\r\n/gi,"<br/>").replace(/\n/gi,'<br/>');
+            }
+            delete Ext.currentCellNode;
+            return value;
+        }
+    });
+    Ext.apply(Ext.grid.GridEditor.prototype, {
+        // set auto size
+        autoSize: true,
+        doAutoSize : function(){
+            if(this.autoSize){
+                var parentNode=this.boundEl.dom.parentNode;
+                var width=parentNode.clientWidth;
+                var height=parentNode.clientHeight;
+                switch(this.autoSize){
+                    case "width":
+                        this.setSize(width,  "");
+                        break;
+                    case "height":
+                        this.setSize("",  height-1);
+                        break;
+                    default:
+                        this.setSize(width,  height-1);
+                }
+                Ext.currentCellNode=parentNode;
+            }
+        }
+    });
+    Ext.apply(Ext.form.TextArea.prototype, {
+        // auto size cell
+        onKeyUpBuffered : function(e){
+            if(!e.isNavKeyPress()||e.getKey()==e.ENTER){
+                this.autoSize();
+            } else if (e.isNavKeyPress()) {
+                if (isJumpToNext) {
+                    clickTabToNextNum = clickTabToNextNum + 1;
+                    if (clickTabToNextNum == 2) {
+                        isJumpToNext = false;
+                        clickTabToNextNum = 0;
+                        document.getElementById("addRowBtn").focus();
+                    }
+                } else if (isJumpToPre) {
+                    clickTabToPreNum = clickTabToPreNum + 1;
+                    if (clickTabToPreNum == 2) {
+                        isJumpToPre = false;
+
+                        clickTabToPreNum = 0;
+                        tinyMCE.execCommand('mceFocus',false,'mce_editor_2');
+                    }
+                }
+            }
+        },
+        autoSize : function(){
+            if(!this.grow || !this.textSizeEl){
+                return;
+            }
+            var el = this.el;
+            var v = el.dom.value;
+            var ts = this.textSizeEl;
+            ts.innerHTML = '';
+            ts.appendChild(document.createTextNode(v));
+            v = ts.innerHTML;
+            Ext.fly(ts).setWidth(this.el.getWidth());
+            if(v.length < 1){
+                v = "&#160;&#160;";
+            }else{
+                if(Ext.isIE){
+                    v = v.replace(/\n/g, '<p>&#160;</p>');
+                }
+                v += this.growAppend;
+            }
+            ts.innerHTML = v;
+            var h = Math.min(this.growMax, Math.max(ts.offsetHeight, this.growMin)+this.growPad);
+            if(h != this.lastHeight){
+                if(Ext.currentCellNode){
+                    if(h>Ext.currentCellNode.clientHeight){
+                        this.lastHeight = h;
+                        this.el.setHeight(h);
+                        this.fireEvent("autosize", this, h);
+                        if(Ext.isIE){
+                            Ext.currentCellNode.style.height=h;
+                        }else{
+                            Ext.currentCellNode.setStyle('height:'+h+'px');
+
+                        }
+                    }
+                }else{
+                    this.lastHeight = h;
+                    this.el.setHeight(h);
+                    this.fireEvent("autosize", this, h);
+                }
+            }
+        }
+    });
+
+    // ------------------------------------ wzToolTip tt_Init ------------------------------------
+    function tt_Init2(){
+        if(!(tt_op || tt_n4 || tt_n6 || tt_ie || tt_w3c)) return;
+        var htm = tt_n4? '<div style="position:absolute;"></div>' : '', tags, t_tj, over, esc = 'return escape(';
+        var i = tt_tags.length;
+        while(i--){
+            tags = tt_ie? (document.all.tags(tt_tags[i]) || 1)
+                    : document.getElementsByTagName? (document.getElementsByTagName(tt_tags[i]) || 1)
+                    : (!tt_n4 && tt_tags[i]=="a")? document.links
+                    : 1;
+            if(tt_n4 && (tt_tags[i] == "a" || tt_tags[i] == "layer")) tags = tt_N4Tags(tt_tags[i]);
+            var j = tags.length;
+            while(j--){
+                if(typeof (t_tj = tags[j]).onmouseover == "function" && t_tj.onmouseover.toString().indexOf(esc) != -1 && !tt_n6 || tt_n6 && (over = t_tj.getAttribute("onmouseover")) && over.indexOf(esc) != -1){
+                    if(over) t_tj.onmouseover = new Function(over);
+                    var txt = unescape(t_tj.onmouseover());
+                    htm += tt_Htm(
+                            t_tj,
+                            "tOoLtIp"+i+""+j,
+                            txt.wzReplace("& ","&")
+                    );
+                    t_tj.onmouseover = new Function('e',
+                            'tt_Show(e,'+
+                                    '"tOoLtIp' +i+''+j+ '",'+
+                                    ((typeof t_tj.T_ABOVE != tt_u)? t_tj.T_ABOVE : ttAbove)+','+
+                                    ((typeof t_tj.T_DELAY != tt_u)? t_tj.T_DELAY : ttDelay)+','+
+                                    ((typeof t_tj.T_FIX != tt_u)? '"'+t_tj.T_FIX+'"' : '""')+','+
+                                    ((typeof t_tj.T_LEFT != tt_u)? t_tj.T_LEFT : ttLeft)+','+
+                                    ((typeof t_tj.T_OFFSETX != tt_u)? t_tj.T_OFFSETX : ttOffsetX)+','+
+                                    ((typeof t_tj.T_OFFSETY != tt_u)? t_tj.T_OFFSETY : ttOffsetY)+','+
+                                    ((typeof t_tj.T_STATIC != tt_u)? t_tj.T_STATIC : ttStatic)+','+
+                                    ((typeof t_tj.T_STICKY != tt_u)? t_tj.T_STICKY : ttSticky)+','+
+                                    ((typeof t_tj.T_TEMP != tt_u)? t_tj.T_TEMP : ttTemp)+
+                                    ');'
+                    );
+                    t_tj.onmouseout = tt_Hide;
+                    if(t_tj.alt) t_tj.alt = "";
+                    if(t_tj.title) t_tj.title = "";
+                }
+            }
+        }
+        Element.insert("tooltip_div",{bottom:htm});
+        if(document.getElementById) tt_ifrm = document.getElementById("TTiEiFrM");
+    }
+
+    // ------------------------------------ edit grid definition ------------------------------------
+
+    var data=[
+        {id:1,Zeit:"00:00", didFunktion: "Motivation", Inhalt: "...", methGrundform: "Lehrervortrag", LehrerSchueler: "zeigt/machen nach", Medien: "Tafel, Tablett", Teilziel: "TZ3"},
+        {id:2,Zeit:"05:00", didFunktion: "", Inhalt: "", methGrundform: "", LehrerSchueler: "", Medien: "", Teilziel: ""},
+        {id:3,Zeit:"07:00", didFunktion: "", Inhalt: "", methGrundform: "", LehrerSchueler: "", Medien: "", Teilziel: ""},
+        {id:4,Zeit:"07:30", didFunktion: "", Inhalt: "", methGrundform: "", LehrerSchueler: "", Medien: "", Teilziel: ""}
+    ];
+
+    var store=new Ext.data.JsonStore({
+        data:data,
+        fields:["id","didFunktion", "methGrundform", "Inhalt", "LehrerSchueler", "Medien", "Teilziel"]
+    });
+        #set($info_img = '/xwiki/skins/curriki8/icons/exclamation.png')
+
+    //Zeit, Didaktische Funktionen, InhaltMeth. Grundform, Lehrer/Schüler, Medien
+
+    var colM = new Ext.grid.ColumnModel([
+        #* {id:"0",header:"Zeit",dataIndex:"Zeit",sortable:false,fixed:true,width:75,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"1",header:"Teilziel",dataIndex:"Teilziel",sortable:false,width:180, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"2",header:"Inhalt",dataIndex:"Inhalt",sortable:false,width:180, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"3",header:"Lehrer",dataIndex:"Lehrer",sortable:false,fixed:true,width:80,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"4",header:"Schüler",dataIndex:"Schueler",sortable:false,fixed:true,width:80,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"5",header:"Medien",dataIndex:"Medien",sortable:false,fixed:true,width:80,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})} *#
+        {id:"0",header:"Zeit",              dataIndex:"Zeit",            sortable:false, width: 50, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"1",header:"did. Fkt",          dataIndex:"didFunktion",     sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"2",header:"Inhalt",            dataIndex:"Inhalt",          sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"3",header:"meth. Grundform",   dataIndex:"methGrundform",   sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"4",header:"Lehrer/Schüler",    dataIndex:"LehrerSchueler",  sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"5",header:"Medien",            dataIndex:"Medien",          sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"6",header:"TZ",                dataIndex:"Teilziel",        sortable:false, width: 50, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})}
+    // dataIndex: Zeit, didFunktion, Inhalt, methGrundform, LehrerSchueler, Medien, Teilziel
+
+    #*{id:"0",header:"Zeit",      dataIndex:"Zeit",    sortable:false, width:"10%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+    {id:"1",header:"Teilziel",  dataIndex:"Teilziel",sortable:false, width:"20%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+    {id:"2",header:"Inhalt",    dataIndex:"Inhalt",  sortable:false, width:"20%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+    {id:"3",header:"Lehrer",    dataIndex:"Lehrer",  sortable:false, width:"16%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+    {id:"4",header:"Schüler",   dataIndex:"Schueler",sortable:false, width:"16%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+    {id:"5",header:"Medien",    dataIndex:"Medien",  sortable:false, width:"16%", fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})}
+    *#
+         ##   , 20%, 20%, 16%, 16%, 16%
+    ]);
+
+    function fn() {
+        grid = new Ext.grid.EditorGridPanel({
+            renderTo:"zeitplan_div",
+            title:"",
+            height:200,
+            width:800,
+            cm:colM,
+            store:store,
+            autoExpandColumn:1,
+            clicksToEdit:1,
+            autoHeight:true,
+            autoEncode:true,
+            cls :' x-form-field-ace;',
+            viewConfig: {scrollOffset: 2},
+            fitContainer: true
+        });
+
+        grid.on("cellclick", this.cellClick);
+        grid.on("afteredit",this.afterEdit,this);
+        grid.addListener("keyDown", function(e){
+            if (e.isNavKeyPress()) {
+                if (isJumpToNext) {
+                    clickTabInGridToNextNum = clickTabInGridToNextNum + 1;
+                    if (clickTabInGridToNextNum == 2) {
+                        isJumpToNext = false;
+                        clickTabInGridToNextNum = 0;
+                        document.getElementById("addRowBtn").focus();
+                    }
+                } else if (isJumpToPre) {
+                    clickTabInGridToPreNum = clickTabInGridToPreNum + 1;
+                    if (clickTabInGridToPreNum == 2) {
+                        isJumpToPre = false;
+                        clickTabInGridToPreNum = 0;
+                        tinyMCE.execCommand('mceFocus',false,'mce_editor_2');
+                    }
+                }
+            }
+        });
+
+        grid.getSelectionModel().on("cellselect", function(sel, row, col) {
+            curRow = row;curCol = col;
+            if (row !=0 && col !=0 && row == grid.getStore().getCount()-1 && col == grid.getColumnModel().getColumnCount()-1) {
+                isJumpToNext = true;
+            } else {
+                isJumpToNext = false;
+            }
+            if (row == 0 && col == 0) {
+                isJumpToPre = true;
+            } else {
+                isJumpToPre = false;
+            }
+        });
+        //tt_Init2();
+    }
+
+    Ext.onReady(fn);
+
+    function cellClick(obj, row, col, e){
+
+        var record = obj.store.getAt(row);
+        //store.commitChanges();
+    }
+
+    function afterEdit(obj, row, col, e){
+        var r=obj.record;
+        var id=r.get("id");
+        var name=r.get("name");
+        //store.commitChanges();
+        //Ext.MessageBox.alert("alertdiv","Hello,easyjf open source");
+    }
+
+    // insert new row
+    function addrow(data){
+        if(typeof(data)=="undefined")
+        data=[{id:1, Zeit:"00:00", didFunktion:"", Inhalt:"", methGrundform:"", LehrerSchueler:"", Medien:"", Teilziel:""}];
+        store.loadData(data, true);
+        return false;
+    }
+
+    function checkPlanTableText(){
+
+        var arr = store.data;
+        for(i=0;i<arr.length;i++){
+            var record = store.getAt(i);
+            if(record.get("Zeit") != "" && record.get("Teilziel") != "" && record.get("Inhalt") != ""
+                    && record.get("Lehrer") != "" && record.get("Schueler") != ""
+                    && record.get("Medien") != ""
+                    ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function formatTableString2(str) {
+        var s;
+        if(typeof(str)=="undefined" || str==null || str=="")
+            s = "&#160;";
+        else
+            s = formatTableString(str);
+        return s;
+    }
+
+    function formatTableString(str){
+        str = str.replace(/<br\/>/gi,'\r\n');
+        str = Ext.util.Format.htmlDecode(str);
+        str = formatString(str, /#/g, "&#35;");
+        str = formatString(str, /1/g, "&#49;");
+        str = formatString(str, /\*/g, "&#42;");
+        str = formatString(str, /a/g, "&#97;");
+        str = formatString(str, /A/g, "&#65;");
+        str = formatString(str, /i/g, "&#105;");
+        str = formatString(str, /I/g, "&#73;");
+        str = formatString(str, /g/g, "&#103;");
+        str = formatString(str, /h/g, "&#104;");
+        str = formatString(str, /k/g, "&#107;");
+        str = formatString(str, /_/g, "&#95;");
+        str = formatString(str, /~/g, "&#126;");
+        str = formatString(str, /-/g, "&#45;");
+        str = formatString(str, /{/g, "&#123;");
+        str = formatString(str, /}/g, "&#125;");
+        str = formatString(str, /\(/g, "&#40;");
+        str = formatString(str, /\)/g, "&#41;");
+        str = formatString(str, /\|/g, "&#124;");
+        str = formatString(str, /\$/g, "&#36;");
+        str = formatString(str, /@/g, "&#64;");
+        str = formatString(str, /\[/g, "&#91;");
+        str = formatString(str, /\]/g, "&#93;");
+        str = formatString(str, /</g, "&#60;");
+        str = formatString(str, />/g, "&#62;");
+        str = str.replace(/\r\n/gi,"\\\\")
+        return str;
+    }
+    function formatString(str, reg, repls){
+        if(typeof(str)=="undefined" || str==null) return "";
+        return str.replace(reg, repls)
+    }
+
+    function getTableText(){
+        var str = '{table}';
+        str += '&#160; Zeit | did. Fkt | Inhalt | meth. Grundform | Lehrer/Schüler | Medien | TZ \r\n';
+
+        var arr = store.data;
+        for(i=0;i<arr.length;i++){
+            var record = store.getAt(i);
+            var zeit, didFunktion, inhalt, methGrundform, lehrerSchueler, medien, teilziel;
+            zeit = record.get("Zeit");
+            didFunktion = record.get("didFunktion");
+            inhalt = record.get("Inhalt");
+            methGrundform = record.get("methGrundform");
+            lehrerSchueler = record.get("LehrerSchueler");
+            medien = record.get("Medien");
+            teilziel  = record.get("Teilziel");
+
+            zeit = formatTableString2(zeit);
+            didFunktion = formatTableString2(didFunktion);
+            inhalt = formatTableString2(inhalt);
+            methGrundform = formatTableString2(methGrundform);
+            lehrerSchueler = formatTableString2(lehrerSchueler);
+            medien = formatTableString2(medien);
+            teilziel = formatTableString2(teilziel);
+
+            str += zeit + ' | ' + didFunktion + ' | ' + inhalt + ' | ' + methGrundform + ' | ' + lehrerSchueler +  ' | ' + medien + ' | ' + teilziel + ' \r\n';
+            //}
+        }
+
+        str += '{table}';
+
+        return str;
+    }
+    </script>
+    {/pre}
+
+    ####################################	title
+        #set( $noDialogs = $request.getParameter("noDialogs") )  ## ?noDialogs=1 turns off add-path dialogs, for testing, or to enable "edit-again"
+    <div class="header">
+        #curriki_formtitle("Ein Unterrichtentwurf anhand einer Vorlage erstellen")
+        $msg.get("wq.title.description")##
+        <a href="$msg.get('wq.title.description.link1.url')" target="_blank">$msg.get("wq.title.description.link1")</a>##
+        <span class="separator">&nbsp;|&nbsp;</span><a href="$msg.get('wq.title.description.link4.url')">$msg.get("wq.title.description.link4")</a>
+        <br />$msg.get("form.required.fields.instruction")
+    </div>
+    <form action="" class="curriki-form1" id="inline" method="post">
+        <input type="hidden" name="xredirect" value="$xwiki.getFormEncoded($xwiki.getRequestURL())" />
+    ##sign validation result, default is validate not passed
+        <input type="hidden"  name="CurrikiCode.TextAssetClass_0_text" id="CurrikiCode.TextAssetClass_0_text" value="$msg.get('form.done.wysiwyg.error.wikitext')" />
+        <input type="hidden"  name="CurrikiCode.TextAssetClass_0_type" id="CurrikiCode.TextAssetClass_0_type" value="0" />
+        <input type="hidden"  name="CurrikiCode.AssetClass_0_instructional_component2" id="CurrikiCode.AssetClass_0_instructional_component2" value="curriculum_lp" />
+        <input type="hidden"  name="CurrikiCode.AssetClass_0_category" id="CurrikiCode.AssetClass_0_category" value="text" />
+    ## successMessage is null, validation not passed
+        <input type="hidden" 	name="successMessage" id="successMessage" value=""      />
+        <input type="hidden" 	name="page"		value="$!request.page"		/>
+        <input type="hidden"	name="pageName"		value="$!newAsset.fullName"	/>
+        <input type="hidden"	name="publishSpace"	value="$!publishSpace"		/>
+        <input type="hidden"	name="parentPage"	value="$!parentPage"		/>
+        #if( "$!noDialogs"!="" )
+            <input type="hidden"	name="noDialogs"	value="$noDialogs"		/>
+        #else
+            <input type="hidden"	name="flow"		value="$!flow"			/>
+        ## <input type="hidden"	name="createLessonURL"		value=""	/> ## for ICT
+            <input type="hidden"	name="cameFrom"  #if( "$!cameFrom"=="" ) value="$doc.fullName"  #else   value="$!cameFrom"   #end />
+        #end
+    ####################################	step1
+        #curriki_formpart_begin("Formale Angaben")
+        #curriki_forminstructions("Diese Angaben geben eine kurze Zusammenfassung ihrer Arbeit")
+        #curriki_formprompt($msg.get("wq.info.title_title"), $msg.get("wq.info.title_tooltip"), $msg.get("wq.info.title_txt"), true, "medium")
+    ##$newAsset.display("title","edit")
+        <input type="text" id="CurrikiCode.AssetClass_0_title" name="CurrikiCode.AssetClass_0_title" maxlength="$msg.get("resource.title.maxlength")" />
+        #curriki_formprompt($msg.get("wq.info.description_title"), $msg.get("wq.info.description_tooltip"), $msg.get("wq.info.description_txt"), true, "medium")
+        $newAsset.display("description","edit")
+        <table class="subject-educational"><tbody><tr><td>
+            #curriki_formprompt($msg.get("sri.fw_items_title"), $msg.get("sri.fw_items_tooltip"), $msg.get("sri.fw_items_txt"), true, "")
+#skbListHereEditable( "CurrikiCode.AssetClass_0_trainedTopicsAndCompetencies" "trainedTopicsAndCompetencies" "topic, competency" "$!asset.trainedTopicsAndCompetencies")
+##  $newAsset.display("fw_items","edit")
+        </td><td>
+        ## TODO: bad messages: click arrows for subjects, levels... "please input" is needed somewhere
+            #curriki_formprompt($msg.get("sri.educational_level_title"), $msg.get("sri.educational_level_tooltip"), $msg.get("sri.educational_level_txt"), true, "medium")
+#skbListHereEditable( "CurrikiCode.AssetClass_0_eduLevelFine" "eduLevelFine" "level" "$!asset.eduLevelFine")
+##  $newAsset.display("educational_level","edit")
+        </td></tr></tbody></table> ##class="subject-educational"
+            #curriki_formprompt($msg.get("sri.keywords_title"), $msg.get("sri.keywords_tooltip"), $msg.get("sri.keywords_txt"), false, "medium")
+            $newAsset.display("keywords","edit")
+
+        #curriki_formpart_end()
+        #curriki_formpart_begin("Schulpraktische Übung")
+        ## #curriki_forminstructions("Schulpraktische Übung")
+        <table style="width:100%">
+            <tr>
+                <td>Name:</td>
+                <td style="width:50%"><input type="text"  class="spanAll" name="hand_formal_Name" id="hand_formal_Name" value="$xwiki.getUserName($context.user, false)"/></td>
+                <td>Semester:</td><td><input type="text" class="tiny" name="hand_formal_Semester" id="hand_formal_Semester"/></td>
+                <td>Studienfächer:</td><td><input type="text" class="tiny" name="hand_formal_Studienfach" id="hand_formal_Studienfach"/></td>
+            </tr>
+            <tr>
+                <td>Schule:</td><td><input class="spanAll" type="text" name="hand_formal_Schule" id="hand_formal_Schule"/></td>
+                <td>Datum:</td><td><input type="text" class="tiny" name="hand_formal_Datum" id="hand_formal_Datum" /></td>
+                <td>Uhrzeit:</td><td><input type="text" class="tiny" name="hand_formal_Uhrzeit" id="hand_formal_Uhrzeit"/></td>
+            </tr>
+            <tr>
+                <td>Mentor:</td><td><input type="text" class="spanAll" name="hand_formal_Mentor" id="hand_formal_Mentor"/></td>
+                <td colspan="4">Hochschulbetreuung:&nbsp;<input type="text" class="med" name="hand_formal_Hochschulbetreuung" id="hand_formal_Hochschulbetreuung"/></td>
+            </tr>
+            <tr>
+                <td colspan="6">Stundenthema:&nbsp;<input type="text" width="100%" name="hand_formal_Thema" id="hand_formal_Thema"/></td>
+            </tr>
+        </table>
+
+
+        #*#curriki_formprompt($msg.get("sri.language_title"), $msg.get("sri.language_tooltip"), $msg.get("sri.language_txt"), false, "medium")
+        <select name="CurrikiCode.AssetClass_0_language" size="1" style="position:absolute; left:8; top:8; width:88; height:22; display:block;" onchange="EintragPruefen('ComboBox', 'Edit')">
+            <option value='${con.getLanguageId($lang,true)}'>$con.getLanguageName($lang,$lang)</option>
+            #set($supportedLanguages2 = $xwiki.getXWikiPreference("languages").replaceAll(","," "))
+            #foreach($lang2 in $supportedLanguages2.split(" "))##
+                #if($lang!=$lang2)
+                    <option value='${con.getLanguageId($lang2,true)}'>$con.getLanguageName($lang2,$lang2)</option>
+                #end
+            #end
+        </select> *#
+        <input type="hidden" name="CurrikiCode.AssetClass_0_language" value="deu"/>
+    ##$newAsset.display("language","edit")
+
+        #curriki_formpart_end()
+        ### -----------------------------------------------------------------------------------
+        #curriki_formpart_begin("Bedingungsanalyse")
+        ### -----------------------------------------------------------------------------------
+        #curriki_formtitle("Unter welchen Bedingungen wird der Unterricht stattfinden?")
+        Institutionelle Bedingungen: Rahmenbedingungen des Unterrichts
+        {pre}
+        <textarea id="Bedingungen_institut" name="Bedingungen_institut" style="height:5em">
+* Klassengröße und –zusammensetzung, z.B. Nationalitäten, Geschlechtsverteilung, etc.
+* Lernumgebung, z.B. Sitzordnung, Raumgliederung
+* Ausstattung des Raumes, z.B. magnetische Tafel, Beamer (falls relevant)
+* Zeitliche Gliederung des Schulalltags, z.B. Pausengong
+        </textarea>
+        {/pre}
+
+        Anthropologische Bedingungen:
+        <textarea id="Bedingungen_anthropologisch" name="Bedingungen_anthropologisch">
+        {pre}
+* Sachstruktureller Entwicklungsstand, z.B. Vorwissen/Erfahrungen/etc. der SchülerInnen
+* Soziale Aspekte in der Klasse, z.B. evtl. Konfliktlagen (Gruppenarbeit)
+* Personaler Aspekt, z.B. persönliche Betroffenheit (Mobbing) oder Förderpläne für einzelne SchülerInnen
+* Lehrererfahrungen
+        {/pre}
+        </textarea>
+
+        #curriki_formpart_end()
+    ### -----------------------------------------------------------------------------------
+        #curriki_formpart_begin("Sachanalyse")
+    ### -----------------------------------------------------------------------------------
+        #curriki_formtitle("Darstellung des Unterrichtsgegenstandes aus Sicht der Fachwissenschaft")
+
+
+## Didaktische Überlegungen
+        #curriki_formprompt("Didaktische Überlegungen", "?? tooltip ??", "?? instructions ??", true, "medium")
+        <textarea id="Sach_Didaktisch" name="Sach_Didaktisch">{pre}
+* Begründete Auswahl und Gewichtung von Inhalten/Teilaspekten
+* Gegenwarts- und Zukunftsbezug des Themas
+* Bezug zum Bildungsplan
+* Stellung der Stunde innerhalb der Einheit
+            {/pre}</textarea>  ## in JS, this is replaced w/ WYSIWYG
+
+## Methodischen Überlegungen
+            #curriki_formprompt("Methodische Überlegungen", "?? tooltip ??", " (möglicher Unterrichtsverlauf)", true, "medium")
+        <textarea id="Sach_Methodisch" name="Sach_Methodisch">{pre}
+* Überlegungen/Begründungen der Unterrichtsphasen
+*          “                       “           der Methoden/Medienwahl
+*          “                       “           der Sozialformen
+* Überlegungen zu möglichen Alternativen & Puffer
+            {/pre}
+        </textarea>
+
+
+## Lernziele
+            #curriki_formprompt("Lernziele/Kompetenzen", "Es müssen nicht immer alle Bereiche abgedeckt sein.", "", true, "medium")
+        <textarea id="Sach_Lernziele" name="Sach_Lernziele">{pre}
+Kompetenzerwerb in Bezug auf
+* Fachliche Ziele
+* Methodische Ziele
+* Personale Ziele
+* Soziale Ziele
+{/pre}
+    </textarea>
+
+
+
+
+
+            #curriki_formpart_end()
+        ####################################	step2
+            #curriki_formpart_begin("Verlausfsplan / Unterrichtsskizze")
+
+        #curriki_forminstructions("Skizzieren Sie das Verlausplan")
+
+        #curriki_formprompt("Verlaufsplan", "tooltip??", "Dient der schnellen Orientierung des Lesers,<br/>Fast die bisherigen Überlegungen zusammen,<br/>Übersichtliche, rasterhafte Form des geplanten Unterrichtsablaufes,<br/>Stundenablauf: (verschiedene Möglichkeiten, hier eine Variante)", true, "medium")
+        <div id="zeitplan_div"> </div>
+        #set($didFunktionen = ["Zielorientierung", "Motivation", "Problemeröffnung", "Aufbau", "Spontanphase", "Erarbeitung", "Übung", "Vertiefung", "Anwendung", "Transfer", "Festigung", "Kontrolle", "Ergebnissichtung", "Ergebnissicherung", "Perspektivabbildung"])##
+        #set($methodGrundformen = ["Lehrervortrag", "Schülervortrag", "Einzelarbeit", "Partnerarbeit", "Gruppenarbeit (teilig)", "Gruppenarbeit (gleich)", "Unterrichtsgespräch (UG)", "     UG: gelenktes", "     UG: fragend entw.", "     UG: impuls gesteuertes", "     UG: offenes", "     UG: moderiert", "Kettengspräch", "Rundgespräch", "Diskussion mit Regeln"])##
+        #set($medien = ["Tafel",  "Geometriewerkzeuge",  "Heft",  "Arbeitsblatt",  "Tonträger",  "Folie",  "Beamer",  "PC",  "Tablett",  "Whiteboard", "Modelle",  "Poster"])
+        <table style="width:95%">
+            <tr>
+                <td>Vorschläge:</td>
+                <td>
+                    <select name="didFunktionen" id="didFunktionenSelect" onchange="suggestionPopupChosen(this, 'didFunktion'); return false;">
+                        <option value="-">didaktische Funktionen...</option>
+                        #foreach($fnk in $didFunktionen)<option value="$fnk">$fnk</option>
+                        #end
+                    </select>&nbsp;&nbsp;##
+                </td>
+                <td>
+                    <select name="grundFormen" id="grundFormenSelect" onchange="grundFormChanged(this)">
+                        <option value="-">methodische Grundformen...</option>
+                        #foreach($gf in $methodGrundformen)<option value="$gf">$gf</option>
+                        #end
+                    </select>
+                </td>
+                <td>
+                    <select name="medien" id="medienSelect" onchange="suggestionPopupChosen(this,'Medien')">
+                        <option value="-">Medien...</option>
+                        #foreach($m in $medien)<option value="$m">$m</option>
+                        #end
+                    </select>
+                </td>
+                <td style="text-align:right">
+                    <button class="button button-orange" id="addRowBtn" onclick="return addrow();">eine Zeile mehr</button>##
+                </td>
+            </tr>
+        </table>
+        {pre}
+        <script type="text/javascript">
+
+            window.lastCellFocussed = {row:0, col: 0};
+            window.isInputting = false;
+
+            window.grundFormChanged = function (elt) {
+                if(elt && elt.value=="-") return;
+                window.lastChangedSelect= elt;
+                //alert("Grundform changed: "+ elt.selectedIndex + " into row " + window.lastCellFocussed.row);
+
+
+                store.getAt(lastCellFocussed.row).set("methGrundform",
+                        lastChangedSelect.children[elt.selectedIndex].innerHTML)
+
+                var medien = window.methodGrundformenToMedien[elt.value];
+                if(medien) store.getAt(lastCellFocussed.row).set("Medien", medien)
+
+                //data=[{id:1, Zeit:"00:00", didFunktion:"", Inhalt:"", methGrundform:"", LehrerSchueler:"", Medien:"", Teilziel:""}];
+                //store.loadData(data, true);
+                elt.selectedIndex = 0;
+            };
+            window.didFunktionChanged = function(elt) {
+                if(elt && elt.value=="-") return;
+                window.lastChangedSelect= elt;
+                store.getAt(lastCellFocussed.row).set("didFunktion",
+                        lastChangedSelect.children[elt.selectedIndex].innerHTML)
+                elt.selectedIndex = 0;
+            };
+            window.suggestionPopupChosen = function(selectElt, fieldName) {
+                if(selectElt && selectElt.value=="-") return;
+                window.lastChangedSelect= selectElt;
+                store.getAt(lastCellFocussed.row).set(fieldName,
+                        selectElt[selectElt.selectedIndex].innerHTML)
+                selectElt.selectedIndex = 0;
+            }
+
+
+            window.methodGrundformenToMedien = {
+                "Lehrervortrag": "Tafel, Geometriewerkzeuge, Heft, Beamer, Folie, Modelle",
+                "Schülervortrag": "Tafel, Geometriewerkzeuge, Beamer, Folie",
+                "Einzelarbeit": "Arbeitsblatt, PC, Tablett",
+                "Partnerarbeit": "Arbeitsblatt, Tablett, Heft",
+                "Gruppenarbeit (teilig)": "Heft, PC, Tablett, Poster",
+                "Gruppenarbeit (gleich)": "Arbeitsblatt,PC, Tablett",
+                "Unterrichtsgespräch (UG)": "",
+                "     UG: gelenktes": "Tafel, Poster, Beamer",
+                "     UG: fragend entw.": "Beamer, Poster",
+                "     UG: impuls gesteuertes": "Beamer, Poster",
+                "     UG: offenes": "Beamer, Poster, Heft",
+                "     UG: moderiert": "Tafel, Heft",
+                "Kettengspräch": "Tafel",
+                "Rundgespräch": "Tafel",
+                "Diskussion mit Regeln": "Tafel"};
+
+        </script>
+        {/pre}
+
+
+
+
+        #* Columns:
+        Zeit
+        Did. Fkt./ Meth. Gf./ Teilziele
+        (Unterrichtsverlauf)
+          Unterrichts-inhalt
+          Lehrertätigkeit
+          Schülertätigkeit
+        Medien/ Bem.
+        *#
+
+
+        ## attachments -- fileselection w/ buttons
+        #curriki_formprompt("Anhang", "Bitte setzen Sie alle nötige Medien im Anhang damit es leicht is dieses Entwurf wiederzuverwenden.", "Tafelbild, Arbeitsblätter, Schülerheft, Folien, Hausaufgaben, ...", false, "")
+        <iframe src="$newAsset.getURL("view", "xpage=lpattachments")"
+                onload="try { setAttachmentsIframeSize(); } catch(e) { alert('iframe onload error: '+e+' ...'); return false; }"
+                id="attachment_iframe" name="attachment_iframe" width="100%" scrolling="auto" marginheight="0" marginwidth="0"	frameborder="0" >
+            <h2>Sorry, your browser doesn't support iframes. Attachment Uploading functionality disabled.</h2>
+        </iframe>
+
+
+        #curriki_formprompt("Literatur", "Literatur, Schulbücher, Lehrerhandbuch, Fachdidaktische/ fachwissenschaftliche Literatur, Bildungsplan", "Bitte referenzieren Sie die Werke die zu diesem Unterricht relevant sind", true, "medium")
+        <textarea id="Literatur" name="Literatur">
+>>  Schulbücher<br/>
+>>  Lehrerhandbuch<br/>
+>>  Fachdidaktische/ fachwissenschaftliche Literatur<br/>
+>> Bildungsplan<br/>
+>>  …</textarea>  ## in JS, this is replaced w/ WYSIWYG
+        #curriki_formpart_end() ## }
+        ####################################	step3
+            #curriki_formpart_begin($msg.get("form.scratch.step3.header"))
+            #curriki_forminstructions($msg.get("form.scratch.step3.instruction"))
+            #curriki_formprompt($msg.get("sri.right_holder_title"), $msg.get("sri.right_holder_tooltip"), $msg.get("sri.right_holder_txt"), true, "medium")
+            $newAsset.display("rightsHolder","edit")
+            #curriki_formprompt($msg.get("sri.rights_title"), $msg.get("sri.rights_tooltip"), $msg.get("sri.rights_txt"), false, "medium")
+            $newAsset.display("rights", "edit")
+            #curriki_formprompt($msg.get("sri.license_type_title"), $msg.get("sri.license_type_tooltip"), $msg.get("sri.license_type_txt"), false, "medium")
+        <p><label>$msg.get("sri.license_type_heading")</label></p>
+            $newAsset.display("licenseType","edit")
+            #curriki_formpart_end()
+        ####################################	step4
+            #curriki_formpart_begin($msg.get("form.scratch.step4.header"))
+        <p><label>$msg.get("form.scratch.step4.instruction")</label></p>
+        <p class="links">
+            <button
+                    onclick="try { if (document.forms.inline.onsubmit) document.forms.inline.onsubmit(); if (checkForm()) { clearUnloadDialog(); startWaitingDialog(); document.forms.inline.action=_('form.done.url'); document.forms.inline.submit(); } return false; } catch(e) { alert(_('form.scratch.submit.button') + ' button onclick error: '+e+' ...'); return false; }"
+                    >$msg.get("form.scratch.submit.button")</button>
+            #if( "$!cameFrom" != "" )
+                #set( $cancelURL = $cameFrom )
+            #else
+                #set( $cancelURL = $xwiki.getURL("Main.WebHome") ) ## cameFrom not set means go to WebHome
+            #end
+            <button class="cancel"
+                    onclick="try { clearUnloadDialog(); window.location.href='$cancelURL'; return false; } catch(e) { alert(_("form.scratch.cancel.button") + ' button onclick error: '+e+' ...'); return false; }"
+                    >$msg.get("form.scratch.cancel.button")</button>
+        </p>
+            #curriki_formpart_end()
+        #####################################################################
+        <div class="tooltips">
+            {pre} $xwiki.addTooltipJS() {/pre}
+        </div>
+    </form>
+        #set( $noWYSIWYG  = $request.getParameter("noWYSIWYG") ) ##For testing,etc, add parameter ?noWYSIWYG=1 to force WYSIWYG editors to not display, and use TEXTAREA instead
+        #if( "$!noWYSIWYG" == "" ) ## {
+            #curriki_wysiwyg_loader_preamble()
+            #if( "$!publishSpace"=="" )            ## {
+                #set( $user = $context.user )
+                #if( $user.startsWith("XWiki.") )    ## {
+                    #set( $shortname = $user.substring(6) )
+                #else                                ## } {
+                    #set( $shortname = $user )
+                #end                                 ## }
+                #set( $wysi_publishSpace = "Coll_${shortname}" )
+            #else ## } {
+                #set( $wysi_publishSpace = $publishSpace )
+            #end                                   ## }
+
+            #curriki_SLP_wysiwyg_loader_editor("Bedingungen_institut", $newAsset, $wysi_publishSpace)         ## id="mce_editor_0"
+            #curriki_SLP_wysiwyg_loader_editor("Bedingungen_anthropologisch", $newAsset, $wysi_publishSpace)  ## id="mce_editor_1"
+            #curriki_SLP_wysiwyg_loader_editor("Sach_Didaktisch", $newAsset, $wysi_publishSpace)              ## id="mce_editor_2"
+            #curriki_SLP_wysiwyg_loader_editor("Sach_Methodisch", $newAsset, $wysi_publishSpace)              ## id="mce_editor_3"
+            #curriki_SLP_wysiwyg_loader_editor("Sach_Lernziele", $newAsset, $wysi_publishSpace)               ## id="mce_editor_4"
+            #curriki_SLP_wysiwyg_loader_editor("Literatur", $newAsset, $wysi_publishSpace)                    ## id="mce_editor_5"
+
+
+        #end ## } -- if "$!noWYSIWYG"==""
+    {pre}<script language="javascript" type="text/javascript">
+        /* <![CDATA[ */
+        /*
+        * this javascript code  must be at end, otherwise  strange   things
+        * happen, like "License Deed" doesn't show up...
+        */
+        function startWaitingDialog() {
+            #if( "$!noDialogs"!="1" )  ## {
+                Curriki.showLoading();
+            #end ## }
+        }
+        /*
+        * on window unload, dialog warning of dataloss
+        */
+        setUnloadDialog();
+        /*
+* HACK: Tell TinyMCE to leave-alone the URL's ... they are fine as-is.. as relative links
+* during edit in AssetTemp/xxxxxxx, and as permanent links in $wysi_publishSpace on save
+ */
+        tinyMCE.convertURL = function(url, node, on_save) { return url; };
+        /* ]]> */
+    </script>{/pre}
+    #end ## } -- else, aka "$!newAsset"!=""
+#end ## } -- $context.user=="XWiki.XWikiGuest"
