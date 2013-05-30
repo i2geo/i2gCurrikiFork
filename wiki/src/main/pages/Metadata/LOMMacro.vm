@@ -22,7 +22,7 @@
 ## utilities
 #macro(annotation $eltName $value)##
     #if("$!value"!="")
-    <$eltName><source>i2g</source> <value>$value</value></$eltName>
+    <$eltName><source>LOMv1.0</source> <value>$value</value></$eltName>
     #end
 #end
 #macro(ictEduType $ictName $interactivityType $learningResourceType $interactivityLevel $intendedUserRole)
@@ -51,17 +51,17 @@
         #elseif($lang=="Chinese")#set($lang="zh")
         #elseif($lang.length()==3) #set($lang=$msg.get("languages3_2.${lang}"))
     #end
+    #set($lomSchemaLocation="http://i2geo.net/ontologies/lomschema/lom-i2g.xsd")
+    #if("$!request.lomSchemaLocation"!="")#set($lomSchemaLocation=$request.lomSchemaLocation)#end
      language? $lang --> ##
      ## $xwiki.getDocument($asset.fullName).getDocument().getObject('CurrikiCode.AssetClass').getField("language").getValue().toString()
      ##   #set($lang =$asset.get('language'))
     ## #set($lang=$msg.get("languages3_2.${lang}"))##
 {pre}
-<lom xmlns="http://ltsc.ieee.org/xsd/LOM"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://i2geo.net/ontologies/lomschema/lom-i2g.xsd">
+<lom xmlns="http://ltsc.ieee.org/xsd/LOM"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM ${lomSchemaLocation}">
     <general><!-- 1: General -->
         <identifier>
             <catalog>i2g</catalog><entry>$asset.fullName</entry>
-        </identifier><identifier>
-            <catalog>url</catalog><entry>http://$xwiki.getXWiki().Param('curriki.system.hostname', 'i2geo.net')/$asset.space/$asset.name</entry>
         </identifier>
         <title>
             <string language="$lang">$escapetool.xml($asset.title)</string>
@@ -90,10 +90,10 @@
         #set($lastAuthor=$xwiki.getDocument($asset.author).getObject("XWiki.XWikiUsers"))##
         #set($v=$asset.version)##
         #set($p=$v.indexOf('.'))#set($v1=$v.substring(0,$p))#set($v2=$v.substring($mathtool.add($p,1)))#set($v2=$numbertool.format("00",$numbertool.toNumber($v2)))##
-        <version>${v1}${v2}</version>
-        <status><source>i2g</source><value>published</value></status>
+        <version><string>${v1}.${v2}</string></version>
+        <status><source>LOMv1.0</source><value>revised</value></status>
         <contribute>
-            <role><source>i2g</source><value>initiator</value></role>
+            <role><source>LOMv1.0</source><value>initiator</value></role>
             <entity>BEGIN:VCARD
                 VERSION:2.1
                 N:$escapetool.xml("$creator.get('first_name') $creator.get('last_name')")
@@ -104,7 +104,7 @@
             </date>
         </contribute>
         <contribute>
-            <role><source>i2g</source><value>editor</value></role>
+            <role><source>LOMv1.0</source><value>editor</value></role>
             <entity>BEGIN:VCARD
                 VERSION:2.1
                 N:$escapetool.xml("$lastAuthor.get('first_name') $lastAuthor.get('last_name')")
@@ -188,10 +188,7 @@
         #end
 
 
-        <context>
-            <source>LOMv1.0</source>
-            <value>school</value>
-        </context>
+        <!-- i2g-context: as precise as possible but not interoperable
             #foreach($level in $asset.get("eduLevelFine").split(","))##
             <context><source>i2g</source>##
                 <value>$geoskillsNS$level</value>
@@ -204,11 +201,16 @@
                 </context>
                 #end
             #end
-            #end
+            #end -->
         #foreach($level in $asset.get("eduLevelFine").split(","))##
             #set($typicalAgeRange=$xwiki.searchi2g.getLevelAge($level))#set($t2=$typicalAgeRange+1)##
-            #if($typicalAgeRange!=-1)
-            <typicalAgeRange><string>${typicalAgeRange}-${t2}</string></typicalAgeRange>
+            #if($typicalAgeRange!=-1 && $typicalAgeRange!=0)<!-- typicalAgeRange is: $typicalAgeRange -->
+                #if($typicalAgeRange<11)##
+                <context><source>LOMv1.0</source><value>primary education</value></context>
+                #else##
+                <context><source>LOMv1.0</source><value>secondary education</value></context>
+                #end
+                <typicalAgeRange><string language="en">${typicalAgeRange}-${t2}</string></typicalAgeRange>
             #end
         #end
 
@@ -220,38 +222,38 @@
     </educational>
 
     <rights>
-        <cost><source>i2g</source> <value>no</value> </cost>
-        <copyrightAndOtherRestrictions> <source>i2g</source> <value>yes</value> </copyrightAndOtherRestrictions>
+        <cost><source>LOMv1.0</source> <value>no</value> </cost>
+        <copyrightAndOtherRestrictions> <source>LOMv1.0</source> <value>yes</value> </copyrightAndOtherRestrictions>
         #set($licenseType=$asset.getDocument().getObject('CurrikiCode.AssetLicenseClass').get('licenseType').getValue())##
         #if($licenseType=="Licences.CurrikiLicense")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.CurrikiLicense")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by/3.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by/3.0/</licenseURI> -->
         #elseif($licenseType=="Licences.PublicDomain")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.PublicDomain")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/publicdomain/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/publicdomain/</licenseURI> -->
         ###
         #elseif($licenseType=="Licences.CreativeCommonsAttributionNoDerivatives")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNoDerivatives")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by-nd/2.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by-nd/2.0/</licenseURI> -->
         ###
         #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-Commercial")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-Commercial")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by-nc/2.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by-nc/2.0/</licenseURI>-->
         #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-CommercialNoDerivatives")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-CommercialNoDerivatives")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by-nc-nd/2.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by-nc-nd/2.0/</licenseURI> -->
         ###
         #elseif($licenseType=="Licences.CreativeCommonsAttributionSharealike")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.CreativeCommonsAttributionSharealike")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by-sa/2.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by-sa/2.0/</licenseURI>-->
         ###
         #elseif($licenseType=="Licences.CreativeCommonsAttributionNon-CommercialShareAlike")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.Licences.CreativeCommonsAttributionNon-CommercialShareAlike")</string></description>
-            <licenseURI>http://creativecommons.org/licenses/by-nc-sa/2.0/</licenseURI>
+            <!-- <licenseURI>http://creativecommons.org/licenses/by-nc-sa/2.0/</licenseURI>-->
         ###
         #elseif($licenseType=="GFDL")##
             <description><string language="en">$msg.get("CurrikiCode.AssetLicenseClass_licenseType_Licences.GFDL")</string></description>
-            <licenseURI>http://www.gnu.org/copyleft/fdl.html</licenseURI>
+            <!-- <licenseURI>http://www.gnu.org/copyleft/fdl.html</licenseURI>-->
         #else <!-- unrecognized license type: "$licenseType" -->
         #end
     </rights>
@@ -265,10 +267,10 @@
 
     <classification>
         <purpose>
-            <source>i2g</source>
+            <source>LOMv1.0</source>
             <value>educational objective</value>
         </purpose>
-        <taxonPath><source><string>$geoskillsNS</string></source>
+        <taxonPath><source><string language="en">$geoskillsNS</string></source>
             #foreach($top in $asset.get("trainedTopicsAndCompetencies").split(","))##
                 <taxon>
                     <id>$geoskillsNS$top</id>
