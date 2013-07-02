@@ -138,15 +138,16 @@
         {
             ## formal
             slp_str = "1.1 Schulpraktische Übungen\r\n\r\n";
-            slp_str = slp_str + title_markup_str  + "Name:" + title_markup_str + " " + getFieldContentStr("hand_formal_Name") + " (" + getFieldContentStr("hand_formal_Semester") + " " + getFieldContentStr("hand_formal_Studienfach") + ")" + "\r\n\r\n";
-            slp_str = slp_str + title_markup_str + "Schule:" + title_markup_str + " " + getFieldContentStr("hand_formal_Schule") + " am " + getFieldContentStr("hand_formal_Datum") + " um " + getFieldContentStr("hand_formal_Uhrzeit")  + "\r\n\r\n";
-            slp_str = slp_str + title_markup_str + "Betreuung:" + title_markup_str + " " + getFieldContentStr("hand_formal_Mentor") + " " + getFieldContentStr("hand_formal_Hochschulbetreuung")  + "\r\n\r\n";
-            slp_str = slp_str + title_markup_str + "Schülerthema:" + title_markup_str + " " + getFieldContentStr("hand_formal_Thema") + "\r\n";
+            slp_str = slp_str + title_markup_str  + "Name:" + title_markup_str + " " + getFieldContentStr("hand_formal_Name") + " (" + getFieldContentStr("hand_formal_Studienfach") + ")" + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Schule:" + title_markup_str + " " + getFieldContentStr("hand_formal_Schule") + " mit " + getFieldContentStr("hand_formal_Klasse") + " am " + getFieldContentStr("hand_formal_Uhrzeit")  + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Betreuung:" + title_markup_str + " " + getFieldContentStr("hand_formal_Mentor") + " und " + getFieldContentStr("hand_formal_Hochschulbetreuung")  + "\r\n\r\n";
+            slp_str = slp_str + title_markup_str + "Stundenthema:" + title_markup_str + " " + getFieldContentStr("hand_formal_Thema") + "\r\n";
 
         }
 
 
         var textAreas1 = ["Bedingungen_institut","Bedingungen_anthropologisch"];
+        var titles = ["Institutionelle Bedingungen","Anthropologische Bedingungen"];
 
         var mce_counter = 0;
 
@@ -156,11 +157,12 @@
             if(typeof(name)=="undefined" || name==null) continue;
             var f = getWysiwygFieldContent(name, "mce_editor_" + (mce_counter++));
             if (f != null) {
-                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1.1 " + name.replace(/_/g," ") + ': ' +  vert_break_str + f;
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1.1 " + titles[i] + ': ' +  vert_break_str + f;
             }
         }
 
         var textAreas2 = ["Sach_Didaktisch","Sach_Methodisch","Sach_Lernziele"];
+        titles = ["Didaktische Überlegungen","Methodische Überlegungen","Lernziele/Kompetenzen"];
         slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1 Sachanalyse";
         for(i=0; i<textAreas2.length; i++) {
             name = textAreas2[i];
@@ -181,7 +183,7 @@
         {
             var file_list = getAttachmentsNames();
             if (file_list.length > 0) {
-                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1" + _("wq.required.attachments.title") + vert_break_str + '#' + 'currikiattachmentBegin()\n';
+                slp_str = ((slp_str != '') ? (slp_str + vert_break_str) : '') + "1.1" + "Anhänge sind nötig" + vert_break_str + '#' + 'currikiattachmentBegin()\n';
                 for (var idx = 0; (idx < file_list.length); idx++) {
                     // for macro currikiattachment($fname) see web/src/main/webapp/skins/curriki8/macros.vm
                     slp_str = slp_str + '#' + 'currikiattachment("' + file_list[idx] + '")\n';
@@ -224,8 +226,9 @@
     // wikitext.  if wysiwyg_id_str WYSIWYG is not created due to platform or
     // browser issues, fallback to using values in textarea assoc'd with
     // wysiwyg (in which case plaintext, not wikitext).
-    function getWysiwygFieldContent(wysiwyg_id_str, textarea_fallback_id_str) {
-        if(typeof(textarea_fallback_id_str)=="undefined" || textarea_fallback_id_str==null) return "";
+    function getWysiwygFieldContent(textarea_fallback_id_str, wysiwyg_id_str) {
+        if(typeof(textarea_fallback_id_str)=="undefined" || textarea_fallback_id_str==null
+                || $(textarea_fallback_id_str)==null) return "";
         var wysiwyg_content_o = tinyMCE.getInstanceById(wysiwyg_id_str); // WYSIWYG Associated with "Content"
         if (wysiwyg_content_o == null) { // no WYSIWYG-->falback to textarea contents...
             var wysiwyg_content_txt  = $(textarea_fallback_id_str).value;
@@ -337,7 +340,7 @@
         .x-grid3-col-3{white-space: normal; word-wrap:break-word;}
         .x-grid3-col-4{white-space: normal; word-wrap:break-word;}
         .x-form-field-ace{overflow:hidden}
-        table.x-grid3-row-table tr {height: 2em}
+        table.x-grid3-row-table tr {height: 3em}
 
         ## input {	width:90%; }
         input.med { width:30%; }
@@ -694,11 +697,11 @@
         {id:"4",header:"Schüler",dataIndex:"Schueler",sortable:false,fixed:true,width:80,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
         {id:"5",header:"Medien",dataIndex:"Medien",sortable:false,fixed:true,width:80,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})} *#
         {id:"0",header:"Zeit",              dataIndex:"Zeit",            sortable:false, width: 50, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
-        {id:"1",header:"did. Fkt",          dataIndex:"didFunktion",     sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
-        {id:"2",header:"Inhalt",            dataIndex:"Inhalt",          sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
-        {id:"3",header:"meth. Grundform",   dataIndex:"methGrundform",   sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
-        {id:"4",header:"Lehrer/Schüler",    dataIndex:"LehrerSchueler",  sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
-        {id:"5",header:"Medien",            dataIndex:"Medien",          sortable:false, width:140, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"1",header:"did. Fkt",          dataIndex:"didFunktion",     sortable:false, width:120, fixed:false,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"2",header:"Inhalt",            dataIndex:"Inhalt",          sortable:false, width:140, fixed:false,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"3",header:"meth. Grundform",   dataIndex:"methGrundform",   sortable:false, width:120, fixed:false,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"4",header:"Lehrer/Schüler",    dataIndex:"LehrerSchueler",  sortable:false, width:200, fixed:false,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
+        {id:"5",header:"Medien",            dataIndex:"Medien",          sortable:false, width:120, fixed:false,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})},
         {id:"6",header:"TZ",                dataIndex:"Teilziel",        sortable:false, width: 50, fixed:true,menuDisabled:true,editor:new Ext.form.TextArea({grow:true,fieldClass:'x-form-field-ace'})}
     // dataIndex: Zeit, didFunktion, Inhalt, methGrundform, LehrerSchueler, Medien, Teilziel
 
@@ -889,7 +892,6 @@
         #set( $noDialogs = $request.getParameter("noDialogs") )  ## ?noDialogs=1 turns off add-path dialogs, for testing, or to enable "edit-again"
     <div class="header">
         #curriki_formtitle("Ein Unterrichtentwurf anhand einer Vorlage erstellen")
-        $msg.get("wq.title.description")##
         <a href="$msg.get('wq.title.description.link1.url')" target="_blank">$msg.get("wq.title.description.link1")</a>##
         <span class="separator">&nbsp;|&nbsp;</span><a href="$msg.get('wq.title.description.link4.url')">$msg.get("wq.title.description.link4")</a>
         <br />$msg.get("form.required.fields.instruction")
@@ -916,11 +918,11 @@
         #end
     ####################################	step1
         #curriki_formpart_begin("Formale Angaben")
-        #curriki_forminstructions("Diese Angaben geben eine kurze Zusammenfassung ihrer Arbeit")
-        #curriki_formprompt($msg.get("wq.info.title_title"), $msg.get("wq.info.title_tooltip"), $msg.get("wq.info.title_txt"), true, "medium")
+        #curriki_forminstructions('Diese Informationen sind nicht teil des Unterrichtentwurfes. Sie werden in dem Reiter "Information" gezeigt und dienen zur Suche.')
+        #curriki_formprompt("Titel", "", "Tragen Sie hier einen Titel für den Unterrichtsentwurf ein (nicht mehr als 250 Zeichen inkl. Leerzeichen)", true, "medium")
     ##$newAsset.display("title","edit")
         <input type="text" id="CurrikiCode.AssetClass_0_title" name="CurrikiCode.AssetClass_0_title" maxlength="$msg.get("resource.title.maxlength")" />
-        #curriki_formprompt($msg.get("wq.info.description_title"), $msg.get("wq.info.description_tooltip"), $msg.get("wq.info.description_txt"), true, "medium")
+        #curriki_formprompt("Beschreibung", "tooltip", "Tragen Sie hier eine kurze Zusammenfassung ihrer Ressource ein.", true, "medium")
         $newAsset.display("description","edit")
         <table class="subject-educational"><tbody><tr><td>
             #curriki_formprompt($msg.get("sri.fw_items_title"), $msg.get("sri.fw_items_tooltip"), $msg.get("sri.fw_items_txt"), true, "")
@@ -942,17 +944,16 @@
             <tr>
                 <td>Name:</td>
                 <td style="width:50%"><input type="text"  class="spanAll" name="hand_formal_Name" id="hand_formal_Name" value="$xwiki.getUserName($context.user, false)"/></td>
-                <td>Semester:</td><td><input type="text" class="tiny" name="hand_formal_Semester" id="hand_formal_Semester"/></td>
-                <td>Studienfächer:</td><td><input type="text" class="tiny" name="hand_formal_Studienfach" id="hand_formal_Studienfach"/></td>
+                <td colspan='4'>Studienfächer/Semesterzahl: <input type="text" style='width:50%' name="hand_formal_Studienfach" id="hand_formal_Studienfach"/></td>
             </tr>
             <tr>
                 <td>Schule:</td><td><input class="spanAll" type="text" name="hand_formal_Schule" id="hand_formal_Schule"/></td>
-                <td>Datum:</td><td><input type="text" class="tiny" name="hand_formal_Datum" id="hand_formal_Datum" /></td>
-                <td>Uhrzeit:</td><td><input type="text" class="tiny" name="hand_formal_Uhrzeit" id="hand_formal_Uhrzeit"/></td>
+                <td>Klasse:</td><td><input type="text" class="tiny" name="hand_formal_Klasse" id="hand_formal_Klasse" /></td>
+                <td>Datum/Uhrzeit:</td><td><input type="text" class="med" name="hand_formal_Uhrzeit" id="hand_formal_Uhrzeit"/></td>
             </tr>
             <tr>
-                <td>Mentor:</td><td><input type="text" class="spanAll" name="hand_formal_Mentor" id="hand_formal_Mentor"/></td>
-                <td colspan="4">Hochschulbetreuung:&nbsp;<input type="text" class="med" name="hand_formal_Hochschulbetreuung" id="hand_formal_Hochschulbetreuung"/></td>
+                <td>Mentor/in:</td><td><input type="text" class="spanAll" name="hand_formal_Mentor" id="hand_formal_Mentor"/></td>
+                <td colspan="4">Hochschulbetreuung:&nbsp;<input type="text" style='width:50%' name="hand_formal_Hochschulbetreuung" id="hand_formal_Hochschulbetreuung"/></td>
             </tr>
             <tr>
                 <td colspan="6">Stundenthema:&nbsp;<input type="text" width="100%" name="hand_formal_Thema" id="hand_formal_Thema"/></td>
@@ -1006,7 +1007,7 @@
 
 
 ## Didaktische Überlegungen
-        #curriki_formprompt("Didaktische Überlegungen", "?? tooltip ??", "?? instructions ??", true, "medium")
+        #curriki_formprompt("Didaktische Überlegungen", "", "", true, "medium")
         <textarea id="Sach_Didaktisch" name="Sach_Didaktisch">{pre}
 * Begründete Auswahl und Gewichtung von Inhalten/Teilaspekten
 * Gegenwarts- und Zukunftsbezug des Themas
@@ -1015,7 +1016,7 @@
             {/pre}</textarea>  ## in JS, this is replaced w/ WYSIWYG
 
 ## Methodischen Überlegungen
-            #curriki_formprompt("Methodische Überlegungen", "?? tooltip ??", " (möglicher Unterrichtsverlauf)", true, "medium")
+            #curriki_formprompt("Methodische Überlegungen", "", " (möglicher Unterrichtsverlauf)", true, "medium")
         <textarea id="Sach_Methodisch" name="Sach_Methodisch">{pre}
 * Überlegungen/Begründungen der Unterrichtsphasen
 *          “                       “           der Methoden/Medienwahl
@@ -1078,6 +1079,12 @@ Kompetenzerwerb in Bezug auf
                 <td style="text-align:right">
                     <button class="button button-orange" id="addRowBtn" onclick="return addrow();">eine Zeile mehr</button>##
                 </td>
+            </tr>
+            <tr style=" font-size: smaller; text-align:center">
+                <td></td>
+                <td >(z.B. Motivation, Transfer)</td>
+                <td >(z.B. Einzelarbeit, Schülervortrag)</td>
+                <td >(z.B. Tafel, PC)</td>
             </tr>
         </table>
         {pre}
@@ -1161,7 +1168,7 @@ Kompetenzerwerb in Bezug auf
         </iframe>
 
 
-        #curriki_formprompt("Literatur", "Literatur, Schulbücher, Lehrerhandbuch, Fachdidaktische/ fachwissenschaftliche Literatur, Bildungsplan", "Bitte referenzieren Sie die Werke die zu diesem Unterricht relevant sind", true, "medium")
+        #curriki_formprompt("Literatur", "Literatur, Schulbücher, Lehrerhandbuch, Fachdidaktische/ fachwissenschaftliche Literatur, Bildungsplan", "Bitte geben Sie an, welche Literatur für den geplanten Unterricht relevant ist.", true, "medium")
         <textarea id="Literatur" name="Literatur">
 >>  Schulbücher<br/>
 >>  Lehrerhandbuch<br/>
