@@ -26,11 +26,22 @@
     #end
 #end
 #macro(ictEduType $ictName $interactivityType $learningResourceType $interactivityLevel $intendedUserRole)
-<!-- educational annotations from Curriki's ICT $ictName -->
-    #annotation("interactivityType" $interactivityType)
-    #annotation("learningResourceType" $learningResourceType)
-    #annotation("interactivityLevel" $interactivityLevel)
-    #annotation("intendedEndUserRole" $intendedEndUserRole)
+<!-- educational annotations from Curriki's ICT $ictName
+##    #annotation("interactivityType" $interactivityType)
+##    #annotation("learningResourceType" $learningResourceType)
+##    #annotation("interactivityLevel" $interactivityLevel)
+##    #annotation("intendedEndUserRole" $intendedEndUserRole)
+    #if("$!interactivityType"!="")$interactivityTypes.add($interactivityType)#end
+    #if("$!learningResourceType"!="")$learningResourceTypes.add($learningResourceType)#end
+    #if("$!interactivityLevel"!="")$interactivityLevels.add($interactivityLevel)#end
+    #if("$!intendedEndUserRole"!="")$intendedEndUserRoles.add($intendedEndUserRole)#end -->
+#end
+#macro(vcard $userObject)##
+BEGIN:VCARD&#xD;&#xA;##
+VERSION:4.0&#xD;&#xA;##
+FN:$escapetool.xml("$userObject.get('first_name') $userObject.get('last_name')")&#xD;&#xA;##
+N:$escapetool.xml("$userObject.get('last_name');$userObject.get('first_name')");;;##
+&#xD;&#xA;END:VCARD##
 #end
 ##
 ## actual macro
@@ -49,8 +60,10 @@
         #elseif($lang=="Portugese") #set($lang="pt")
         #elseif($lang=="Russian")#set($lang="ru")
         #elseif($lang=="Chinese")#set($lang="zh")
+        #elseif($lang.endsWith("tina"))#set($lang="cs")
         #elseif($lang.length()==3) #set($lang=$msg.get("languages3_2.${lang}"))
     #end
+    #if("$!lang"=="" || $lang.length()!=2)broken language: $lang, using English instead #set($lang="en")#end
     #set($lomSchemaLocation="http://i2geo.net/ontologies/lomschema/lom-i2g.xsd")
     #if("$!request.lomSchemaLocation"!="")#set($lomSchemaLocation=$request.lomSchemaLocation)#end
      language? $lang --> ##
@@ -77,7 +90,7 @@
                 #set($names=$searchi2g.listNames($top))##
                 #foreach($lang in $names.supportedLanguages)
                     #foreach($name in $names.getAllNamesFor($lang))
-            <string language="$lang">$name</string>
+            <string language="$lang">$escapetool.xml($name)</string>
                     #end
                 #end
             #end
@@ -90,25 +103,18 @@
         #set($lastAuthor=$xwiki.getDocument($asset.author).getObject("XWiki.XWikiUsers"))##
         #set($v=$asset.version)##
         #set($p=$v.indexOf('.'))#set($v1=$v.substring(0,$p))#set($v2=$v.substring($mathtool.add($p,1)))#set($v2=$numbertool.format("00",$numbertool.toNumber($v2)))##
-        <version><string>${v1}.${v2}</string></version>
+        <version><string language="en">${v1}.${v2}</string></version>
         <status><source>LOMv1.0</source><value>revised</value></status>
         <contribute>
             <role><source>LOMv1.0</source><value>initiator</value></role>
-            <entity>BEGIN:VCARD
-                VERSION:2.1
-                N:$escapetool.xml("$creator.get('first_name') $creator.get('last_name')")
-                END:VCARD
-            </entity>
+            <entity>#vcard($creator)</entity>
             <date>
                 <dateTime>$datetool.format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",$asset.creationDate)</dateTime>
             </date>
         </contribute>
         <contribute>
             <role><source>LOMv1.0</source><value>editor</value></role>
-            <entity>BEGIN:VCARD
-                VERSION:2.1
-                N:$escapetool.xml("$lastAuthor.get('first_name') $lastAuthor.get('last_name')")
-                END:VCARD
+            <entity>#vcard($lastAuthor)
             </entity>
             <date>
                 <dateTime>$datetool.format("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",$asset.date)</dateTime>
@@ -129,16 +135,17 @@
     <educational>
         $asset.use("CurrikiCode.AssetClass")##
         #set($icts = $!asset.getValue("instructional_component"))
+        #set($interactivityTypes=[])#set($learningResourceTypes=[])#set($interactivityLevels=[])#set($intendedUserRoles=[])##
         #foreach($ict in $icts)
             #set($ict=$ict.toString())
             #if($ict.startsWith("activity_"))
-                 #if($ict.endsWith("_assignment"))         #ictEduType($ict "active" "" "" "learner")
-                #elseif($ict.endsWith("_exercise"))        #ictEduType($ict "active" "" "" "learner")
-                #elseif($ict.endsWith("_lab"))             #ictEduType($ict "active" "other" "" "learner")
-                 #elseif($ict.endsWith("_game"))           #ictEduType($ict "active" "drill_and_practice" "high" "learner")
-                 #elseif($ict.endsWith("_worksheet"))      #ictEduType($ict "active" "" "" "learner")
-                 #elseif($ict.endsWith("_problemset"))     #ictEduType($ict "active" "" "" "learner")
-                 #elseif($ict.endsWith("_webquest"))       #ictEduType($ict "acctive" "investigation" "medium" "learner")
+                 #if($ict.endsWith("_assignment"))         #ictEduType($ict "active"    "exercise" "" "learner")
+                 #elseif($ict.endsWith("_exercise"))        #ictEduType($ict "active"    "exercise" "" "learner")
+                 #elseif($ict.endsWith("_lab"))             #ictEduType($ict "active"    "other" "" "learner")
+                 #elseif($ict.endsWith("_game"))           #ictEduType($ict "active"    "drill and practice" "high" "learner")
+                 #elseif($ict.endsWith("_worksheet"))      #ictEduType($ict "active"    "exercise" "" "learner")
+                 #elseif($ict.endsWith("_problemset"))     #ictEduType($ict "active"    "exercise" "" "learner")
+                 #elseif($ict.endsWith("_webquest"))       #ictEduType($ict "acctive"   "investigation" "medium" "learner")
                  #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
                  #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
                  #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
@@ -148,38 +155,38 @@
                  #elseif($ict.endsWith("_"))       #ictEduType($ict "" "" "" "")
                  #end
             #elseif($ict.startsWith("book_"))
-                #if($ict.endsWith("_fiction"))          #ictEduType($ict "expositive" "other" "" "")
-                #elseif($ict.endsWith("_nonfiction"))   #ictEduType($ict "expositive" "exposition" "" "")
-                #elseif($ict.endsWith("_readings"))     #ictEduType($ict "expositive" "other" "" "")
-                #elseif($ict.endsWith("_textbook"))     #ictEduType($ict "expositive" "other" "" "learner")
+                #if($ict.endsWith("_fiction"))          #ictEduType($ict "expositive"   "textbook" "" "")
+                #elseif($ict.endsWith("_nonfiction"))   #ictEduType($ict "expositive"   "textbook" "" "")
+                #elseif($ict.endsWith("_readings"))     #ictEduType($ict "expositive"   "textbook" "" "")
+                #elseif($ict.endsWith("_textbook"))     #ictEduType($ict "expositive"   "textbook" "" "learner")
                 #end
             #elseif($ict.startsWith("curriculum_"))
-                #if($ict.endsWith("_assessment"))       #ictEduType($ict "active" "assessment" "" "learner")
-                #elseif($ict.endsWith("_course"))       #ictEduType($ict "mixed" "" "" "")
-                #elseif($ict.endsWith("_lp"))           #ictEduType($ict "" "" "" "teacher")
-                #elseif($ict.endsWith("_scope"))        #ictEduType($ict "" "other" "" "")
-                #elseif($ict.endsWith("_standards"))    #ictEduType($ict "expositive" "other" "very low" "manager")
-                #elseif($ict.endsWith("_studyguide"))   #ictEduType($ict "expositive" "other" "very low" "learner")
-                #elseif($ict.endsWith("_syllabus"))     #ictEduType($ict "expositive" "" "" "")
-                #elseif($ict.endsWith("_tutorial"))     #ictEduType($ict "expositive" "exposition" "" "learner")
-                #elseif($ict.endsWith("_unit"))         #ictEduType($ict "" "" "" "teacher")
-                #elseif($ict.endsWith("_workbook"))     #ictEduType($ict "active" "drill_and_practice" "medium" "learner")
+                #if($ict.endsWith("_assessment"))       #ictEduType($ict "active"       "assessment" "" "learner")
+                #elseif($ict.endsWith("_course"))       #ictEduType($ict "mixed"        "lesson plan" "" "")
+                #elseif($ict.endsWith("_lp"))           #ictEduType($ict ""             "lesson plan" "" "teacher")
+                #elseif($ict.endsWith("_scope"))        #ictEduType($ict ""             "other" "" "")
+                #elseif($ict.endsWith("_standards"))    #ictEduType($ict "expositive"   "other" "very low" "manager")
+                #elseif($ict.endsWith("_studyguide"))   #ictEduType($ict "expositive"   "other" "very low" "learner")
+                #elseif($ict.endsWith("_syllabus"))     #ictEduType($ict "expositive"   "lecture" "" "")
+                #elseif($ict.endsWith("_tutorial"))     #ictEduType($ict "expositive"   "guide" "" "learner")
+                #elseif($ict.endsWith("_unit"))         #ictEduType($ict ""             "lesson plan" "" "teacher")
+                #elseif($ict.endsWith("_workbook"))     #ictEduType($ict "active"       "drill and practice" "medium" "learner")
                 #end
             #elseif($ict.startsWith("resource_"))
-                #if($ict.endsWith("_animation"))        #ictEduType($ict "" "exposition" "medium" "")
-                #elseif($ict.endsWith("_article"))      #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_speech"))       #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_diagram"))      #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_glossary"))     #ictEduType($ict "expositive" "" "medium" "")
-                #elseif($ict.endsWith("_index"))        #ictEduType($ict "expositive" "" "medium" "")
-                #elseif($ict.endsWith("_photograph"))   #ictEduType($ict "expositive" "other" "" "")
-                #elseif($ict.endsWith("_collection"))   #ictEduType($ict "expositive" "other" "" "")
-                #elseif($ict.endsWith("_script"))       #ictEduType($ict "" "" "" "learner")
-                #elseif($ict.endsWith("_study"))        #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_table"))        #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_template"))     #ictEduType($ict "" "" "medium" "")
-                #elseif($ict.endsWith("_presentation")) #ictEduType($ict "expositive" "exposition" "very low" "")
-                #elseif($ict.endsWith("_webcast"))      #ictEduType($ict "expositive" "exposition" "" "learner")
+                #if($ict.endsWith("_animation"))        #ictEduType($ict ""             "demonstration" "medium" "")
+                #elseif($ict.endsWith("_article"))      #ictEduType($ict "expositive"   "text" "very low" "")
+                #elseif($ict.endsWith("_speech"))       #ictEduType($ict "expositive"   "audio" "very low" "")
+                #elseif($ict.endsWith("_diagram"))      #ictEduType($ict "expositive"   "image" "very low" "")
+                #elseif($ict.endsWith("_glossary"))     #ictEduType($ict "expositive"   "glossaries" "medium" "")
+                #elseif($ict.endsWith("_index"))        #ictEduType($ict "expositive"   "reference" "medium" "")
+                #elseif($ict.endsWith("_photograph"))   #ictEduType($ict "expositive"   "image" "" "")
+                #elseif($ict.endsWith("_collection"))   #ictEduType($ict "expositive"   "other" "" "")
+                #elseif($ict.endsWith("_script"))       #ictEduType($ict ""             "text" "" "learner")
+                #elseif($ict.endsWith("_study"))        #ictEduType($ict "expositive"   "text" "very low" "")
+                #elseif($ict.endsWith("_table"))        #ictEduType($ict "expositive"   "data" "very low" "")
+                #elseif($ict.endsWith("_template"))     #ictEduType($ict ""             "reference" "medium" "")
+                #elseif($ict.endsWith("_presentation")) #ictEduType($ict "expositive"   "presentation" "very low" "")
+                #elseif($ict.endsWith("_webcast"))      #ictEduType($ict "expositive"   "video" "" "learner")
                 ## #elseif($ict.endsWith("_"))             #ictEduType($ict "" "" "" "")
                 #end
             #elseif($ict == "other")
@@ -187,6 +194,10 @@
             #end
         #end
 
+        #foreach($l in $interactivityTypes)#annotation("interactivityType" $l)#end
+        #foreach($l in $learningResourceTypes)#annotation("learningResourceType" $l)#end
+        #foreach($l in $interactivityLevels)#annotation("interactivityLevel" $l)#end
+        #foreach($l in $intendedUserRoles)#annotation("intendedEndUserRole" $l)#end
 
         <!-- i2g-context: as precise as possible but not interoperable
             #foreach($level in $asset.get("eduLevelFine").split(","))##
@@ -202,16 +213,22 @@
                 #end
             #end
             #end -->
+        #set($modes=["context","ageRange"])
+        #foreach($mode in $modes)
         #foreach($level in $asset.get("eduLevelFine").split(","))##
             #set($typicalAgeRange=$xwiki.searchi2g.getLevelAge($level))#set($t2=$typicalAgeRange+1)##
             #if($typicalAgeRange!=-1 && $typicalAgeRange!=0)<!-- typicalAgeRange is: $typicalAgeRange -->
+                #if($mode=="context")
                 #if($typicalAgeRange<11)##
                 <context><source>LOMv1.0</source><value>primary education</value></context>
                 #else##
                 <context><source>LOMv1.0</source><value>secondary education</value></context>
                 #end
+                #elseif($mode=="ageRange")
                 <typicalAgeRange><string language="en">${typicalAgeRange}-${t2}</string></typicalAgeRange>
+                #end
             #end
+        #end
         #end
 
         <language>$lang</language>
@@ -265,6 +282,7 @@
         <numEvaluations>1</numEvaluations> -->
     </annotation> ## *#
 
+    #if("$asset.get('trainedTopicsAndCompetencies')"!="")
     <classification>
         <purpose>
             <source>LOMv1.0</source>
@@ -272,20 +290,25 @@
         </purpose>
         <taxonPath><source><string language="en">$geoskillsNS</string></source>
             #foreach($top in $asset.get("trainedTopicsAndCompetencies").split(","))##
+                #if($top.trim()!="")
                 <taxon>
                     <id>$geoskillsNS$top</id>
                     <entry>
                     #set($names=$searchi2g.listNames($top))##
+                    #set($hasName=false)##
                     #foreach($lang in $names.supportedLanguages)
                       #foreach($name in $names.getAllNamesFor($lang))
-                      <string language="$lang">$name</string>
+                      <string language="$lang">$escapetool.xml($name)</string>#set($hasName=true)
                       #end
                     #end
+                    #if(!$hasName)<string language="en"><!-- fallback from URI -->$top.replaceAll("#|_"," ")</string>#end
                     </entry>
                 </taxon>
+                #end
             #end
         </taxonPath>
     </classification>
+    #end
 </lom>
 {/pre}
 #end
