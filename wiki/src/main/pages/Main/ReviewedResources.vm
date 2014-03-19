@@ -1,0 +1,63 @@
+{pre}
+$context.setCacheDuration(300)
+## Should be in Main/ReviewedResources
+##
+
+#macro(getMime $name)
+    #set($doc=$xwiki.getDocument($name))
+    #mycurriki_filetype($doc)
+#end
+
+## #set ($hql=", BaseObject as obj, StringProperty as prop1, Document as rsrc, BaseObject as  where doc.web='QR' and obj.name=doc.fullName and obj.className='QF.ReviewClass' and obj.id=prop1.id.id and prop1.id.name='overallRanking' and prop1.value<>'' order by doc.date desc")
+## #set ($hql="raw , BaseObject as obj, StringProperty as prop1 where doc.web='QR' and obj.name=doc.fullName and obj.className='QF.ReviewClass' and obj.id=prop1.id.id and prop1.id.name='overallRanking' and prop1.value<>'' order by doc.date desc")
+#set ($hql="raw , BaseObject as reviewObj, StringProperty as ranking, StringProperty as rsrcName, XWikiDocument as rsrc, BaseObject as asset, StringProperty as rights where doc.web='QR' and reviewObj.name=doc.fullName and reviewObj.className='QF.ReviewClass' and reviewObj.id=ranking.id.id and ranking.id.name='overallRanking' and ranking.value<>'' and reviewObj.id=rsrcName.id.id and rsrcName.name='resource' and rsrcName.value = rsrc.fullName and asset.name = rsrc.fullName and asset.className='CurrikiCode.AssetClass' and asset.id = rights.id.id and rights.id.name='rights' and (rights.value='public' or rights.value='members')  ") ## order by doc.date desc
+
+#set($lib=$xwiki.parseGroovyFromPage('XWiki.libProxyki'))
+#set($con=$lib.load("XObj"))
+
+$con.connect($xwiki,$context)
+#if($!request.max!="")#set($docs=$con.query($hql,$request.max))#else#set($docs=$con.query($hql,60))#end
+#if ($docs.queryLoad()) #end
+##$docs.export(":","_<br>")_<br>
+
+#if ($request.getParameter("xpage")=="rdf")
+    #set($format="rdf;review")
+#else
+    #set($format=$request.getParameter("format"))
+    #if (!$format || $format=="" || $format=="html")
+        #set($format="review;html")
+    <h1>$msg.get("reviewedResources_Title") (<a href="/xwiki/bin/view/Main/ReviewedResourcesRdf">RSS</a>)</h1>
+    #end
+    #if ($format=="rdf")
+        #set($format="rdf;review")
+    #end
+    #if ($format=="rdf;html" || $format=="html;rdf")
+        #set($format="review;rdf;html")
+    #end
+#end
+
+#if ($format=="rdf;review")
+    $response.setContentType("text/xml")
+#else
+    $response.setContentType("text/html")
+#end
+
+#set($obj=$con.create())
+#if ($obj)
+    $obj.set("class","rss")
+    $obj.add("title","i2geo reviews")
+    $obj.add("author","XWiki.guest")
+    $obj.add("language","en")
+    $obj.add("license","Creative commons")
+    $obj.add("image","xwiki/skins/default/logo.gif")
+    $obj.add("server",$xwiki.getXWiki().Param('curriki.system.hostname', 'curriki.org'))
+    $obj.add("items",$docs)
+#end
+
+#set($out=$lib.load("Formatter"))
+#if ($out.reset()) #end
+#set($fmt=$xwiki.parseGroovyFromPage('XWiki.formatRssRdf'))
+$out.addMethod($fmt)
+#if ($out.print($obj,$format)) #end
+$out.flush()
+## No f!@#$%g /pre to hack out of this page, but...
