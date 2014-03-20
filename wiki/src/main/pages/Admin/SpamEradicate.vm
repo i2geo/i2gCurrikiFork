@@ -17,10 +17,10 @@
 
 This page makes tools available to eradicate spammers.
 
-Enter a username (without XWiki. in front) and press return to see tools appear:
+        Enter a username (without XWiki. in front) and press return to see tools appear:
 
 <form action="$doc.name" method="GET">
-    <input name="username" value="$!request.username" type="text">
+<input name="username" value="$!request.username" type="text">
 </form>
 
 
@@ -41,30 +41,30 @@ Enter a username (without XWiki. in front) and press return to see tools appear:
         #warning("Warning: if requested to use another browser, please do so using a browser where you are not logged in since spammers are also virus-carriers and their contributions may contain code that reads your cookie (that enables you to be admin) and sends it to their own servers.")
 
     * <a href="http://i2geo.net/xwiki/bin/saveandcontinue/XWiki/${userName}?xcontinue=%2Fxwiki%2Fbin%2Fedit%2FXWiki%2F${userName}%3Feditor%3Dobject&XWiki.XWikiUsers_0_active=0&comment=inactive" target="_blank">mark user as inactive</a>
-        #if($assetsOfUser && !$assetsOfUser.isEmpty())
-        * now delete each of the Blog entries and resources
-        ** this user has $assetsOfUser.size() resource contributions  <a  target="_blank" href="/xwiki/bin/view/MyCurriki/Contributions?user=XWiki.$userName" onclick='return false;'>see contributions in another browser</a><br>)
+#if($assetsOfUser && !$assetsOfUser.isEmpty())
+* now delete each of the Blog entries and resources
+** this user has $assetsOfUser.size() resource contributions  <a  target="_blank" href="/xwiki/bin/view/MyCurriki/Contributions?user=XWiki.$userName" onclick='return false;'>see contributions in another browser</a><br>)
             #foreach($a in $assetsOfUser)##
             *** <a target="_blank" href="/xwiki/bin/delete/$a.replace('.','/')?confirm=1">delete $a</a>
-            #end
-        ** there was one, <a target="_blank" href="/xwiki/bin/delete/Coll_$userName/WebPreferences?confirm=1">delete web-preferences</a> and empty trash, same with
+#end
+** there was one, <a target="_blank" href="/xwiki/bin/delete/Coll_$userName/WebPreferences?confirm=1">delete web-preferences</a> and empty trash, same with
         <a target="_blank" href="/xwiki/bin/delete/Coll_$userName/WebHome?confirm=1">delete WebHome</a>.
-        #else
-        * no resource contributions
-        #end
+#else
+* no resource contributions
+#end
 
-        #if($blogsOfUser && !$blogsOfUser.isEmpty())
-        ** $blogsOfUser.size() blog entries (<a target="_blank" href="/xwiki/bin/view/MyCurriki/Blog?user=XWiki.$userName" onclick='return false;'>see list in another browser</a>)
+#if($blogsOfUser && !$blogsOfUser.isEmpty())
+** $blogsOfUser.size() blog entries (<a target="_blank" href="/xwiki/bin/view/MyCurriki/Blog?user=XWiki.$userName" onclick='return false;'>see list in another browser</a>)
             #foreach($b in $blogsOfUser)##
             *** <a target="_blank" href="/xwiki/bin/delete/$b.replace('.','/')?confirm=1">delete $b</a>
-            #end
+        #end
         ** there was one, <a target="_blank" href="/xwiki/bin/delete/Blog_$userName/WebPreferences?confirm=1">delete web-preferences</a> and empty trash, ##
         same with <a target="_blank" href="/xwiki/bin/delete/Blog_$userName/WebHome?confirm=1">delete WebHome</a>.
         #else
-        * no blog contributions.
-        #end
+* no blog contributions.
+#end
 
-    * <a target="_blank" href="/xwiki/bin/delete/XWiki/$userName?confirm=1">delete user then empty trash</a>
+        * <a target="_blank" href="/xwiki/bin/delete/XWiki/$userName?confirm=1">delete user then empty trash</a>
     * note that there is no way currently to track all the contributions inside groups for example. But they're uncommon.
     #else
     * No user of this name ($request.username)

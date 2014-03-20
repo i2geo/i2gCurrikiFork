@@ -8,9 +8,11 @@ import com.xpn.xwiki.plugin.lucene.LucenePluginApi;
 
 DateFormat df = new SimpleDateFormat("yyyyMMdd");
 Date d = new Date();
+int numDays=31;
+if(request.numDays) numDays = Integer.parseInt(request.numDays);
 long oneDay = 1000l*60l*60*24l;
 StringBuffer dates = new StringBuffer();
-for(int i in 0..14) {
+for(int i in 0..numDays) {
     dates.append("creationdate:").append(df.format(d)).append("* ");
     d.setTime(d.getTime()-oneDay);
 }
@@ -33,15 +35,17 @@ println("<!-- query : " + q + "-->");
 
 println("1 Recent users")
 println();
-println("List of users created in the last 14 days.");
+println("List of users created in the last ${numDays} days.");
 println(results.size() + " hits.")
 
 int i=1;
 
 for(hit in results) {
-    //Document doc = hit.doc();
-    String fullname = doc.getFullName();
-    println("* "+ (i++) + " [" + fullname.substring("XWiki.".length()) + " > " + fullname + "]" )
+    String fullname = hit.getFullName();
+    String username = fullname.substring('XWiki.'.length());
+    print("* "+ (i++) + " [${username}> " + fullname+ "]" )
+    print(" (<a href='../Admin/SpamEradicate?username=${username}'>spammer?</a>");
+    println("");
 }
 
 
