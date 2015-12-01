@@ -25,66 +25,46 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-      <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-curriki</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Curriki Plugin</name>
+  <artifactId>i2geo-plugin-curriki</artifactId>
+  <name>i2geo - Plugins - Curriki Plugin</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Plugins - Curriki Plugin</description>
+  <description>i2geo - Plugins - Curriki Plugin</description>
   <dependencies>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <!-- Note: The 2.4 version is not technically correct as 2.4 corresponds to a specification
-           # and is not an implementation version. The central repo would need to be fixed... -->
-      <version>2.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-asset</artifactId>
-      <version>${project.version}</version>
+	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-asset</artifactId>
+      <version>${pom.version}</version>
     </dependency>
     <dependency>
       <groupId>com.xpn.xwiki.platform.plugins</groupId>
       <artifactId>xwiki-plugin-spacemanager</artifactId>
-      <version>${platform.plugins.spacemanager.version}</version>
+      <version>1.1.1</version>
     </dependency>
     <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-spacemanager</artifactId>
-      <version>${project.version}</version>
+	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-spacemanager</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+<!--
+    <dependency>
+	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-licence</artifactId>
+      <version>${pom.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-      <version>${platform.version}</version>
-      <scope>provided</scope>
+	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-framework</artifactId>
+      <version>${pom.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-zipexplorer</artifactId>
-      <version>${platform.version}</version>
+	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-mimetype</artifactId>
+      <version>${pom.version}</version>
     </dependency>
-
-    <!--
-    <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-licence</artifactId>
-      <version>${curriki.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-framework</artifactId>
-      <version>${curriki.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-mimetype</artifactId>
-      <version>${curriki.version}</version>
-    </dependency>
-    -->
+-->
   </dependencies>
 </project>

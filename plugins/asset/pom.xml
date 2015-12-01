@@ -25,50 +25,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-      <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-asset</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Asset Plugin</name>
+  <artifactId>i2geo-plugin-asset</artifactId>
+  <name>i2geo platform - Plugins - Asset Plugin</name>
   <packaging>jar</packaging>
   <description>XWiki Products - Curriki - Plugins - Asset Plugin</description>
   <dependencies>
-          <dependency>
-              <groupId>org.xwiki.platform</groupId>
-              <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-              <version>${platform.version}</version>
-          </dependency>
-      <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-licence</artifactId>
+    <dependency>
+  	<groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-licence</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-framework</artifactId>
+  	<groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-framework</artifactId>
+      <version>${pom.version}</version>
+    </dependency>                                      
+    <dependency>
+  	<groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-mimetype</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-mimetype</artifactId>
-      <version>${pom.version}</version>
+        <groupId>net.i2geo.appl</groupId>
+        <artifactId>WIRIS_HTML_conversion</artifactId>
+        <version>1.0-SNAPSHOT</version>        
     </dependency>
-
-
-      <dependency><groupId>org.xwiki.platform</groupId>
-          <artifactId>xwiki-platform-model</artifactId><version>${platform.version}</version>
-          <exclusions><exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion></exclusions>
-      </dependency>
-      <dependency>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-      </dependency>
-      <dependency>
-          <groupId>commons-lang</groupId>
-          <artifactId>commons-lang</artifactId>
-      </dependency>
-
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -77,32 +62,5 @@
       <version>2.4</version>
       <scope>provided</scope>
     </dependency>
-      <dependency><artifactId>xwiki-commons-velocity</artifactId>
-          <version>${platform.version}</version><groupId>org.xwiki.commons</groupId>
-      </dependency>
-
-      <!-- JODA Time -->
-      <dependency>
-          <groupId>org.xwiki.platform</groupId>
-          <artifactId>xwiki-platform-jodatime</artifactId>
-          <version>${platform.version}</version>
-          <scope>runtime</scope>
-      </dependency>
-      <dependency>
-          <groupId>joda-time</groupId>
-          <artifactId>joda-time</artifactId>
-          <version>2.1</version>
-      </dependency>
-      <dependency>
-          <groupId>info.informatica</groupId>
-          <artifactId>jclf</artifactId>
-          <version>2.3.0</version>
-      </dependency>
-      <dependency>
-          <groupId>ecs</groupId>
-          <artifactId>ecs</artifactId>
-          <version>1.4.2</version>
-      </dependency>
-
   </dependencies>
 </project>

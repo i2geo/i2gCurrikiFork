@@ -27,37 +27,41 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-      <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-activitystream</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Activity Stream</name>
+  <artifactId>i2geo-plugin-activitystream</artifactId>
+  <name>i2geo Platform - Plugins - Activity Stream</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Plugins - Activity Stream</description>
+  <description>i2geo platform - Plugins - Activity Stream</description>
   <dependencies>
     <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-      <version>${platform.version}</version>
+      <groupId>com.xpn.xwiki.platform</groupId>
+      <artifactId>xwiki-core</artifactId>
+      <version>${platform.core.version}</version>
       <scope>provided</scope>
     </dependency>
-    <!-- Mailsender -->
     <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-mailsender</artifactId>
-      <version>${platform.version}</version>
-    </dependency>  
-    <!-- Activity Stream -->
+      <groupId>jmock</groupId>
+      <artifactId>jmock-cglib</artifactId>
+      <version>1.1.0</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
-      <groupId>org.xwiki.platform</groupId>
-      <artifactId>xwiki-platform-activitystream</artifactId>
-      <version>3.5.1-SNAPSHOT<!-- --></version>
+      <groupId>com.xpn.xwiki.platform.plugins</groupId>
+      <artifactId>xwiki-plugin-mailsender</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.xpn.xwiki.platform.plugins</groupId>
+      <artifactId>xwiki-plugin-activitystream</artifactId>
+      <version>1.1</version>
     </dependency>
     <dependency>
       <groupId>com.xpn.xwiki.platform.plugins</groupId>
       <artifactId>xwiki-plugin-spacemanager</artifactId>
-      <version>${platform.plugins.spacemanager.version}</version>
+      <version>1.1.1</version>
     </dependency>
   </dependencies>
 </project>      

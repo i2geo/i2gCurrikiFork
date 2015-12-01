@@ -26,26 +26,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-      <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-metadata</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Metadata Plugin</name>
+  <artifactId>i2geo-plugin-metadata</artifactId>
+  <name>i2geo platform - Plugins - Metadata Plugin</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Plugins - Metadata Plugin</description>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.xwiki.platform</groupId>
-            <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-        </dependency>
-
-    </dependencies>
+  <description>i2geo platform - Plugins - Metadata Plugin</description>
 </project>
        

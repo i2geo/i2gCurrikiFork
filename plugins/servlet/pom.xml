@@ -25,23 +25,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-      <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-servlet</artifactId>
-  <name>XWiki Products - Curriki - Servlet</name>
+  <artifactId>i2geo-plugin-servlet</artifactId>
+  <name>i2geo platform - Servlet</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Servlet</description>
+  <description>i2geo platform  - Servlet</description>
   <dependencies>
     <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-curriki</artifactId>
+  	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-curriki</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.curriki</groupId>
-      <artifactId>curriki-plugin-asset</artifactId>
+  	  <groupId>net.i2geo</groupId>
+      <artifactId>i2geo-plugin-asset</artifactId>
       <version>${pom.version}</version>
     </dependency>
     <dependency>
@@ -55,44 +55,29 @@
     <dependency>
       <groupId>net.sf.json-lib</groupId>
       <artifactId>json-lib</artifactId>
-      <version>2.3</version>
+      <version>2.2.1</version>
       <classifier>jdk15</classifier>
-      <scope>provided</scope> <!-- json-lib comes with xwiki-core -->
     </dependency>
+       <dependency>
+         <groupId>xom</groupId>
+         <artifactId>xom</artifactId>
+         <version>1.1</version>
+       </dependency>
     <dependency>
       <groupId>org.restlet</groupId>
       <artifactId>org.restlet</artifactId>
-      <version>1.1.10</version>
+      <version>1.1-M3</version>
     </dependency>
     <dependency>
       <groupId>org.restlet</groupId>
       <artifactId>org.restlet.ext.json</artifactId>
-      <version>1.1.10</version>
+      <version>1.1-M3</version>
     </dependency>
     <dependency>
       <groupId>com.noelios.restlet</groupId>
       <artifactId>com.noelios.restlet.ext.servlet</artifactId>
-      <version>1.1.10</version>
+      <version>1.1-M3</version>
     </dependency>
-      <dependency>
-          <groupId>commons-httpclient</groupId>
-          <artifactId>commons-httpclient</artifactId>
-          <version>3.1</version>
-      </dependency>
-
-      <dependency>
-              <groupId>org.xwiki.platform</groupId>
-              <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-              <version>${platform.version}</version>
-          </dependency>
-      <dependency>
-          <groupId>com.google.code.gson</groupId>
-          <artifactId>gson</artifactId>
-          <version>2.1</version>
-          <scope>compile</scope>
-      </dependency>
-
-
   </dependencies>
   <repositories>
     <repository>

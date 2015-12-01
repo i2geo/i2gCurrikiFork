@@ -26,29 +26,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.curriki</groupId>
-    <artifactId>curriki-plugins</artifactId>
-    <version>1.14-SNAPSHOT</version>
+  	<groupId>net.i2geo</groupId>
+  	<artifactId>i2geo-plugins</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>curriki-plugin-mimetype</artifactId>
-  <name>XWiki Products - Curriki - Plugins - Mimetype Plugin</name>
+  <artifactId>i2geo-plugin-mimetype</artifactId>
+  <name>i2geo platform - Plugins - Mimetype Plugin</name>
   <packaging>jar</packaging>
-  <description>XWiki Products - Curriki - Plugins - Mimetype Plugin</description>
-    <dependencies>
-        <dependency>
-            <groupId>org.xwiki.platform</groupId>
-            <artifactId>xwiki-platform-legacy-oldcore</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
-
-        <dependency><groupId>org.xwiki.platform</groupId>
-            <artifactId>xwiki-platform-model</artifactId><version>${platform.version}</version>
-            <exclusions><exclusion><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId></exclusion></exclusions>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-        </dependency>
-
-    </dependencies>
+  <description>i2geo platform - Plugins - Mimetype Plugin</description>
 </project>
+        
