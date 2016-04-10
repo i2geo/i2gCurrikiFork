@@ -10,6 +10,9 @@
 ## @vtlvariable name="embeddedDoc" type="org.curriki.xwiki.plugin.asset.Asset"
 #* @vtlvariable name="util" type="com.xpn.xwiki.api.Util" *# ##
 #* @vtlvariable name="escapetool" type="org.apache.velocity.tools.generic.EscapeTool" *# ##
+<div id="info-basic-description">
+    <p>$asset.display("description")</p>
+</div>
 #if(!$asset.hasAccessLevel("view"))
 #asset_collectionemptyornorights()
 #else
